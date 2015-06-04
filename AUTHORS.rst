@@ -1,10 +1,9 @@
-Requests is written and maintained by Kenneth Reitz and
-various contributors:
+Requests è scritto e mantenuto da Kenneth Reitz e vari collaboratori:
 
-Keepers of the Three Crystals
+I Guardiani dei Tre Cristalli
 `````````````````````````````
 
-- Kenneth Reitz <me@kennethreitz.org> `@kennethreitz <https://github.com/kennethreitz>`_, Keeper of the Master Crystal.
+- Kenneth Reitz <me@kennethreitz.org> `@kennethreitz <https://github.com/kennethreitz>`_, Guardiano del Cristallo Principale.
 - Cory Benfield <cory@lukasa.co.uk> `@lukasa <https://github.com/lukasa>`_
 - Ian Cordasco <graffatcolmingov@gmail.com> `@sigmavirus24 <https://github.com/sigmavirus24>`_
 
@@ -16,10 +15,10 @@ Urllib3
 - Andrey Petrov <andrey.petrov@shazow.net>
 
 
-Patches and Suggestions
-```````````````````````
+Patch e Suggerimenti
+````````````````````
 
-- Various Pocoo Members
+- Diversi membri di Pocoo
 - Chris Adams
 - Flavio Percoco Premoli
 - Dj Gilcrease
@@ -159,3 +158,4 @@ Patches and Suggestions
 - Muhammad Yasoob Ullah Khalid <yasoob.khld@gmail.com> (`@yasoob <https://github.com/yasoob>`_)
 - Paul van der Linden (`@pvanderlinden <https://github.com/pvanderlinden>`_)
 - Colin Dickson (`@colindickson <https://github.com/colindickson>`_)
+- Claudio Sparpaglione (`@csparpa <https://github.com/csparpa>`_)
