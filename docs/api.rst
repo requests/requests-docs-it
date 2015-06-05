@@ -1,20 +1,20 @@
 .. _api:
 
-Developer Interface
-===================
+API per gli sviluppatori
+========================
 
 .. module:: requests
 
-This part of the documentation covers all the interfaces of Requests. For
-parts where Requests depends on external libraries, we document the most
-important right here and provide links to the canonical documentation.
+Questa parte della documentazione copre tutte le interfacce di Requests.
+Le interfacce con librerie esterne sono documentate a grandi linee e vengono
+forniti link alla loro documentazione canonica.
 
 
-Main Interface
---------------
+Interfaccia principale
+----------------------
 
-All of Requests' functionality can be accessed by these 7 methods.
-They all return an instance of the :class:`Response <Response>` object.
+Tutte le funzionalità di Requests sono accessibili da questi 7 metodi.
+Tutti ritornano un'istanza dell'oggetto :class:`Response <Response>`.
 
 .. autofunction:: request
 
@@ -26,8 +26,8 @@ They all return an instance of the :class:`Response <Response>` object.
 .. autofunction:: delete
 
 
-Lower-Level Classes
-~~~~~~~~~~~~~~~~~~~
+Classi di livello inferiore
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. autoclass:: requests.Request
    :inherited-members:
@@ -35,8 +35,8 @@ Lower-Level Classes
 .. autoclass:: Response
    :inherited-members:
 
-Request Sessions
-----------------
+Sessioni 
+--------
 
 .. autoclass:: Session
    :inherited-members:
@@ -44,7 +44,7 @@ Request Sessions
 .. autoclass:: requests.adapters.HTTPAdapter
    :inherited-members:
 
-Authentication
+Autenticazione
 --------------
 
 .. autoclass:: requests.auth.AuthBase
@@ -52,8 +52,8 @@ Authentication
 .. autoclass:: requests.auth.HTTPProxyAuth
 .. autoclass:: requests.auth.HTTPDigestAuth
 
-Exceptions
-~~~~~~~~~~
+Eccezioni
+~~~~~~~~~
 
 .. autoexception:: requests.exceptions.RequestException
 .. autoexception:: requests.exceptions.ConnectionError
@@ -65,8 +65,8 @@ Exceptions
 .. autoexception:: requests.exceptions.Timeout
 
 
-Status Code Lookup
-~~~~~~~~~~~~~~~~~~
+Ricerca degli status code
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. autofunction:: requests.codes
 
@@ -81,8 +81,8 @@ Status Code Lookup
     >>> requests.codes['\o/']
     200
 
-Cookies
-~~~~~~~
+Cookie
+~~~~~~
 
 .. autofunction:: requests.utils.dict_from_cookiejar
 .. autofunction:: requests.utils.cookiejar_from_dict
@@ -95,16 +95,16 @@ Cookies
    :inherited-members:
 
 
-Encodings
-~~~~~~~~~
+Encoding
+~~~~~~~~
 
 .. autofunction:: requests.utils.get_encodings_from_content
 .. autofunction:: requests.utils.get_encoding_from_headers
 .. autofunction:: requests.utils.get_unicode_from_response
 
 
-Classes
-~~~~~~~
+Classi
+~~~~~~
 
 .. autoclass:: requests.Response
    :inherited-members:
@@ -124,71 +124,70 @@ Classes
    :inherited-members:
 
 
-Migrating to 1.x
-----------------
+Migrazione alla versione 1.x
+----------------------------
 
-This section details the main differences between 0.x and 1.x and is meant
-to ease the pain of upgrading.
+Questa sezione illustra le principali differenze tra le versioni 0.x e 1.x
+e il suo scopo è facilitare l'upgrading.
 
 
-API Changes
-~~~~~~~~~~~
+Cambiamenti nell'API
+~~~~~~~~~~~~~~~~~~~~
 
-* ``Response.json`` is now a callable and not a property of a response.
+* ``Response.json`` ora è una callable e non più una property di una response.
 
   ::
 
       import requests
       r = requests.get('https://github.com/timeline.json')
-      r.json()   # This *call* raises an exception if JSON decoding fails
+      r.json()   # Questa *chiamata* lancia un'eccezione se il decoding del JSON fallisce
 
-* The ``Session`` API has changed. Sessions objects no longer take parameters.
-  ``Session`` is also now capitalized, but it can still be
-  instantiated with a lowercase ``session`` for backwards compatibility.
+* La ``Session`` API è cambiata. Gli oggetti Sessione non accettano più parametri.
+  ``Session`` ora è indicata con la lettera maiuscola ma può ancora essere istanziata tramite
+  ``session`` con l'iniziale minuscola per retrocompatibilità.
 
   ::
 
-      s = requests.Session()    # formerly, session took parameters
+      s = requests.Session()    # prima, le sessioni accettavano parametri
       s.auth = auth
       s.headers.update(headers)
       r = s.get('http://httpbin.org/headers')
 
-* All request hooks have been removed except 'response'.
+* Sono stati rimossi tutti gli hook delle richieste tranne 'response'.
 
-* Authentication helpers have been broken out into separate modules. See
-  requests-oauthlib_ and requests-kerberos_.
+* Le funzioni di supporto all'autenticazione sono state spostate in moduli separati. Si vedano
+  requests-oauthlib_ e requests-kerberos_.
 
 .. _requests-oauthlib: https://github.com/requests/requests-oauthlib
 .. _requests-kerberos: https://github.com/requests/requests-kerberos
 
-* The parameter for streaming requests was changed from ``prefetch`` to
-  ``stream`` and the logic was inverted. In addition, ``stream`` is now
-  required for raw response reading.
+* Il nome del parametro per le richieste streaming è cambiato da ``prefetch`` a
+  ``stream`` e la logica è stata invertita. In più, ``stream`` viene ora richiesto per la
+  lettura delle risposte raw.
 
   ::
 
-      # in 0.x, passing prefetch=False would accomplish the same thing
+      # nella versione 0.x, il passaggio di prefetch=False avrebbe dato lo stesso risultato
       r = requests.get('https://github.com/timeline.json', stream=True)
       for chunk in r.iter_content(8192):
           ...
 
-* The ``config`` parameter to the requests method has been removed. Some of
-  these options are now configured on a ``Session`` such as keep-alive and
-  maximum number of redirects. The verbosity option should be handled by
-  configuring logging.
+* Il parametro ``config`` della funzione requests è stato rimosso. Alcune delle opzioni vengono ora
+  configurate su una ``Session`` (es: keep-alive e numero massimo di redirect). L'opzione di verbosità
+  dovrebbe essere gestita tramite configurazione del logging.
 
   ::
 
       import requests
       import logging
 
-      # these two lines enable debugging at httplib level (requests->urllib3->httplib)
-      # you will see the REQUEST, including HEADERS and DATA, and RESPONSE with HEADERS but without DATA.
-      # the only thing missing will be the response.body which is not logged.
+      # queste due righe abilitano il debugging a livello di httplib (requests->urllib3->httplib)
+      # si vedranno la REQUEST, con HEADERS e DATA, e la RESPONSE con gli HEADERS ma senza DATA.
+      # l'unico elemento mancante è il response.body che non viene loggato.
       import httplib
       httplib.HTTPConnection.debuglevel = 1
 
-      logging.basicConfig() # you need to initialize logging, otherwise you will not see anything from requests
+      logging.basicConfig() # occorre inizializzare il logging, altrimenti non si vedrà nulla delle richieste
       logging.getLogger().setLevel(logging.DEBUG)
       requests_log = logging.getLogger("requests.packages.urllib3")
       requests_log.setLevel(logging.DEBUG)
@@ -198,68 +197,66 @@ API Changes
 
 
 
-Licensing
-~~~~~~~~~
+Licenza
+~~~~~~~
 
-One key difference that has nothing to do with the API is a change in the
-license from the ISC_ license to the `Apache 2.0`_ license. The Apache 2.0
-license ensures that contributions to Requests are also covered by the Apache
-2.0 license.
+Una differenza fondamentale che non impatta l'API è il cambio di licenza da ISC_ 
+ad `Apache 2.0`_ . La licenza Apache 2.0 garantisce che i contributi a Requests siano 
+anch'essi licenziati con Apache 2.0.
 
 .. _ISC: http://opensource.org/licenses/ISC
 .. _Apache 2.0: http://opensource.org/licenses/Apache-2.0
 
 
-Migrating to 2.x
-----------------
+Migrazione alla versione 2.x
+----------------------------
 
+Rispetto alla release 1.0, ci sono state relativamente poche modifiche non
+retrocompatibili ma ci sono ancora alcuni problemi di questa major release di
+cui è bene sapere.
 
-Compared with the 1.0 release, there were relatively few backwards
-incompatible changes, but there are still a few issues to be aware of with
-this major release.
-
-For more details on the changes in this release including new APIs, links
-to the relevant GitHub issues and some of the bug fixes, read Cory's blog_
-on the subject.
+Per ulteriore dettaglio sulle modifiche in questa release, comprese nuove APIs,
+link alle issues relative su GitHub e il fixing di alcuni bachi, si legga il 
+blog_ di Cory.
 
 .. _blog: http://lukasa.co.uk/2013/09/Requests_20/
 
 
-API Changes
-~~~~~~~~~~~
+Modifiche nell'API
+~~~~~~~~~~~~~~~~~~
 
-* There were a couple changes to how Requests handles exceptions.
-  ``RequestException`` is now a subclass of ``IOError`` rather than
-  ``RuntimeError`` as that more accurately categorizes the type of error.
-  In addition, an invalid URL escape sequence now raises a subclass of
-  ``RequestException`` rather than a ``ValueError``.
+* Ci sono stati un paio di modifiche sul modo con cui Requests gestisce le eccezioni.
+  ``RequestException`` ora è una sottoclasse di ``IOError`` invece che di 
+  ``RuntimeError`` perchè così viene meglio indicato il tipo di situazione erronea.
+  In più, ora una sequenza di escaping degli URL non valida solleva l'istanza di una
+  sottoclasse di ``RequestException`` piuttosto che di ``ValueError``.
 
   ::
 
-      requests.get('http://%zz/')   # raises requests.exceptions.InvalidURL
+      requests.get('http://%zz/')   # solleva requests.exceptions.InvalidURL
 
-  Lastly, ``httplib.IncompleteRead`` exceptions caused by incorrect chunked
-  encoding will now raise a Requests ``ChunkedEncodingError`` instead.
+  Infine, le eccezioni di tipo ``httplib.IncompleteRead`` causate da un encoding scorretto
+  sui chunks sollevano ora un'istanza di ``ChunkedEncodingError`` di Requests.
 
-* The proxy API has changed slightly. The scheme for a proxy URL is now
-  required.
+* L'API per i proxy è stata modificata lievemente. Lo schema dell'URL di un proxy viene ora
+  richiesto.
 
   ::
 
       proxies = {
-        "http": "10.10.1.10:3128",    # use http://10.10.1.10:3128 instead
+        "http": "10.10.1.10:3128",    # ora va utilizzato http://10.10.1.10:3128
       }
 
-      # In requests 1.x, this was legal, in requests 2.x,
-      #  this raises requests.exceptions.MissingSchema
+      # Nelle versioni 1.x di requests, questo codice era eseguito senza problemi mentre
+      # nelle versioni 2.x solleva un'eccezione requests.exceptions.MissingSchema
       requests.get("http://example.org", proxies=proxies)
 
 
-Behavioural Changes
-~~~~~~~~~~~~~~~~~~~~~~~
+Modifiche al comportamento
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* Keys in the ``headers`` dictionary are now native strings on all Python
-  versions, i.e. bytestrings on Python 2 and unicode on Python 3. If the
-  keys are not native strings (unicode on Python2 or bytestrings on Python 3)
-  they will be converted to the native string type assuming UTF-8 encoding.
+* Le chiavi nel dizionario ``headers`` sono ora stringhe native in tutte le versioni di Python
+  es. bytestrings in Python 2 e unicode in Python 3. Se le chiavi non sono stringhe native
+  (unicode in Python2 oppure bytestrings in Python 3), queste vengono convertite in stringhe
+  native utilizzando UTF-8 come encoding.
 
