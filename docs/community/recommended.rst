@@ -1,46 +1,47 @@
 .. _recommended:
 
-Recommended Packages and Extensions
-===================================
+Package ed Estensioni raccomandate
+==================================
 
-Requests has a great variety of powerful and useful third-party extensions.
-This page provides an overview of some of the best of them.
+Requests dispone di una grande varietà di utili estensioni di terze party.
+Questa pagina offre una visione di insieme delle migliori.
 
 Certifi CA Bundle
 -----------------
 
-`Certifi`_ is a carefully curated collection of Root Certificates for
-validating the trustworthiness of SSL certificates while verifying the
-identity of TLS hosts. It has been extracted from the Requests project.
+`Certifi`_ è una collezione scelta di Root Certificates per validare la
+fiducia dei certificati SSL mentre si verifica l'identità degli host TLS.
+E' nata dal progetto Requests.
 
 .. _Certifi: http://certifi.io/en/latest/
 
 CacheControl
 ------------
 
-`CacheControl`_ is an extension that adds a full HTTP cache to Requests. This
-makes your web requests substantially more efficient, and should be used
-whenever you're making a lot of web requests.
+`CacheControl`_ è un'estensione che aggiunge piene capacità di caching HTTP a Requests.
+Questo rende le vostre richieste HTTP di gran lunga più efficienti, e dovrebbe essere
+usato quando effettuate un gran numero di richieste.
 
 .. _CacheControl: https://cachecontrol.readthedocs.org/en/latest/
 
 Requests-Toolbelt
 -----------------
 
-`Requests-Toolbelt`_ is a collection of utilities that some users of Requests may desire,
-but do not belong in Requests proper. This library is actively maintained
-by members of the Requests core team, and reflects the functionality most
-requested by users within the community.
+`Requests-Toolbelt`_ è una collezione di moduli che gli utenti di Requests possono
+trovare utili, ma non fanno parte di Requests. Questa libreria è attivamente 
+mantenuta da membri del core team di Requests e riflette le funzionalità più
+richieste dagli utenti nella community.
 
 .. _Requests-Toolbelt: http://toolbelt.readthedocs.org/en/latest/index.html
 
 Requests-OAuthlib
 -----------------
 
-`requests-oauthlib`_ makes it possible to do the OAuth dance from Requests
-automatically. This is useful for the large number of websites that use OAuth
-to provide authentication. It also provides a lot of tweaks that handle ways
-that specific OAuth providers differ from the standard specifications.
+`requests-oauthlib`_ rende possibile il workflow di autenticazione OAuth da Requests
+in modo automatico. Questo è utile per il gran numero di siti web che usano OAuth
+per fornire servizi di autenticazione. Vengono anche messi a disposizione molti
+tweaks per gestire l'autenticazione su provider specifici che non aderiscono
+alle specifiche OAuth standard.
 
 .. _requests-oauthlib: https://requests-oauthlib.readthedocs.org/en/latest/
 
@@ -48,8 +49,8 @@ that specific OAuth providers differ from the standard specifications.
 Betamax
 -------
 
-`Betamax`_ records your HTTP interactions so the NSA does not have to.
-A VCR imitation designed only for Python-Requests.
+`Betamax`_ traccia le tue interazioni HTTP al posto dell'NSA.
+E' un'imitazione di VCR imitation pensata specificamente per Python-Requests.
 
 .. _betamax: https://github.com/sigmavirus24/betamax
 
