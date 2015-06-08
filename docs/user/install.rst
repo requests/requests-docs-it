@@ -1,47 +1,45 @@
 .. _install:
 
-Installation
-============
+Installazione
+=============
 
-This part of the documentation covers the installation of Requests.
-The first step to using any software package is getting it properly installed.
+Questa parte della documentazione illustra l'installazione di Requests.
+Il primo passo per usare qualsiasi pacchetto software è installarlo nel modo corretto.
 
 
-Distribute & Pip
+Distribute e Pip
 ----------------
 
-Installing Requests is simple with `pip <https://pip.pypa.io>`_, just run
-this in your terminal::
+Installare Requests è semplice con `pip <https://pip.pypa.io>`_, basta eseguire in un terminale::
 
     $ pip install requests
 
-or, with `easy_install <http://pypi.python.org/pypi/setuptools>`_::
+oppure, con `easy_install <http://pypi.python.org/pypi/setuptools>`_::
 
     $ easy_install requests
 
-But, you really `shouldn't do that <https://stackoverflow.com/questions/3220404/why-use-pip-over-easy-install>`_.
+Ma `non dovreste proprio farlo <https://stackoverflow.com/questions/3220404/why-use-pip-over-easy-install>`_.
 
 
-Get the Code
-------------
+Ottenere il codice
+------------------
 
-Requests is actively developed on GitHub, where the code is
-`always available <https://github.com/kennethreitz/requests>`_.
+Requests è sotto sviluppo attivo su GitHub, dove il codice è `sempre disponibile <https://github.com/kennethreitz/requests>`_.
 
-You can either clone the public repository::
+Potete in alternativa clonare il repository pubblico::
 
     $ git clone git://github.com/kennethreitz/requests.git
 
-Download the `tarball <https://github.com/kennethreitz/requests/tarball/master>`_::
+Scaricare la `tarball <https://github.com/kennethreitz/requests/tarball/master>`_::
 
     $ curl -OL https://github.com/kennethreitz/requests/tarball/master
 
-Or, download the `zipball <https://github.com/kennethreitz/requests/zipball/master>`_::
+Oppure, scaricare la `zipball <https://github.com/kennethreitz/requests/zipball/master>`_::
 
     $ curl -OL https://github.com/kennethreitz/requests/zipball/master
 
 
-Once you have a copy of the source, you can embed it in your Python package,
-or install it into your site-packages easily::
+Una volta ottenuta una copia dei sorgenti, potete includerlo nel vostro package Python,
+o installarli facilmente nei vostri site-packages::
 
     $ python setup.py install
