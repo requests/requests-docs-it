@@ -1,45 +1,44 @@
 .. _introduction:
 
-Introduction
+Introduzione
 ============
 
-Philosophy
-----------
+Filosofia
+---------
 
-Requests was developed with a few :pep:`20` idioms in mind.
+Requests è stata sviluppata tenendo a mente alcuni idiomi della :pep:`20`.
 
 
-#. Beautiful is better than ugly.
-#. Explicit is better than implicit.
-#. Simple is better than complex.
-#. Complex is better than complicated.
-#. Readability counts.
+#. Bello è meglio che brutto.
+#. Esplicito è meglio che implicito.
+#. Semplice è meglio che complesso.
+#. Complesso è meglio che complicato.
+#. La leggibilità è importante.
 
-All contributions to Requests should keep these important rules in mind.
+Tutti i contributi a Requests dovrebbero seguire queste importanti regole.
 
 .. _`apache2`:
 
-Apache2 License
+Licenza Apache2
 ---------------
 
-A large number of open source projects you find today are `GPL Licensed`_.
-While the GPL has its time and place, it should most certainly not be your
-go-to license for your next open source project.
+Un gran numero di progetti open source moderni hanno `licenza GPL`_.
+Sebbene la GPL abbia una sua importanza storica, non dovrebbe di certo essere la vostra
+licenza di riferimento per il vostro prossimo progetto open source.
 
-A project that is released as GPL cannot be used in any commercial product
-without the product itself also being offered as open source.
+Un progetto rilasciato in GPL non può essere incluso in prodotti commerciali senza
+mettere a disposizione in open source anche il prodotto stesso.
 
-The MIT, BSD, ISC, and Apache2 licenses are great alternatives to the GPL
-that allow your open-source software to be used freely in proprietary,
-closed-source software.
+Le licenze MIT, BSD, ISC, e Apache2 sono ottime alternative alla GPL che permettono
+di utilizzare il vostro software open source in codici proprietari e closed source.
 
-Requests is released under terms of `Apache2 License`_.
+Requests è rilasciato nei termini della `Licenza Apache2`_.
 
 .. _`GPL Licensed`: http://www.opensource.org/licenses/gpl-license.php
 .. _`Apache2 License`: http://opensource.org/licenses/Apache-2.0
 
 
-Requests License
-----------------
+Licenza di Requests
+-------------------
 
     .. include:: ../../LICENSE
