@@ -1,25 +1,25 @@
 krTheme Sphinx Style
 ====================
 
-This repository contains sphinx styles Kenneth Reitz uses in most of
-his projects. It is a derivative of Mitsuhiko's themes for Flask and Flask related
-projects.  To use this style in your Sphinx documentation, follow
-this guide:
+Questo repository contiene gli stili sphinx che Kenneth Reitz usa per la
+maggior parte dei suoi progetti. E' un lavoro derivato dai temi di Mitsuhiko
+per progetti Flask o relativi a Flask.
+Per usare questo stile nella vostra documentazione Sphinx, seguite questi passi:
 
-1. put this folder as _themes into your docs folder.  Alternatively
-   you can also use git submodules to check out the contents there.
+1. copiate questa cartella chiamandola _themes nella root della vostra documentazione.
+   In alternativa, potete usare i sottomoduli git per scaricare la cartella nella vostra documentazione.
 
-2. add this to your conf.py: ::
+2. aggiungete questo codice al vostro file conf.py: ::
 
     sys.path.append(os.path.abspath('_themes'))
     html_theme_path = ['_themes']
     html_theme = 'flask'
 
-The following themes exist:
+Sono a disposizione i seguenti temi:
 
 **kr**
-    the standard flask documentation theme for large projects
+    il tema standard per la documentazione flask per grossi progetti
 
 **kr_small**
-    small one-page theme.  Intended to be used by very small addon libraries.
+    tema one-page minimale. E' concepito per piccole librerie aggiuntive.
 
