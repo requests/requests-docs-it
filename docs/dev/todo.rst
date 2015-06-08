@@ -1,27 +1,28 @@
-How to Help
-===========
+Come contribuire
+================
 
-Requests is under active development, and contributions are more than welcome!
+Requests è un progetto attivamente mantenuto, e i contributi sono bene accetti!
 
-#. Check for open issues or open a fresh issue to start a discussion around a bug.
-   There is a Contributor Friendly tag for issues that should be ideal for people who are not very
-   familiar with the codebase yet.
-#. Fork `the repository <https://github.com/kennethreitz/requests>`_ on GitHub and start making your
-   changes to a new branch.
-#. Write a test which shows that the bug was fixed.
-#. Send a pull request and bug the maintainer until it gets merged and published. :)
-   Make sure to add yourself to `AUTHORS <https://github.com/kennethreitz/requests/blob/master/AUTHORS.rst>`_.
+#. Verificate se ci sono issue aperte o apritene una nuova per iniziare la discussione su un baco.
+   Le issue marcata con il tag Contributor Friendly sono l'ideale per chi non è ancora molto familiare
+   con la codebase.
+#. Forkate `il repository <https://github.com/kennethreitz/requests>`_ su GitHub e iniziate ad apportare
+   le vostre modifiche su una nuova branch.
+#. Scrivete un test che dimostra che il baco è stato risolto.
+#. Inviate una pull request e rompete l'anima ai maintainer finchè questa non viene mergiata e resa pubblica. :)
+   Non scordatevi di aggiungere il vostro nome al file `AUTHORS <https://github.com/kennethreitz/requests/blob/master/AUTHORS.rst>`_.
 
-Feature Freeze
---------------
+Congelamento delle feature
+--------------------------
 
-As of v1.0.0, Requests has now entered a feature freeze. Requests for new
-features and Pull Requests implementing those features will not be accepted.
 
-Development Dependencies
-------------------------
+Dalla versione v1.0.0, le feature di Requests sono state congelate. Le richieste per nuove feature e le Pull Request
+che le implementano non saranno più accettate.
 
-You'll need to install py.test in order to run the Requests' test suite::
+Dipendenze per lo sviluppo
+--------------------------
+
+Dovrete installare py.test per far girare la test suite di Requests::
 
     $ pip install -r requirements.txt
     $ py.test
@@ -31,10 +32,10 @@ You'll need to install py.test in order to run the Requests' test suite::
     test_requests.py .........................
     25 passed in 3.50 seconds
 
-Runtime Environments
---------------------
+Ambienti di runtime
+-------------------
 
-Requests currently supports the following versions of Python:
+Requests al momento supporta le seguenti versioni di Python:
 
 - Python 2.6
 - Python 2.7
@@ -43,17 +44,19 @@ Requests currently supports the following versions of Python:
 - Python 3.3
 - PyPy 1.9
 
-Support for Python 3.1 and 3.2 may be dropped at any time.
+Il supporto per Python 3.1 e 3.2 può essere abbandonato in futuro.
 
-Google App Engine will never be officially supported. Pull Requests for compatibility will be accepted, as long as they don't complicate the codebase.
+Google App Engine non sarà mai supportato ufficialmente. Le Pull Requests di compatibilità saranno accettate
+solo se non complicheranno la codebase.
 
 
-Are you crazy?
---------------
+Siete fuori di testa?
+---------------------
 
-- SPDY support would be awesome. No C extensions.
+- Il supporto a SPDY sarebbe fantastico. Nessuna estensione C però.
 
-Downstream Repackaging
+Repackaging Downstream
 ----------------------
 
-If you are repackaging Requests, please note that you must also redistribute the ``cacerts.pem`` file in order to get correct SSL functionality.
+Se redistribuite Requests nei vostri pacchetti, ricordate che dovete anche redistribuire il file ``cacerts.pem`` affinchè
+SSL funzioni correttamente.
