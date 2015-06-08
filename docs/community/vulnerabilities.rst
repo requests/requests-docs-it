@@ -1,104 +1,105 @@
-Vulnerability Disclosure
-========================
+Rendere esplicite le vulnerabilità
+==================================
 
-If you think you have found a potential security vulnerability in requests,
-please email `sigmavirus24 <mailto:graffatcolmingov@gmail.com>`_ and
-`Lukasa <mailto:cory@lukasa.co.uk>`_ directly. **Do not file a public issue.**
+Se pensate di aver individuato una potenziale falla di sicurezza i requests, siete pregati
+di comunicarla direttamente via e-mail a `sigmavirus24 <mailto:graffatcolmingov@gmail.com>`_ e
+`Lukasa <mailto:cory@lukasa.co.uk>`_ . **Non aprite alcuna issue pubblica a riguardo.**
 
-Our PGP Key fingerprints are:
+Le nostre PGP Key fingerprints sono:
 
 - 0161 BB7E B208 B5E0 4FDC  9F81 D9DA 0A04 9113 F853 (@sigmavirus24)
 
 - 90DC AE40 FEA7 4B14 9B70  662D F25F 2144 EEC1 373D (@lukasa)
 
-If English is not your first language, please try to describe the problem and
-its impact to the best of your ability. For greater detail, please use your
-native language and we will try our best to translate it using online services.
+Se la vostra madrelingua non è l'inglese, perfavore provate a descrivere il problema
+e il suo impatto al meglio delle vostre capacità linguistiche. Per entrare nel dettaglio,
+utilizzate la vostra lingua madre e cercheremo di tradurla al meglio usando dei servizi
+online.
 
-Please also include the code you used to find the problem and the shortest
-amount of code necessary to reproduce it.
+Siete pregati anche di includere il codice che avete usato per identificare il problema
+e la minima porzione di codice necessaria per riprodurlo.
 
-Please do not disclose this to anyone else. We will retrieve a CVE identifier
-if necessary and give you full credit under whatever name or alias you provide.
-We will only request an identifier when we have a fix and can publish it in a
-release.
+Perfavore non rivelate il problema a nessun altro. Recupereremo un identificatore CVE
+se necessario e vi daremo la piena paternità della scoperta sotto qualsiasi nome o
+alias vorrete fornirci. Vi chiederemo un modo per identificarvi solo quando avremo
+trovato una soluzione al problema e potremo pubblicarla in una release.
 
-We will respect your privacy and will only publicize your involvement if you
-grant us permission.
+Rispetteremo la vostra privacy e renderemo pubblico il vostro coinvolgimento solo se
+ci darete il permesso di farlo.
 
-Process
--------
+Processo
+--------
+Le seguenti informazioni riguardano il processo che il progetto requests seguirà
+in risposta alla rivelazione di una vulnerabilità. Se state per comunicare una
+vulnerabilità, questa parte della documentazione vi spiega come reagiremo alla
+vostra segnalazione.
 
-This following information discusses the process the requests project follows
-in response to vulnerability disclosures. If you are disclosing a
-vulnerability, this section of the documentation lets you know how we will
-respond to your disclosure.
 
 Timeline
 ~~~~~~~~
 
-When you report an issue, one of the project members will respond to you within
-two days *at the outside*. In most cases responses will be faster, usually
-within 12 hours. This initial response will at the very least confirm receipt
-of the report.
+Quando riportate un problema, uno dei membri del progetto vi risponderà entro
+*al massimo* due giorni. Nella maggior parte dei casi le risposte saranno più
+rapide, di solito entro le 12 ore. Questa prima risposta servirà almeno da
+conferma della ricezione del vostro report.
 
-If we were able to rapidly reproduce the issue, the initial response will also
-contain confirmation of the issue. If we are not, we will often ask for more
-information about the reproduction scenario.
+Se riusciremo a riprodurre velocemente il problema, la risposta iniziale 
+conterrà anche una conferma dell'esistenza della issue. Se non ci riusciremo,
+probabilmente chiederemo più informazioni per ripodurre lo scenario.
 
-Our goal is to have a fix for any vulnerability released within two weeks of
-the initial disclosure. This may potentially involve shipping an interim
-release that simply disables function while a more mature fix can be prepared,
-but will in the vast majority of cases mean shipping a complete release as soon
-as possible.
+Il nostro obiettivo è di rilasciare una fix per ogni vulnerabilità entro due
+settimane dalla notifica della sua esistenza. Questo può potenzialmente
+portare ad una release ad intermi che disabilita la funzionalità mentre una
+soluzione definitiva è in sviluppo, ma generalmente ci sarà una versione completa
+rilasciata il prima possibile.
 
-Throughout the fix process we will keep you up to speed with how the fix is
-progressing. Once the fix is prepared, we will notify you that we believe we
-have a fix. Often we will ask you to confirm the fix resolves the problem in
-your environment, especially if we are not confident of our reproduction
-scenario.
+Lungo il processo di risoluzione vi terremo aggiornati sul progresso della fix.
+Una volta che la fix è pronta, ve lo faremo sapere. Spesso vi richiederemo di
+confermare che la fix risolve il problema nel vostro ambiente di lavoro, in
+special modo se non siamo pienamente convinti della sua efficacia nel nostro
+ambiente di lavoro.
 
-At this point, we will prepare for the release. We will obtain a CVE number
-if one is required, providing you with full credit for the discovery. We will
-also decide on a planned release date, and let you know when it is. This
-release date will *always* be on a weekday.
+Giunti a tal momento, ci prepareremo per la release. Se sarà necessario,
+richiederemo un identificativo CVE, assegnandovi la piena attribuzione
+della scoperta. Decideremo anche una data per la release e vi faremo sapere
+quando sarà. Questa data di release sarà *sempre* un giorno feriale.
 
-At this point we will reach out to our major downstream packagers to notify
-them of an impending security-related patch so they can make arrangements. In
-addition, these packagers will be provided with the intended patch ahead of
-time, to ensure that they are able to promptly release their downstream
-packages. Currently the list of people we actively contact *ahead of a public
-release* is:
+Quindi, contatteremo i principali downstream packagers per informarli di una
+imminente patch di sicurezza di modo che si possano organizzare. In più,
+questi packagers riceveranno la patch per tempo, così che possano rilasciare
+in tempo i loro packages dipendenti. Al momento, la lista delle persone che
+contattiamo attivamente *prima di ciascuna public release* è:
 
 - Ralph Bean, Red Hat (@ralphbean)
 - Daniele Tricoli, Debian (@eriol)
 
-We will notify these individuals at least a week ahead of our planned release
-date to ensure that they have sufficient time to prepare. If you believe you
-should be on this list, please let one of the maintainers know at one of the
-email addresses at the top of this article.
+Informeremo queste persone almeno una settimana prima della nostra release 
+pianificata per assicurarci che abbiano tempo a sufficienza per prepararsi.
+Se pensate di dover essere inclusi nella lista, siete pregati di informare
+uno dei maintainer agli indirizzi e-mail provvisti all'inizio del documento.
 
-On release day, we will push the patch to our public repository, along with an
-updated changelog that describes the issue and credits you. We will then issue
-a PyPI release containing the patch.
+Il giorno della release, pusheremo la patch sul nostro repository pubblico,
+aggiornando il changelog con la descrizione del problema e attribuendovi il merito
+della scoperta. Faremo in seguito una release su PyPI contenente la patch.
 
-At this point, we will publicise the release. This will involve mails to
-mailing lists, Tweets, and all other communication mechanisms available to the
+Infine, pubblicizzeremo la release. Ciò avverrà attraverso e-mail alle
+mailing list, tweet e tutti gli altri mezzi di comunicazione disponibili al 
 core team.
 
-We will also explicitly mention which commits contain the fix to make it easier
-for other distributors and users to easily patch their own versions of requests
-if upgrading is not an option.
+Menzioneremo esplicitamente quali commit contengono la fix in modo che sia
+facile per i distributori e gli utenti creare patch nelle proprie versioni di
+requests se l'aggiornamento alla nuova release non è per loro cosa fattibile.
 
-Previous CVEs
--------------
 
-- Fixed in 2.6.0
+Storico delle CVEs
+------------------
+
+- Risolto nella versione 2.6.0
 
   - `CVE 2015-2296 <http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=2015-2296>`_,
-    reported by Matthew Daley of `BugFuzz <https://bugfuzz.com/>`_.
+    segnalato da Matthew Daley di `BugFuzz <https://bugfuzz.com/>`_.
 
-- Fixed in 2.3.0
+- Risolto nella versione 2.3.0
 
   - `CVE 2014-1829 <http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=2014-1829>`_
 
