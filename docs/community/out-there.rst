@@ -1,33 +1,32 @@
-Integrations
+Integrazioni
 ============
 
 ScraperWiki
 ------------
 
-`ScraperWiki <https://scraperwiki.com/>`_ is an excellent service that allows
-you to run Python, Ruby, and PHP scraper scripts on the web. Now, Requests
-v0.6.1 is available to use in your scrapers!
+`ScraperWiki <https://scraperwiki.com/>`_ è un servizio eccellente che consente di eseguire script di scraping
+in Pyhon, Ruby e PHP sul web. Requests v0.6.1 è attualmente disponibile per l'utilizzo nei vostri scrapers!
 
-To give it a try, simply::
+Per provarlo, basta::
 
     import requests
 
-Python for iOS
+Python per iOS
 --------------
 
-Requests is built into the wonderful `Python for iOS <https://itunes.apple.com/us/app/python-2.7-for-ios/id485729872?mt=Python8>`_ runtime!
+Requests è incluso nel grandioso runtime `Python for iOS <https://itunes.apple.com/us/app/python-2.7-for-ios/id485729872?mt=Python8>`_ !
 
-To give it a try, simply::
+Per provarlo, basta::
 
     import requests
 
 
-Articles & Talks
-================
-- `Python for the Web <http://gun.io/blog/python-for-the-web/>`_ teaches how to use Python to interact with the web, using Requests.
-- `Daniel Greenfeld's Review of Requests <http://pydanny.blogspot.com/2011/05/python-http-requests-for-humans.html>`_
-- `My 'Python for Humans' talk <http://python-for-humans.heroku.com>`_ ( `audio <http://codeconf.s3.amazonaws.com/2011/pycodeconf/talks/PyCodeConf2011%20-%20Kenneth%20Reitz.m4a>`_ )
-- `Issac Kelly's 'Consuming Web APIs' talk <http://issackelly.github.com/Consuming-Web-APIs-with-Python-Talk/slides/slides.html>`_
-- `Blog post about Requests via Yum <http://arunsag.wordpress.com/2011/08/17/new-package-python-requests-http-for-humans/>`_
-- `Russian blog post introducing Requests <http://habrahabr.ru/blogs/python/126262/>`_
-- `Sending JSON in Requests <http://www.coglib.com/~icordasc/blog/2014/11/sending-json-in-requests.html>`_
+Articoli & Talk
+===============
+- `Python per il Web <http://gun.io/blog/python-for-the-web/>`_ spiega come usare Python per interagire con il web usando Requests.
+- `Recensione di Daniel Greenfeld su Requests <http://pydanny.blogspot.com/2011/05/python-http-requests-for-humans.html>`_
+- `Il mio talk 'Python per gli esseri umani'<http://python-for-humans.heroku.com>`_ ( `audio <http://codeconf.s3.amazonaws.com/2011/pycodeconf/talks/PyCodeConf2011%20-%20Kenneth%20Reitz.m4a>`_ )
+- `Talk di Issac Kelly 'Utilizzare Web API' <http://issackelly.github.com/Consuming-Web-APIs-with-Python-Talk/slides/slides.html>`_
+- `Post di un blog che spiega come installare Requests con Yum <http://arunsag.wordpress.com/2011/08/17/new-package-python-requests-http-for-humans/>`_
+- `Post di un blog russo che introduce a Requests <http://habrahabr.ru/blogs/python/126262/>`_
+- `Inviare JSON con Requests <http://www.coglib.com/~icordasc/blog/2014/11/sending-json-in-requests.html>`_
