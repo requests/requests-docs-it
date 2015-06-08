@@ -3,56 +3,55 @@
 Frequently Asked Questions
 ==========================
 
-This part of the documentation answers common questions about Requests.
+Questa parte della documentazione cerca di rispondere alle domande
+più comuni su Requests
 
-Encoded Data?
--------------
+Encoding dei dati?
+------------------
 
-Requests automatically decompresses gzip-encoded responses, and does
-its best to decode response content to unicode when possible.
+Requests decomprime automaticamente le risposte compresse gzip, e
+fa del suo meglio per decodificare il contenuto delle risposte in Unicode
+quando è possibile.
 
-You can get direct access to the raw response (and even the socket),
-if needed as well.
+Se serve, potete anche accedere al contenuto raw delle risposte (e pure al
+socket sottostante)
 
 
 Custom User-Agents?
 -------------------
 
-Requests allows you to easily override User-Agent strings, along with
-any other HTTP Header.
+Requests vi consente di sovrascrivere in maniera semplice l'header User-Agent, così
+come ogni altro header HTTP.
 
 
-Why not Httplib2?
------------------
+Perchè Requests e non Httplib2?
+-------------------------------
 
-Chris Adams gave an excellent summary on
+Chris Adams ha scritto un'eccellente nota a riguardo su
 `Hacker News <http://news.ycombinator.com/item?id=2884406>`_:
 
-    httplib2 is part of why you should use requests: it's far more respectable
-    as a client but not as well documented and it still takes way too much code
-    for basic operations. I appreciate what httplib2 is trying to do, that
-    there's a ton of hard low-level annoyances in building a modern HTTP
-    client, but really, just use requests instead. Kenneth Reitz is very
-    motivated and he gets the degree to which simple things should be simple
-    whereas httplib2 feels more like an academic exercise than something
-    people should use to build production systems[1].
+    httplib2 è parte del motivo per cui dovreste usare requests: è assai rispettabile come client
+    ma non è documentata sufficienza e richiede ancora troppo codice per effettuare anche operazioni
+    di base. Apprezzo quello che httplib2 cerca di fare, che la costruzione di una libreria HTTP
+    moderna richiede miriadi di scocciature in codice di basso livello, ma in maniera franca vi dico:
+    usate requests. Kenneth Reitz è molto motivato e ha un'idea precisa di quanto le cose più usate 
+    debbano essere semplici, mentre httplib2 sembra più un esercizio accademico che un qualcosa che
+    la gente può usare per costruire sistemi reali[1].
 
-    Disclosure: I'm listed in the requests AUTHORS file but can claim credit
-    for, oh, about 0.0001% of the awesomeness.
+    Vi rivelo una cosa: sono elencato nel file AUTHORS di requests ma posso accreditarmi solo, oh,
+    circa lo 0.0001% della sua magnificenza.
 
-    1. http://code.google.com/p/httplib2/issues/detail?id=96 is a good example:
-    an annoying bug which affect many people, there was a fix available for
-    months, which worked great when I applied it in a fork and pounded a couple
-    TB of data through it, but it took over a year to make it into trunk and
-    even longer to make it onto PyPI where any other project which required "
-    httplib2" would get the working version.
+    1. http://code.google.com/p/httplib2/issues/detail?id=96 è un ottimo esempio:
+    un bug rognoso che ha infastidito tante persone, una fix è rimasta disponibile per mesi e
+    ha funzionato alla grande quando l'ho inclusa in una fork e ho scaricato un paio di TB con
+    essa, ma ci ha messo più di un anno per essere inclusa nel trunk e ancora più tempo ad 
+    arrivare su PyPI, dove tutti gli altri progetti che richiedevano "httplib2" la attendevano.
 
 
-Python 3 Support?
------------------
+Supporto per Python 3?
+----------------------
 
-Yes! Here's a list of Python platforms that are officially
-supported:
+Si! Ecco una lista di versioni Python che sono ufficialmente supportate:
 
 * Python 2.6
 * Python 2.7
@@ -63,25 +62,25 @@ supported:
 * PyPy 1.9
 * PyPy 2.2
 
-What are "hostname doesn't match" errors?
------------------------------------------
+Cosa significano gli errori "hostname doesn't match"?
+-----------------------------------------------------
 
-These errors occur when :ref:`SSL certificate verification <verification>`
-fails to match the certificate the server responds with to the hostname
-Requests thinks it's contacting. If you're certain the server's SSL setup is
-correct (for example, because you can visit the site with your browser) and
-you're using Python 2.6 or 2.7, a possible explanation is that you need
+Questi errori accadono quando la :ref:`verifica del certificato SSL <verification>`
+fallisce: non c'è matching tra il certificato inviato in risposta dal server e l'hostname
+che Requests crede di contattare. Se siete sicuri che il setup SSL del server è corretto
+(per sempio, perchè riuscite a visitare il sito con il vostro browser) e
+state utilizzando Python 2.6 o 2.7, una soluzione possibile è abilitare la
 Server-Name-Indication.
 
-`Server-Name-Indication`_, or SNI, is an official extension to SSL where the
-client tells the server what hostname it is contacting. This is important
-when servers are using `Virtual Hosting`_. When such servers are hosting
-more than one SSL site they need to be able to return the appropriate
-certificate based on the hostname the client is connecting to.
+`Server-Name-Indication`_, o SNI, è un'estensione ufficiale di SSL che prevede che i
+client dicano al server quale hostname stanno contattando. Questo è importante se
+i server usano il `Virtual Hosting`_. Infatti quando questi server ospitano più di un
+sito su SSL devono essere in grado di ritornare il certificato SSL giusto sulla base
+dell'hostname a cui i client si connettono.
 
-Python3's SSL module includes native support for SNI. This support has not been
-back ported to Python2. For information on using SNI with Requests on Python2
-refer to this `Stack Overflow answer`_.
+Il modulo SSL di Python3 include il supporto nativo per SNI. Questa feature non è stata
+riportata su Python2. Per maggiori dettagli sull'uso di SNI con Requests su Python2
+si faccia riferimento a questa `risposta su Stack Overflow`_.
 
 .. _`Server-Name-Indication`: https://en.wikipedia.org/wiki/Server_Name_Indication
 .. _`virtual hosting`: https://en.wikipedia.org/wiki/Virtual_hosting
