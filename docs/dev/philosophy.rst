@@ -1,43 +1,50 @@
-Development Philosophy
-======================
+Filosofia di sviluppo
+=====================
 
-Requests is an open but opinionated library, created by an open but opinionated developer.
+Requests è una libreria open ma con una propria visione, creata da uno sviluppatore open ma con una propria visione.
 
 
-Management Style
-~~~~~~~~~~~~~~~~
+Stile di gestione del progetto
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Kenneth Reitz <http://kennethreitz.org>`_ is the BDFL. He has final say in any decision related to the Requests project. Kenneth is responsible for the direction and form of the library. In addition to making decisions based on technical merit, he is responsible for making decisions based on the development philosophy of Requests. Only Kenneth may merge code into Requests.
+`Kenneth Reitz <http://kennethreitz.org>`_ è il BDFL. Ha l'ultima parola su ogni decisione relativa al progetto Requests. Kenneth è responsabile della direzione e della forma che la libreria prende. Oltre a prendere decisioni sulla base dei suoi meriti tecnici, è responsabile delle decisioni sulla filosofia di sviluppo di Requests. Solo Kenneth può mergiare codice in Requests.
 
-`Ian Cordasco <http://www.coglib.com/~icordasc/>`_ and `Cory Benfield <https://lukasa.co.uk/about/>`_ are the core contributors. They are responsible for triaging bug reports, reviewing pull requests and ensuring that Kenneth is kept up to speed with developments around the library. The day-to-day managing of the project is done by the core contributors. They are responsible for making judgements about whether or not a feature request is likely to be accepted by Kenneth. They do not have the authority to change code or merge code changes, though they may change documentation. Their word is not final.
+`Ian Cordasco <http://www.coglib.com/~icordasc/>`_ e `Cory Benfield <https://lukasa.co.uk/about/>`_ sono i collaboratori fondamentali. Sono responsabili della valutazione della prorità dei bug report, della revisione delle pull request e di mantenere Kenneth aggiornato con gli sviluppi sulla libreria. La gestione giornaliera del progetto è fatta da loro. Sono responsabili di giudicare se la richiesta di una nuova feature ha la
+possibilità di essere accettata da Kenneth. Non hanno l'autorità di cambiare il codice o di mergiare modifiche, anche se possono modificare la
+documentazione. La loro opinione non è quella definitiva.
 
-Values
+Valori
 ~~~~~~
 
-- Simplicity is always better than functionality.
-- Listen to everyone, then disregard it.
-- The API is all that matters. Everything else is secondary.
-- Fit the 90% use-case. Ignore the nay-sayers.
+- La semplicità è sempre meglio della funzionalità.
+- Date ascolto a tutti, e poi ignorateli.
+- L'API è l'unica cosa che conta. Tutto il resto è secondario.
+- Realizzate il caso d'uso che accontenta il 90% degli utenti. Ignorate i piagnucoloni.
 
 Semantic Versioning
 ~~~~~~~~~~~~~~~~~~~
 
-For many years, the open source community has been plagued with version number dystonia. Numbers vary so greatly from project to project, they are practically meaningless.
+Per molti anni la community dell'open source è stata flagellata dalla distonia sui numeri di versione.
+Il significato dei numeri di versione varia così tanto da progetto a progetto da farne in pratica perdere il significato.
 
-Requests uses `Semantic Versioning <http://semver.org>`_. This specification seeks to put an end to this madness with a small set of practical guidelines for you and your colleagues to use in your next project.
+Requests adotta il `Semantic Versioning <http://semver.org>`_. Questo manifesto cerca di porre fine alla follia del versioning 
+attraverso un piccolo insieme di linee guida che voi ed i vostri colleghi potete usare nei vostri prossimi progetti.
 
-Standard Library?
-~~~~~~~~~~~~~~~~~
+Libreria Standard?
+~~~~~~~~~~~~~~~~~~
 
-Requests has no *active* plans to be included in the standard library. This decision has been discussed at length with Guido as well as numerous core developers.
+Requests non rientra in alcun piano *attivo* per l'inclusione nella libreria standard Python. Questa decisione è stata discussa
+al tempo con Guido ed alcuni sviluppatori del core team.
 
-Essentially, the standard library is where a library goes to die. It is appropriate for a module to be included when active development is no longer necessary.
+Sostanzialmente, la libreria standard Python sarebbe la morte della libreria requests. Sarebbe opportuno includere un modulo nella
+libreria standard solo quando uno sviluppo attivo non è più necessario.
 
-Requests just reached v1.0.0. This huge milestone marks a major step in the right direction.
+Requests ha da poco raggiunto la versione v1.0.0. Questa grande milestone ha segnato uno step significativo nella giusta direzione.
 
-Linux Distro Packages
-~~~~~~~~~~~~~~~~~~~~~
+Pacchetti per le distribuzioni Linux
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Distributions have been made for many Linux repositories, including: Ubuntu, Debian, RHEL, and Arch.
+Sono state create distribuzioni di Requests per molti repository Linux, tra cui: Ubuntu, Debian, RHEL e Arch.
 
-These distributions are sometimes divergent forks, or are otherwise not kept up-to-date with the latest code and bugfixes. PyPI (and its mirrors) and GitHub are the official distribution sources; alternatives are not supported by the Requests project.
+Queste distribuzioni a volte sono fork divergenti, oppure non sono mantenute aggiornate con il codice e i bugfix più recenti. PyPI (e i suoi
+mirror) e GitHub sono i canali ufficiali di distribuzione; le alternative non sono supportate dal progetto Requests.
