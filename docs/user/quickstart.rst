@@ -5,148 +5,142 @@ Quickstart
 
 .. module:: requests.models
 
-Eager to get started? This page gives a good introduction in how to get started
-with Requests.
+Impazienti di cominciare? Questa pagina vi introdurrà all'uso di Requests.
 
-First, make sure that:
+Prima di tutto, assicuratevi che:
 
-* Requests is :ref:`installed <install>`
-* Requests is :ref:`up-to-date <updates>`
-
-
-Let's get started with some simple examples.
+* Requests sia :ref:`installato <install>`
+* Requests sia :ref:`aggiornato <updates>`
 
 
-Make a Request
---------------
+Iniziamo con alcuni semplici esempi.
 
-Making a request with Requests is very simple.
 
-Begin by importing the Requests module::
+Effettuare una Richiesta
+------------------------
+
+Lanciare una richiesta HTTP con Requests è molto semplice.
+
+Per prima cosa importate il modulo Requests::
 
     >>> import requests
 
-Now, let's try to get a webpage. For this example, let's get GitHub's public
-timeline ::
+Ora proviamo a leggere una pagina web. Ad esempio, leggiamo la timeline pubblica di GitHub::
 
     >>> r = requests.get('https://api.github.com/events')
 
-Now, we have a :class:`Response <requests.Response>` object called ``r``. We can
-get all the information we need from this object.
+Abbiamo ottenuto un oggetto di classe :class:`Response <requests.Response>` nella variabile ``r``. Possiamo ora
+recuperare tutte le informazioni che ci servono da questo oggetto.
 
-Requests' simple API means that all forms of HTTP request are as obvious. For
-example, this is how you make an HTTP POST request::
+L'API semplicissima di Requests rende le richieste HTTP quasi ovvie. Per esempio, questa è una HTTP POST::
 
     >>> r = requests.post("http://httpbin.org/post")
 
-Nice, right? What about the other HTTP request types: PUT, DELETE, HEAD and
-OPTIONS? These are all just as simple::
+Bello, vero? Cosa accade per le altre tipologie di richieste HTTP: PUT, DELETE, HEAD e
+OPTIONS? Sono anch'esse semplicissime::
 
     >>> r = requests.put("http://httpbin.org/put")
     >>> r = requests.delete("http://httpbin.org/delete")
     >>> r = requests.head("http://httpbin.org/get")
     >>> r = requests.options("http://httpbin.org/get")
 
-That's all well and good, but it's also only the start of what Requests can
-do.
+Finora tutto benissimo, ma è solo un assaggio di ciò che Requests può fare.
 
 
-Passing Parameters In URLs
---------------------------
+Passare parametri negli URL
+---------------------------
 
-You often want to send some sort of data in the URL's query string. If
-you were constructing the URL by hand, this data would be given as key/value
-pairs in the URL after a question mark, e.g. ``httpbin.org/get?key=val``.
-Requests allows you to provide these arguments as a dictionary, using the
-``params`` keyword argument. As an example, if you wanted to pass
-``key1=value1`` and ``key2=value2`` to ``httpbin.org/get``, you would use the
-following code::
+Spesso dovrete inviare dati nella parte di query string degli URL. Se costruite
+gli URL a mano, questi dati sarebbero piazzati come coppie chiave/valore dopo
+il punto interrogativo, es: ``httpbin.org/get?key=val``.
+Requests vi consente di passare i dati sotto forma di dizionario, usando la keyword
+argument ``params``. A titolo di esempio, se volete passare ``key1=value1`` e 
+``key2=value2`` a ``httpbin.org/get``, usate::
 
     >>> payload = {'key1': 'value1', 'key2': 'value2'}
     >>> r = requests.get("http://httpbin.org/get", params=payload)
 
-You can see that the URL has been correctly encoded by printing the URL::
+Potete printare l'URL per verificare che è stato correttamente encoded::
 
     >>> print(r.url)
     http://httpbin.org/get?key2=value2&key1=value1
 
-Note that any dictionary key whose value is ``None`` will not be added to the
-URL's query string.
+Le chiavi del dizionario di valore ``None`` non saranno aggiunte alla query string dell'URL.
 
-In order to pass a list of items as a value you must mark the key as
-referring to a list like string by appending ``[]`` to the key::
+Per passare come valore una lista di elementi dovete segnalare il fatto che la chiave
+si riferisce ad una lista appendendo ``[]`` alla chiave::
 
     >>> payload = {'key1': 'value1', 'key2[]': ['value2', 'value3']}
     >>> r = requests.get("http://httpbin.org/get", params=payload)
     >>> print(r.url)
     http://httpbin.org/get?key1=value1&key2%5B%5D=value2&key2%5B%5D=value3
 
-Response Content
-----------------
+Contenuto delle Risposte
+------------------------
 
-We can read the content of the server's response. Consider the GitHub timeline
-again::
+Possiamo leggere il contenuto della risposta del server. Leggiamo di nuovo la
+timeline di GitHub::
 
     >>> import requests
     >>> r = requests.get('https://api.github.com/events')
     >>> r.text
     u'[{"repository":{"open_issues":0,"url":"https://github.com/...
 
-Requests will automatically decode content from the server. Most unicode
-charsets are seamlessly decoded.
+Requests decodificherà automaticamente il contenuto del server. La maggior parte dei
+caratteri Unicode sono decodificati senza problemi.
 
-When you make a request, Requests makes educated guesses about the encoding of
-the response based on the HTTP headers. The text encoding guessed by Requests
-is used when you access ``r.text``. You can find out what encoding Requests is
-using, and change it, using the ``r.encoding`` property::
+Quando lanciate una richiesta, Requests fa delle ipotesi sull'encoding della risposta
+sulla base degli header HTTP. L'encoding del testo utilizzato da Requests si applica
+al contenuto di ``r.text``. Potete scoprire quale encoding viene usato da Requests e
+cambiarlo usando la property ``r.encoding``::
 
     >>> r.encoding
     'utf-8'
     >>> r.encoding = 'ISO-8859-1'
 
-If you change the encoding, Requests will use the new value of ``r.encoding``
-whenever you call ``r.text``. You might want to do this in any situation where
-you can apply special logic to work out what the encoding of the content will
-be. For example, HTTP and XML have the ability to specify their encoding in
-their body. In situations like this, you should use ``r.content`` to find the
-encoding, and then set ``r.encoding``. This will let you use ``r.text`` with
-the correct encoding.
+Se modificate l'encoding, Requests userà il nuovo valore di ``r.encoding``
+ogni volta che chiamate ``r.text``. Questo potrebbe esservi utile quando dovete
+utilizzare una logica custom per determinare quale encoding avrà il contenuto.
+Ad esempio, HTTP e XML hanno la possibilità di specificare il proprio encoding
+nel body del documento. In situazioni come questa, like this, dovreste usare ``r.content``
+per ottenere l'encoding del documento e in seguito settare ``r.encoding``. Questo permetterà
+di usare ``r.text`` con l'encoding corretto.
 
-Requests will also use custom encodings in the event that you need them. If
-you have created your own encoding and registered it with the ``codecs``
-module, you can simply use the codec name as the value of ``r.encoding`` and
-Requests will handle the decoding for you.
+Requests supporta anche encoding custom nel caso ne abbiate bisogno.
+Se avete creato il vostro encoding e l'avete registrato nel modulo ``codecs``, potete 
+molto semplicemente usare il valore di ``r.encoding`` e Requests gestirà direttamente il
+decoding della risposta per voi.
 
-Binary Response Content
------------------------
+Contenuto binario delle Risposte
+--------------------------------
 
-You can also access the response body as bytes, for non-text requests::
+Potete anche accedere ai byte che costituiscono il corpo delle risposte non testuali::
 
     >>> r.content
     b'[{"repository":{"open_issues":0,"url":"https://github.com/...
 
-The ``gzip`` and ``deflate`` transfer-encodings are automatically decoded for you.
+I transfer-encodings ``gzip`` e ``deflate`` sono decodificati automaticamente.
 
-For example, to create an image from binary data returned by a request, you can
-use the following code::
+Ad esempio, per creare un'immagine a partire dai dati binari ritornati da una richiesta,
+potete usare il seguente codice::
 
     >>> from PIL import Image
     >>> from StringIO import StringIO
     >>> i = Image.open(StringIO(r.content))
 
 
-JSON Response Content
----------------------
+Contenuto JSON delle Risposte
+-----------------------------
 
-There's also a builtin JSON decoder, in case you're dealing with JSON data::
+Se dovete gestire dati in formato JSON, è presente anche un decoder JSON builtin::
 
     >>> import requests
     >>> r = requests.get('https://api.github.com/events')
     >>> r.json()
     [{u'repository': {u'open_issues': 0, u'url': 'https://github.com/...
 
-In case the JSON decoding fails, ``r.json`` raises an exception. For example, if
-the response gets a 401 (Unauthorized), attempting ``r.json`` raises ``ValueError:
+Nel caso in cui la decodifica JSON fallisca, ``r.json`` solleva un'eccezione. Ad esempio, se
+la risposta è un 401 (Unauthorized), l'accesso a ``r.json`` solleva un ``ValueError:
 No JSON object could be decoded``
 
 
