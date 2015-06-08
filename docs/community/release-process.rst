@@ -1,54 +1,50 @@
-Release Process and Rules
-=========================
+Processo e regole di release
+============================
 
 .. versionadded:: v2.6.2
 
-Starting with the version to be released after ``v2.6.2``, the following rules
-will govern and describe how the Requests core team produces a new release.
+Dalla prima release successiva alla ``v2.6.2``, le regole che seguono verranno
+usate per aiutare il core team di Requests a produrre una nuova release.
 
-Major Releases
+Major Release
+-------------
+
+Una major release include dei cambiamenti non retrocompatibili. Quando ad essa
+viene data una versione, il suo formato è ``vX.0.0``. Ad esempio, se la release precedente
+fosse la ``v10.2.7``, la successiva sarebbe la ``v11.0.0``.
+
+I cambiamenti non retrocompatibili distruggono la compatibilità con le versioni precedenti.
+Se nel progetto si modificasse l'attributo ``text`` di una ``Response`` o di un metodo,
+questo sarebbe possibile solamente in una major release.
+
+Le major release possono anche includere risoluzioni a vari bachi e aggiornamenti
+a package di vendor esterni. Gli sviluppatori del core team di Requests si impegnano per
+offrire una buona user experience: ciò significa che ci impegnamo anche a mantenere la
+retrocompatibilità il più possibile. Le major release saranno poco frequenti e richiederanno
+delle ottime giustificazioni prima di essere considerate.
+
+Minor Release
+-------------
+
+Una minor release è priva di modifiche non retrocompatibili ma può includere risoluzioni a
+vari bachi e aggiornamenti a package di vendor esterni. Ad esempio, se la release precedente
+fosse la ``v10.2.7``, una minor release sarebbe versionata come ``v10.3.0``.
+
+Le minor release saranno retrocompatibili con le releease che hanno lo stesso numero di
+versione major. Altrimenti detto, tutte le versioni che iniziano con ``v10.`` dovrebbero 
+essere compatibili tra di loro.
+
+Hotfix Release
 --------------
 
-A major release will include breaking changes. When it is versioned, it will
-be versioned as ``vX.0.0``. For example, if the previous release was
-``v10.2.7`` the next version will be ``v11.0.0``.
+Una hotfix release include solo risoluzioni a bachi che non erano state incluse quando
+è stata rilasciata la versione precedente del progetto. Se la versione precedente di Requests
+fosse la ``v10.2.7``, una hotfix release sarebbe versionata come ``v10.2.8``.
 
-Breaking changes are changes that break backwards compatibility with prior
-versions. If the project were to change the ``text`` attribute on a
-``Response`` object to a method, that would only happen in a Major release.
+Dalla versione ``v2.6.2``, le hotfix release **non** includono aggiornamenti a package di vendor esterni.
 
-Major releases may also include miscellaneous bug fixes and upgrades to
-vendored packages. The core developers of Requests are committed to providing
-a good user experience. This means we're also committed to preserving
-backwards compatibility as much as possible. Major releases will be infrequent
-and will need strong justifications before they are considered.
-
-Minor Releases
---------------
-
-A minor release will not include breaking changes but may include
-miscellaneous bug fixes and upgrades to vendored packages. If the previous
-version of Requests released was ``v10.2.7`` a minor release would be
-versioned as ``v10.3.0``.
-
-Minor releases will be backwards compatible with releases that have the same
-major version number. In other words, all versions that would start with
-``v10.`` should be compatible with each other.
-
-Hotfix Releases
----------------
-
-A hotfix release will only include bug fixes that were missed when the project
-released the previous version. If the previous version of Requests released
-``v10.2.7`` the hotfix release would be versioned as ``v10.2.8``.
-
-Hotfixes will **not** include upgrades to vendored dependences after
-``v2.6.2``
-
-Reasoning
----------
-
-In the 2.5 and 2.6 release series, the Requests core team upgraded vendored
-dependencies and caused a great deal of headaches for both users and the core
-team. To reduce this pain, we're forming a concrete set of procedures so
-expectations will be properly set.
+Ragionamento
+------------
+Nelle serie di release 2.5 e 2.6, il core team di Requests ha aggiornato le dipendenze esterne,
+causando a se stesso e agli utenti di bei mal di testa. Per evitare questo genere di situazioni,
+stiamo costruendo un corpo di regole per stabilire concretamente le aspettative sulle release.
