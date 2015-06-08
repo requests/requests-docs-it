@@ -1,50 +1,48 @@
 .. _support:
 
-Support
-=======
-
-If you have questions or issues about Requests, there are several options:
+Supporto
+========
+Se avete domande o problemi riguardo a Requests, avete diverse opzioni:
 
 StackOverflow
 -------------
 
-If your question does not contain sensitive (possibly proprietary)
-information or can be properly anonymized, please ask a question on
-`StackOverflow <https://stackoverflow.com/questions/tagged/python-requests>`_
-and use the tag ``python-requests``.
+Se la vostra domanda non contiene informazioni sensibili o può essere anonimizzata senza
+problmei, chiedete aiuto su `StackOverflow <https://stackoverflow.com/questions/tagged/python-requests>`_
+e usate il tag ``python-requests``.
 
-Send a Tweet
-------------
+Tweet
+-----
 
-If your question is less than 140 characters, feel free to send a tweet to
+Se la vostra domanda è contenibile in 140 caratteri, inviate un tweet a
 `@kennethreitz <https://twitter.com/kennethreitz>`_,
-`@sigmavirus24 <https://twitter.com/sigmavirus24>`_, or
+`@sigmavirus24 <https://twitter.com/sigmavirus24>`_, o
 `@lukasaoz <https://twitter.com/lukasaoz>`_.
 
-File an Issue
--------------
+Create una issue
+----------------
 
-If you notice some unexpected behaviour in Requests, or want to see support
-for a new feature,
-`file an issue on GitHub <https://github.com/kennethreitz/requests/issues>`_.
+Se vi accorgete che Requests si comporta in maniera anomala, o volete richiedere
+lo sviluppo di una nuova feature,
+`aprite una issue su GitHub <https://github.com/kennethreitz/requests/issues>`_.
 
 
 E-mail
 ------
 
-I'm more than happy to answer any personal or in-depth questions about
-Requests. Feel free to email
+Sono più che contento di rispondere ad ogni domanda personale o tecnica circa
+Requests. Siate liberi di inviarmi una e-mail a
 `requests@kennethreitz.com <mailto:requests@kennethreitz.com>`_.
 
 
 IRC
 ---
 
-The official Freenode channel for Requests is
+Il canale Freenode per Requests è
 `#python-requests <irc://irc.freenode.net/python-requests>`_
 
-The core developers of requests are on IRC throughout the day.
-You can find them in ``#python-requests`` as:
+Gli sviluppatori del core team di Requests sono su IRC durante la giornata.
+Li potete trovare in ``#python-requests`` sotto questi nomi:
 
 - kennethreitz
 - lukasa
