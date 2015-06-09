@@ -25,19 +25,22 @@ Per prima cosa importate il modulo Requests::
 
     >>> import requests
 
-Ora proviamo a leggere una pagina web. Ad esempio, leggiamo la timeline pubblica di GitHub::
+Ora proviamo a leggere una pagina web. Ad esempio, leggiamo la timeline pubblica
+di GitHub::
 
     >>> r = requests.get('https://api.github.com/events')
 
-Abbiamo ottenuto un oggetto di classe :class:`Response <requests.Response>` nella variabile ``r``. Possiamo ora
+Abbiamo ottenuto un oggetto di classe :class:`Response <requests.Response>`
+nella variabile ``r``. Possiamo ora
 recuperare tutte le informazioni che ci servono da questo oggetto.
 
-L'API semplicissima di Requests rende le richieste HTTP quasi ovvie. Per esempio, questa è una HTTP POST::
+L'API semplicissima di Requests rende le richieste HTTP quasi ovvie.
+Per esempio, questa è una HTTP POST::
 
     >>> r = requests.post("http://httpbin.org/post")
 
-Bello, vero? Cosa accade per le altre tipologie di richieste HTTP: PUT, DELETE, HEAD e
-OPTIONS? Sono anch'esse semplicissime::
+Bello, vero? Cosa accade per le altre tipologie di richieste HTTP: PUT, DELETE,
+HEAD e OPTIONS? Sono anch'esse semplicissime::
 
     >>> r = requests.put("http://httpbin.org/put")
     >>> r = requests.delete("http://httpbin.org/delete")
@@ -53,9 +56,9 @@ Passare parametri negli URL
 Spesso dovrete inviare dati nella parte di query string degli URL. Se costruite
 gli URL a mano, questi dati sarebbero piazzati come coppie chiave/valore dopo
 il punto interrogativo, es: ``httpbin.org/get?key=val``.
-Requests vi consente di passare i dati sotto forma di dizionario, usando la keyword
-argument ``params``. A titolo di esempio, se volete passare ``key1=value1`` e 
-``key2=value2`` a ``httpbin.org/get``, usate::
+Requests vi consente di passare i dati sotto forma di dizionario, usando la
+keyword argument ``params``. A titolo di esempio, se volete passare
+``key1=value1`` e ``key2=value2`` a ``httpbin.org/get``, usate::
 
     >>> payload = {'key1': 'value1', 'key2': 'value2'}
     >>> r = requests.get("http://httpbin.org/get", params=payload)
@@ -65,10 +68,11 @@ Potete printare l'URL per verificare che è stato correttamente encoded::
     >>> print(r.url)
     http://httpbin.org/get?key2=value2&key1=value1
 
-Le chiavi del dizionario di valore ``None`` non saranno aggiunte alla query string dell'URL.
+Le chiavi del dizionario di valore ``None`` non saranno aggiunte alla query
+string dell'URL.
 
-Per passare come valore una lista di elementi dovete segnalare il fatto che la chiave
-si riferisce ad una lista appendendo ``[]`` alla chiave::
+Per passare come valore una lista di elementi dovete segnalare il fatto che la
+chiave si riferisce ad una lista appendendo ``[]`` alla chiave::
 
     >>> payload = {'key1': 'value1', 'key2[]': ['value2', 'value3']}
     >>> r = requests.get("http://httpbin.org/get", params=payload)
@@ -86,13 +90,13 @@ timeline di GitHub::
     >>> r.text
     u'[{"repository":{"open_issues":0,"url":"https://github.com/...
 
-Requests decodificherà automaticamente il contenuto del server. La maggior parte dei
-caratteri Unicode sono decodificati senza problemi.
+Requests decodificherà automaticamente il contenuto del server. La maggior
+parte dei caratteri Unicode sono decodificati senza problemi.
 
-Quando lanciate una richiesta, Requests fa delle ipotesi sull'encoding della risposta
-sulla base degli header HTTP. L'encoding del testo utilizzato da Requests si applica
-al contenuto di ``r.text``. Potete scoprire quale encoding viene usato da Requests e
-cambiarlo usando la property ``r.encoding``::
+Quando lanciate una richiesta, Requests fa delle ipotesi sull'encoding della
+risposta sulla base degli header HTTP. L'encoding del testo utilizzato da
+Requests si applica al contenuto di ``r.text``. Potete scoprire quale encoding
+viene usato da Requests e cambiarlo usando la property ``r.encoding``::
 
     >>> r.encoding
     'utf-8'
@@ -102,26 +106,30 @@ Se modificate l'encoding, Requests userà il nuovo valore di ``r.encoding``
 ogni volta che chiamate ``r.text``. Questo potrebbe esservi utile quando dovete
 utilizzare una logica custom per determinare quale encoding avrà il contenuto.
 Ad esempio, HTTP e XML hanno la possibilità di specificare il proprio encoding
-nel body del documento. In situazioni come questa, like this, dovreste usare ``r.content``
-per ottenere l'encoding del documento e in seguito settare ``r.encoding``. Questo permetterà
+nel body del documento. In situazioni come questa, like this, dovreste usare
+``r.content``
+per ottenere l'encoding del documento e in seguito settare ``r.encoding``.
+Questo permetterà
 di usare ``r.text`` con l'encoding corretto.
 
 Requests supporta anche encoding custom nel caso ne abbiate bisogno.
-Se avete creato il vostro encoding e l'avete registrato nel modulo ``codecs``, potete 
-molto semplicemente usare il valore di ``r.encoding`` e Requests gestirà direttamente il
-decoding della risposta per voi.
+Se avete creato il vostro encoding e l'avete registrato nel modulo ``codecs``,
+potete molto semplicemente usare il valore di ``r.encoding`` e Requests gestirà
+direttamente il decoding della risposta per voi.
 
 Contenuto binario delle Risposte
 --------------------------------
 
-Potete anche accedere ai byte che costituiscono il corpo delle risposte non testuali::
+Potete anche accedere ai byte che costituiscono il corpo delle risposte non
+testuali::
 
     >>> r.content
     b'[{"repository":{"open_issues":0,"url":"https://github.com/...
 
 I transfer-encodings ``gzip`` e ``deflate`` sono decodificati automaticamente.
 
-Ad esempio, per creare un'immagine a partire dai dati binari ritornati da una richiesta,
+Ad esempio, per creare un'immagine a partire dai dati binari ritornati da una
+richiesta,
 potete usare il seguente codice::
 
     >>> from PIL import Image
@@ -132,24 +140,25 @@ potete usare il seguente codice::
 Contenuto JSON delle Risposte
 -----------------------------
 
-Se dovete gestire dati in formato JSON, è presente anche un decoder JSON builtin::
+Se dovete gestire dati in formato JSON, è presente anche un decoder JSON
+builtin::
 
     >>> import requests
     >>> r = requests.get('https://api.github.com/events')
     >>> r.json()
     [{u'repository': {u'open_issues': 0, u'url': 'https://github.com/...
 
-Nel caso in cui la decodifica JSON fallisca, ``r.json`` solleva un'eccezione. Ad esempio, se
-la risposta è un 401 (Unauthorized), l'accesso a ``r.json`` solleva un ``ValueError:
-No JSON object could be decoded``
+Nel caso in cui la decodifica JSON fallisca, ``r.json`` solleva un'eccezione.
+Ad esempio, se la risposta è un 401 (Unauthorized), l'accesso a ``r.json``
+solleva un ``ValueError: No JSON object could be decoded``
 
 
-Raw Response Content
---------------------
+Contenuto raw delle Risposte
+----------------------------
 
-In the rare case that you'd like to get the raw socket response from the
-server, you can access ``r.raw``. If you want to do this, make sure you set
-``stream=True`` in your initial request. Once you do, you can do this::
+Nel remoto caso in cui vi servisse il socket raw della risposta del server,
+potete accedere ``r.raw``. Se lo fate, ricordatevi di impostare ``stream=True``
+nell'effettuare la richiesta.. Quindi potete fare::
 
     >>> r = requests.get('https://api.github.com/events', stream=True)
     >>> r.raw
@@ -157,26 +166,25 @@ server, you can access ``r.raw``. If you want to do this, make sure you set
     >>> r.raw.read(10)
     '\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\x03'
 
-In general, however, you should use a pattern like this to save what is being
-streamed to a file::
+Tuttavia, in generale, dovreste usare questo pattern per salvare su un file i
+dati in arrivo in streaming::
 
     with open(filename, 'wb') as fd:
         for chunk in r.iter_content(chunk_size):
             fd.write(chunk)
 
-Using ``Response.iter_content`` will handle a lot of what you would otherwise
-have to handle when using ``Response.raw`` directly. When streaming a
-download, the above is the preferred and recommended way to retrieve the
-content.
+Usare ``Response.iter_content`` vi risparmierà di dover gestire ``Response.raw``
+in modo diretto. Quando effettuate un download in streaming, questo metodo è
+da prefersi ed è anzi quello raccomandato.
 
 
-Custom Headers
---------------
+Header Custom
+-------------
 
-If you'd like to add HTTP headers to a request, simply pass in a ``dict`` to the
-``headers`` parameter.
+Se volete aggiungere header HTTP ad una richiesta, semplicemente passate un
+``dict`` come valore del parametro ``headers``.
 
-For example, we didn't specify our content-type in the previous example::
+Ad esempio, nel codice precedente non abbiamo specificato il content-type::
 
     >>> import json
     >>> url = 'https://api.github.com/some/endpoint'
@@ -184,14 +192,22 @@ For example, we didn't specify our content-type in the previous example::
 
     >>> r = requests.get(url, headers=headers)
 
-Note: Custom headers are given less precedence than more specific sources of information. For instance:
+Nota: gli header custom hanno minore priorità rispetto a sorgenti di
+informazione più specifiche. Ad esempio:
 
-* Authorization headers will be overridden if credentials are passed via the ``auth`` parameter or are specified in a ``.netrc`` accessible in the environment.
-* Authorization headers will be removed if you get redirected off-host.
-* Proxy-Authorization headers will be overridden by proxy credentials provided in the URL.
-* Content-Length headers will be overridden when we can determine the length of the content.
+* Gli header Authorization saranno sovrascritti se le credenziali sono passate
+attraverso il parametro ``auth`` o sono specificate in un file ``.netrc``
+accessibile nell'ambiente.
+* Gli header Authorization saranno rimossi se la risposta è un redirect verso
+un host diverso.
+* Gli header Proxy-Authorization saranno sovrascritti con le credenziali del
+proxy fornite nell'URL.
+* Gli header Content-Length saranno sovrascritti quando è possibile determinare
+la lunghezza del contenuto.
 
-Furthermore, Requests does not change its behavior at all based on which custom headers are specified. The headers are simply passed on into the final request.
+Inoltre, Requests non modifica in alcun modo il suo comportamento sulla base
+degli header custom che specificate. Gli header sono semplicemente inseriti
+nella richiesta conclusiva.
 
 
 More complicated POST requests
