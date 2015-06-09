@@ -19,7 +19,8 @@ Twitter
 
 L'autore, Kenneth Reitz, twitta spesso su nuove feature e release di Requests.
 
-Seguite `@kennethreitz <https://twitter.com/kennethreitz>`_ per avere aggiornamenti.
+Seguite `@kennethreitz <https://twitter.com/kennethreitz>`_ per avere
+aggiornamenti.
 
 
 

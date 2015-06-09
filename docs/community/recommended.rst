@@ -18,30 +18,30 @@ E' nata dal progetto Requests.
 CacheControl
 ------------
 
-`CacheControl`_ è un'estensione che aggiunge piene capacità di caching HTTP a Requests.
-Questo rende le vostre richieste HTTP di gran lunga più efficienti, e dovrebbe essere
-usato quando effettuate un gran numero di richieste.
+`CacheControl`_ è un'estensione che aggiunge piene capacità di caching HTTP a
+Requests. Questo rende le vostre richieste HTTP di gran lunga più efficienti, e
+dovrebbe essere usato quando effettuate un gran numero di richieste.
 
 .. _CacheControl: https://cachecontrol.readthedocs.org/en/latest/
 
 Requests-Toolbelt
 -----------------
 
-`Requests-Toolbelt`_ è una collezione di moduli che gli utenti di Requests possono
-trovare utili, ma non fanno parte di Requests. Questa libreria è attivamente 
-mantenuta da membri del core team di Requests e riflette le funzionalità più
-richieste dagli utenti nella community.
+`Requests-Toolbelt`_ è una collezione di moduli che gli utenti di Requests
+possono trovare utili, ma non fanno parte di Requests. Questa libreria è
+attivamente mantenuta da membri del core team di Requests e riflette le
+funzionalità più richieste dagli utenti nella community.
 
 .. _Requests-Toolbelt: http://toolbelt.readthedocs.org/en/latest/index.html
 
 Requests-OAuthlib
 -----------------
 
-`requests-oauthlib`_ rende possibile il workflow di autenticazione OAuth da Requests
-in modo automatico. Questo è utile per il gran numero di siti web che usano OAuth
-per fornire servizi di autenticazione. Vengono anche messi a disposizione molti
-tweaks per gestire l'autenticazione su provider specifici che non aderiscono
-alle specifiche OAuth standard.
+`requests-oauthlib`_ rende possibile il workflow di autenticazione OAuth da
+Requests in modo automatico. Questo è utile per il gran numero di siti web che
+usano OAuth per fornire servizi di autenticazione. Vengono anche messi a
+disposizione molti tweaks per gestire l'autenticazione su provider specifici
+che non aderiscono alle specifiche OAuth standard.
 
 .. _requests-oauthlib: https://requests-oauthlib.readthedocs.org/en/latest/
 

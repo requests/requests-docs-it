@@ -7,8 +7,8 @@ Se avete domande o problemi riguardo a Requests, avete diverse opzioni:
 StackOverflow
 -------------
 
-Se la vostra domanda non contiene informazioni sensibili o può essere anonimizzata senza
-problmei, chiedete aiuto su `StackOverflow <https://stackoverflow.com/questions/tagged/python-requests>`_
+Se la vostra domanda non contiene informazioni sensibili o può essere
+anonimizzata senza problemi, chiedete aiuto su `StackOverflow <https://stackoverflow.com/questions/tagged/python-requests>`_
 e usate il tag ``python-requests``.
 
 Tweet

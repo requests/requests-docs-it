@@ -1,9 +1,10 @@
 Rendere esplicite le vulnerabilità
 ==================================
 
-Se pensate di aver individuato una potenziale falla di sicurezza i requests, siete pregati
-di comunicarla direttamente via e-mail a `sigmavirus24 <mailto:graffatcolmingov@gmail.com>`_ e
-`Lukasa <mailto:cory@lukasa.co.uk>`_ . **Non aprite alcuna issue pubblica a riguardo.**
+Se pensate di aver individuato una potenziale falla di sicurezza i requests,
+siete pregati di comunicarla direttamente via e-mail a `sigmavirus24 <mailto:graffatcolmingov@gmail.com>`_
+e `Lukasa <mailto:cory@lukasa.co.uk>`_ . **Non aprite alcuna issue pubblica a
+riguardo.**
 
 Le nostre PGP Key fingerprints sono:
 
@@ -11,21 +12,22 @@ Le nostre PGP Key fingerprints sono:
 
 - 90DC AE40 FEA7 4B14 9B70  662D F25F 2144 EEC1 373D (@lukasa)
 
-Se la vostra madrelingua non è l'inglese, perfavore provate a descrivere il problema
-e il suo impatto al meglio delle vostre capacità linguistiche. Per entrare nel dettaglio,
-utilizzate la vostra lingua madre e cercheremo di tradurla al meglio usando dei servizi
-online.
+Se la vostra madrelingua non è l'inglese, perfavore provate a descrivere il
+problema e il suo impatto al meglio delle vostre capacità linguistiche. Per
+entrare nel dettaglio, utilizzate la vostra lingua madre e cercheremo di
+tradurla al meglio usando dei servizi online.
 
-Siete pregati anche di includere il codice che avete usato per identificare il problema
-e la minima porzione di codice necessaria per riprodurlo.
+Siete pregati anche di includere il codice che avete usato per identificare il
+problema e la minima porzione di codice necessaria per riprodurlo.
 
-Perfavore non rivelate il problema a nessun altro. Recupereremo un identificatore CVE
-se necessario e vi daremo la piena paternità della scoperta sotto qualsiasi nome o
-alias vorrete fornirci. Vi chiederemo un modo per identificarvi solo quando avremo
-trovato una soluzione al problema e potremo pubblicarla in una release.
+Perfavore non rivelate il problema a nessun altro. Recupereremo un
+identificatore CVE se necessario e vi daremo la piena paternità della scoperta
+sotto qualsiasi nome o alias vorrete fornirci. Vi chiederemo un modo per
+identificarvi solo quando avremo trovato una soluzione al problema e potremo
+pubblicarla in una release.
 
-Rispetteremo la vostra privacy e renderemo pubblico il vostro coinvolgimento solo se
-ci darete il permesso di farlo.
+Rispetteremo la vostra privacy e renderemo pubblico il vostro coinvolgimento
+solo se ci darete il permesso di farlo.
 
 Processo
 --------
@@ -50,8 +52,8 @@ probabilmente chiederemo più informazioni per ripodurre lo scenario.
 Il nostro obiettivo è di rilasciare una fix per ogni vulnerabilità entro due
 settimane dalla notifica della sua esistenza. Questo può potenzialmente
 portare ad una release ad intermi che disabilita la funzionalità mentre una
-soluzione definitiva è in sviluppo, ma generalmente ci sarà una versione completa
-rilasciata il prima possibile.
+soluzione definitiva è in sviluppo, ma generalmente ci sarà una versione
+completa rilasciata il prima possibile.
 
 Lungo il processo di risoluzione vi terremo aggiornati sul progresso della fix.
 Una volta che la fix è pronta, ve lo faremo sapere. Spesso vi richiederemo di
@@ -79,8 +81,8 @@ Se pensate di dover essere inclusi nella lista, siete pregati di informare
 uno dei maintainer agli indirizzi e-mail provvisti all'inizio del documento.
 
 Il giorno della release, pusheremo la patch sul nostro repository pubblico,
-aggiornando il changelog con la descrizione del problema e attribuendovi il merito
-della scoperta. Faremo in seguito una release su PyPI contenente la patch.
+aggiornando il changelog con la descrizione del problema e attribuendovi il
+merito della scoperta. Faremo in seguito una release su PyPI contenente la patch.
 
 Infine, pubblicizzeremo la release. Ciò avverrà attraverso e-mail alle
 mailing list, tweet e tutti gli altri mezzi di comunicazione disponibili al 

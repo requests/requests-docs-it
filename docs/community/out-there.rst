@@ -4,8 +4,9 @@ Integrazioni
 ScraperWiki
 ------------
 
-`ScraperWiki <https://scraperwiki.com/>`_ è un servizio eccellente che consente di eseguire script di scraping
-in Pyhon, Ruby e PHP sul web. Requests v0.6.1 è attualmente disponibile per l'utilizzo nei vostri scrapers!
+`ScraperWiki <https://scraperwiki.com/>`_ è un servizio eccellente che consente
+di eseguire script di scraping in Pyhon, Ruby e PHP sul web. Requests v0.6.1 è
+attualmente disponibile per l'utilizzo nei vostri scrapers!
 
 Per provarlo, basta::
 
@@ -23,7 +24,8 @@ Per provarlo, basta::
 
 Articoli & Talk
 ===============
-- `Python per il Web <http://gun.io/blog/python-for-the-web/>`_ spiega come usare Python per interagire con il web usando Requests.
+- `Python per il Web <http://gun.io/blog/python-for-the-web/>`_ spiega come 
+usare Python per interagire con il web usando Requests.
 - `Recensione di Daniel Greenfeld su Requests <http://pydanny.blogspot.com/2011/05/python-http-requests-for-humans.html>`_
 - `Il mio talk 'Python per gli esseri umani'<http://python-for-humans.heroku.com>`_ ( `audio <http://codeconf.s3.amazonaws.com/2011/pycodeconf/talks/PyCodeConf2011%20-%20Kenneth%20Reitz.m4a>`_ )
 - `Talk di Issac Kelly 'Utilizzare Web API' <http://issackelly.github.com/Consuming-Web-APIs-with-Python-Talk/slides/slides.html>`_
