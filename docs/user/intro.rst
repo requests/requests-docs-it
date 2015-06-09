@@ -23,14 +23,15 @@ Licenza Apache2
 ---------------
 
 Un gran numero di progetti open source moderni hanno `licenza GPL`_.
-Sebbene la GPL abbia una sua importanza storica, non dovrebbe di certo essere la vostra
-licenza di riferimento per il vostro prossimo progetto open source.
+Sebbene la GPL abbia una sua importanza storica, non dovrebbe di certo essere la
+vostra licenza di riferimento per il vostro prossimo progetto open source.
 
-Un progetto rilasciato in GPL non può essere incluso in prodotti commerciali senza
-mettere a disposizione in open source anche il prodotto stesso.
+Un progetto rilasciato in GPL non può essere incluso in prodotti commerciali
+senza mettere a disposizione in open source anche il prodotto stesso.
 
-Le licenze MIT, BSD, ISC, e Apache2 sono ottime alternative alla GPL che permettono
-di utilizzare il vostro software open source in codici proprietari e closed source.
+Le licenze MIT, BSD, ISC, e Apache2 sono ottime alternative alla GPL che
+permettono di utilizzare il vostro software open source in codici proprietari e
+closed source.
 
 Requests è rilasciato nei termini della `Licenza Apache2`_.
 
