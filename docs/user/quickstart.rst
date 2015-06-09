@@ -196,26 +196,27 @@ Nota: gli header custom hanno minore priorità rispetto a sorgenti di
 informazione più specifiche. Ad esempio:
 
 * Gli header Authorization saranno sovrascritti se le credenziali sono passate
-attraverso il parametro ``auth`` o sono specificate in un file ``.netrc``
-accessibile nell'ambiente.
+  attraverso il parametro ``auth`` o sono specificate in un file ``.netrc``
+  accessibile nell'ambiente.
 * Gli header Authorization saranno rimossi se la risposta è un redirect verso
-un host diverso.
+  un host diverso.
 * Gli header Proxy-Authorization saranno sovrascritti con le credenziali del
-proxy fornite nell'URL.
+  proxy fornite nell'URL.
 * Gli header Content-Length saranno sovrascritti quando è possibile determinare
-la lunghezza del contenuto.
+  la lunghezza del contenuto.
 
 Inoltre, Requests non modifica in alcun modo il suo comportamento sulla base
 degli header custom che specificate. Gli header sono semplicemente inseriti
 nella richiesta conclusiva.
 
 
-More complicated POST requests
-------------------------------
+Richieste POST più complesse
+----------------------------
 
-Typically, you want to send some form-encoded data — much like an HTML form.
-To do this, simply pass a dictionary to the ``data`` argument. Your
-dictionary of data will automatically be form-encoded when the request is made::
+Solitamente in POST si invia dati form-encoded - proprio come in un form HTML.
+Per farlo, basta passare un dizionario come valore dell'argomento ``data``.
+Il vostro dizionario sarà automaticamente form-encoded quando la richiesta sarà
+lanciata::
 
     >>> payload = {'key1': 'value1', 'key2': 'value2'}
     >>> r = requests.post("http://httpbin.org/post", data=payload)
@@ -229,10 +230,11 @@ dictionary of data will automatically be form-encoded when the request is made::
       ...
     }
 
-There are many times that you want to send data that is not form-encoded. If
-you pass in a ``string`` instead of a ``dict``, that data will be posted directly.
+In altri casi potreste voler inviare dati non form-encoded. Se passata una 
+``string`` al posto di un ``dict``, i dati saranno POST-ati direttamente.
 
-For example, the GitHub API v3 accepts JSON-Encoded POST/PATCH data::
+Ad esempio, l'API di GitHub API v3 accetta dati con encoding JSON per le
+richieste POST/PATCH::
 
     >>> import json
     >>> url = 'https://api.github.com/some/endpoint'
@@ -241,10 +243,10 @@ For example, the GitHub API v3 accepts JSON-Encoded POST/PATCH data::
     >>> r = requests.post(url, data=json.dumps(payload))
 
 
-POST a Multipart-Encoded File
------------------------------
+POST-are un file Multipart-Encoded
+----------------------------------
 
-Requests makes it simple to upload Multipart-encoded files::
+Requests rende semplice l'invio di file Multipart-encoded::
 
     >>> url = 'http://httpbin.org/post'
     >>> files = {'file': open('report.xls', 'rb')}
@@ -259,7 +261,8 @@ Requests makes it simple to upload Multipart-encoded files::
       ...
     }
 
-You can set the filename, content_type and headers explicitly:
+Potete specificare esplicitamente il nome del file, il content_type e gli
+headers:
 
     >>> url = 'http://httpbin.org/post'
     >>> files = {'file': ('report.xls', open('report.xls', 'rb'), 'application/vnd.ms-excel', {'Expires': '0'})}
@@ -274,7 +277,7 @@ You can set the filename, content_type and headers explicitly:
       ...
     }
 
-If you want, you can send strings to be received as files::
+Se volete,  potete inviare stringhe al posto di file veri e propri::
 
     >>> url = 'http://httpbin.org/post'
     >>> files = {'file': ('report.csv', 'some,data,to,send\nanother,row,to,send\n')}
@@ -289,33 +292,33 @@ If you want, you can send strings to be received as files::
       ...
     }
 
-In the event you are posting a very large file as a ``multipart/form-data``
-request, you may want to stream the request. By default, ``requests`` does not
-support this, but there is a separate package which does -
-``requests-toolbelt``. You should read `the toolbelt's documentation
-<https://toolbelt.readthedocs.org>`_ for more details about how to use it.
+Nel caso in cui dobbiate POST-are un file molto grande con una richiesta 
+``multipart/form-data``, potreste voler inviare la richiesta in streaming.
+Di default, ``requests`` non lo supporta, ma esiste un package a parte che lo
+fa - ``requests-toolbelt``. Per maggiori dettagli su come usare questa feature,
+leggete la `documentazione di toolbelt <https://toolbelt.readthedocs.org>`_ .
 
-For sending multiple files in one request refer to the :ref:`advanced <advanced>`
-section.
+Per inviare file multipli in una sola richiesta fate riferimento alla sezione
+:ref:`avanzate <advanced>`.
 
 
-Response Status Codes
----------------------
+Status code della risposta
+--------------------------
 
-We can check the response status code::
+Possiamo controllare lo status code delle risposte::
 
     >>> r = requests.get('http://httpbin.org/get')
     >>> r.status_code
     200
 
-Requests also comes with a built-in status code lookup object for easy
-reference::
+Requests offre anche un oggetto built-in per fare il lookup veloce degli status
+code::
 
     >>> r.status_code == requests.codes.ok
     True
 
-If we made a bad request (a 4XX client error or 5XX server error response), we
-can raise it with
+Se una richiesta non va a buon fine (errore 4XX del client o 5XX del server),
+possiamo sollevare eccezioni con 
 :meth:`Response.raise_for_status() <requests.Response.raise_for_status>`::
 
     >>> bad_r = requests.get('http://httpbin.org/status/404')
@@ -328,19 +331,20 @@ can raise it with
         raise http_error
     requests.exceptions.HTTPError: 404 Client Error
 
-But, since our ``status_code`` for ``r`` was ``200``, when we call
-``raise_for_status()`` we get::
+Ma se lo ``status_code`` di ``r`` fosse ``200``, invocando ``raise_for_status()``
+otterremmo::
 
     >>> r.raise_for_status()
     None
 
-All is well.
+e dunque tutto OK.
 
 
-Response Headers
-----------------
+Header delle risposte
+---------------------
 
-We can view the server's response headers using a Python dictionary::
+Possiamo visionare gli header delle risposte del server tramite un dizionario
+Python::
 
     >>> r.headers
     {
@@ -353,11 +357,11 @@ We can view the server's response headers using a Python dictionary::
         'content-type': 'application/json'
     }
 
-The dictionary is special, though: it's made just for HTTP headers. According to
-`RFC 7230 <http://tools.ietf.org/html/rfc7230#section-3.2>`_, HTTP Header names
-are case-insensitive.
+Questo dizionario è tuttavia speciale: è fatto apposta per gli HTTP header.
+Secondo la `RFC 7230 <http://tools.ietf.org/html/rfc7230#section-3.2>`_, i nomi
+degli header HTTP sono case-insensitive.
 
-So, we can access the headers using any capitalization we want::
+Dunque, possiamo accedere agli header usando qualsiasi case::
 
     >>> r.headers['Content-Type']
     'application/json'
@@ -365,20 +369,20 @@ So, we can access the headers using any capitalization we want::
     >>> r.headers.get('content-type')
     'application/json'
 
-It is also special in that the server could have sent the same header multiple
-times with different values, but requests combines them so they can be
-represented in the dictionary within a single mapping, as per
-`RFC 7230 <http://tools.ietf.org/html/rfc7230#section-3.2>`_:
+Il dizionario è speciale anche perchè il server potrebbe aver inviato lo stesso
+header più di una volta con valori differenti, ma requests li combina in modo
+che possano essere rappresentati nel dizionario con un singolo schema di
+mappatura, così come dice la `RFC 7230 <http://tools.ietf.org/html/rfc7230#section-3.2>`_:
 
-    > A recipient MAY combine multiple header fields with the same field name
-    > into one "field-name: field-value" pair, without changing the semantics
-    > of the message, by appending each subsequent field value to the combined
-    > field value in order, separated by a comma.
+    > Un ricevente PUO' combinare più campi header aventi lo stesso nome in una 
+    > singola coppia "nome-campo: valore-campo" senza cambiare la semantica del
+    > messaggio, assegnando come valore del campo combinato l'unione di tutti
+    > i valori successivi separati da virgola.
 
-Cookies
--------
+Cookie
+------
 
-If a response contains some Cookies, you can quickly access them::
+Se una risposta contiene dei cookie, potete facilmente ottenerli::
 
     >>> url = 'http://example.com/some/cookie/setting/url'
     >>> r = requests.get(url)
@@ -386,8 +390,7 @@ If a response contains some Cookies, you can quickly access them::
     >>> r.cookies['example_cookie_name']
     'example_cookie_value'
 
-To send your own cookies to the server, you can use the ``cookies``
-parameter::
+Per inviare i vostri cookie al server, usate il parametro ``cookies``::
 
     >>> url = 'http://httpbin.org/cookies'
     >>> cookies = dict(cookies_are='working')
@@ -397,20 +400,22 @@ parameter::
     '{"cookies": {"cookies_are": "working"}}'
 
 
-Redirection and History
------------------------
+Redirezione e History
+---------------------
 
-By default Requests will perform location redirection for all verbs except
-HEAD.
+Di default Requests effettua la redirezione dell'host per tutti i verbi HTTP
+ad eccezione di HEAD.
 
-We can use the ``history`` property of the Response object to track redirection.
 
-The :meth:`Response.history <requests.Response.history>` list contains the
-:class:`Response <requests.Response>` objects that were created in order to
-complete the request. The list is sorted from the oldest to the most recent
-response.
+Possiamo usare la propery ``history`` dell'oggetto Risposta per tracciare le
+redirezioni.
 
-For example, GitHub redirects all HTTP requests to HTTPS::
+La lista :meth:`Response.history <requests.Response.history>` contiene gli
+oggetti di tipo :class:`Response <requests.Response>` che sono stati creati per
+completare le richieste. La lista è ordinata a partire dalla risposta meno 
+recente a quella più recente.
+
+Per esempio, GitHub redirige tutte le richieste HTTP su HTTPS::
 
     >>> r = requests.get('http://github.com')
     >>> r.url
@@ -420,9 +425,8 @@ For example, GitHub redirects all HTTP requests to HTTPS::
     >>> r.history
     [<Response [301]>]
 
-
-If you're using GET, OPTIONS, POST, PUT, PATCH or DELETE, you can disable
-redirection handling with the ``allow_redirects`` parameter::
+Se state usando GET, OPTIONS, POST, PUT, PATCH o DELETE, potete disabilitare la
+redirezione attraverso il parametro``allow_redirects``::
 
     >>> r = requests.get('http://github.com', allow_redirects=False)
     >>> r.status_code
@@ -430,7 +434,7 @@ redirection handling with the ``allow_redirects`` parameter::
     >>> r.history
     []
 
-If you're using HEAD, you can enable redirection as well::
+Se state usando HEAD, potete allo stesso modo abilitare la redirezione::
 
     >>> r = requests.head('http://github.com', allow_redirects=True)
     >>> r.url
@@ -439,11 +443,11 @@ If you're using HEAD, you can enable redirection as well::
     [<Response [301]>]
 
 
-Timeouts
---------
+Timeout
+-------
 
-You can tell Requests to stop waiting for a response after a given number of
-seconds with the ``timeout`` parameter::
+Potete fare in modo che Requests smetta di attendere una risposta dopo un
+certo numero di secondi attraverso il parametro ``timeout``::
 
     >>> requests.get('http://github.com', timeout=0.001)
     Traceback (most recent call last):
@@ -451,32 +455,34 @@ seconds with the ``timeout`` parameter::
     requests.exceptions.Timeout: HTTPConnectionPool(host='github.com', port=80): Request timed out. (timeout=0.001)
 
 
-.. admonition:: Note
+.. caveat:: Note
 
-    ``timeout`` is not a time limit on the entire response download;
-    rather, an exception is raised if the server has not issued a
-    response for ``timeout`` seconds (more precisely, if no bytes have been
-    received on the underlying socket for ``timeout`` seconds).
+    ``timeout`` non è un limite di tempo per la ricezione dell'intera risposta;
+    un'eccezione è sollevata se il server non ha inviato una risposta entro 
+    ``timeout`` secondi (più precisamente, se nessun byte è stato ricevuto sul
+    socket sottostante per ``timeout`` secondi).
 
 
-Errors and Exceptions
----------------------
+Errori ed Eccezioni
+-------------------
 
-In the event of a network problem (e.g. DNS failure, refused connection, etc),
-Requests will raise a :class:`~requests.exceptions.ConnectionError` exception.
+Nel caso di problemi di rete (es: il DNS non risponde, la connessione è 
+rigettata, etc), Requests solleverà un'eccezione di tipo
+ :class:`~requests.exceptions.ConnectionError`.
 
-In the rare event of an invalid HTTP response, Requests will raise an
-:class:`~requests.exceptions.HTTPError` exception.
+Nel raro caso di una risposta HTTP invalida, Requests solleverà un'eccezione
+di tipo :class:`~requests.exceptions.HTTPError`.
 
-If a request times out, a :class:`~requests.exceptions.Timeout` exception is
-raised.
+Se una richiesta va in timeout, un'eccezione di tipo
+:class:`~requests.exceptions.Timeout`.
 
-If a request exceeds the configured number of maximum redirections, a
-:class:`~requests.exceptions.TooManyRedirects` exception is raised.
+Se una richiesta eccede il numero massimo configurato di redirezioni, è sollevata
+un'eccezione di tipo :class:`~requests.exceptions.TooManyRedirects`.
 
-All exceptions that Requests explicitly raises inherit from
+Tutte le eccezioni esplicitamente sollevate da Requests ereditano dalla classe
 :class:`requests.exceptions.RequestException`.
 
 -----------------------
 
-Ready for more? Check out the :ref:`advanced <advanced>` section.
+Siete pronti ad andare più nel dettaglio? Passate alla sezione
+:ref:`avanzate <advanced>`.
