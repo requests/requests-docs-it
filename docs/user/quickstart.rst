@@ -1,7 +1,7 @@
 .. _quickstart:
 
-Quickstart
-==========
+Il primo impatto con Requests
+=============================
 
 .. module:: requests.models
 
