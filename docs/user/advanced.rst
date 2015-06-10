@@ -1,22 +1,22 @@
 .. _advanced:
 
-Advanced Usage
-==============
+Uso avanzato di Requests
+========================
 
-This document covers some of Requests more advanced features.
+Questo documento illustra alcune delle caratteristiche avanzate di Requests.
 
 .. _session-objects:
 
-Session Objects
+Oggetti Session
 ---------------
 
-The Session object allows you to persist certain parameters across
-requests. It also persists cookies across all requests made from the
-Session instance.
+L'oggetto Session vi consente di tenere traccia di alcuni parametri tra una
+richiesta e le successive. Esso memorizza anche i cookie tra le diverse richieste
+effettuate con esso.
 
-A Session object has all the methods of the main Requests API.
+Un oggetto Session ha tutti i metodi dell'API canonica di Requests.
 
-Let's persist some cookies across requests::
+Proviamo a memorizzare dei cookie tra le richieste::
 
     s = requests.Session()
 
@@ -27,8 +27,8 @@ Let's persist some cookies across requests::
     # '{"cookies": {"sessioncookie": "123456789"}}'
 
 
-Sessions can also be used to provide default data to the request methods. This
-is done by providing data to the properties on a Session object::
+Le sessioni possono essere usate anche per fornire dati di default ai metodi
+di richiesta. Basta passare i dati alle property di un oggetto Session::
 
     s = requests.Session()
     s.auth = ('user', 'pass')
@@ -38,35 +38,38 @@ is done by providing data to the properties on a Session object::
     s.get('http://httpbin.org/headers', headers={'x-test2': 'true'})
 
 
-Any dictionaries that you pass to a request method will be merged with the
-session-level values that are set. The method-level parameters override session
-parameters.
+I dizionari che passate a un metodo di richiesta saranno incorporati nei valori
+specifici della sessione che avete impostato. I parametri a livello di metodo
+sovrascrivono i corrispondenti parametri a livello di sessione.
 
-.. admonition:: Remove a Value From a Dict Parameter
+.. caveat:: Rimozione di un valore da un dizionario di parametri
 
-    Sometimes you'll want to omit session-level keys from a dict parameter. To
-    do this, you simply set that key's value to ``None`` in the method-level
-    parameter. It will automatically be omitted.
+    A volte potrebbe servirvi di rimuovere chiavi da un dizionario di parametri
+    a livello di sessione. Per farlo, impostate il valore di tali chiavi a 
+    ``None`` nel parametro a livello di metodo. Le chiavi saranno automaticamente
+    omesse.
 
-All values that are contained within a session are directly available to you.
-See the :ref:`Session API Docs <sessionapi>` to learn more.
+Tutti i valori contenuti all'interno di una sessione sono direttamente
+disponibili. Per saperne di più leggete la :ref:`documentazione dell'API delle
+sessioni <sessionapi>`.
 
 .. _request-and-response-objects:
 
-Request and Response Objects
-----------------------------
+Oggetti Request e Response
+--------------------------
 
-Whenever a call is made to ``requests.get()`` and friends you are doing two
-major things. First, you are constructing a ``Request`` object which will be
-sent off to a server to request or query some resource. Second, a ``Response``
-object is generated once ``requests`` gets a response back from the server.
-The Response object contains all of the information returned by the server and
-also contains the ``Request`` object you created originally. Here is a simple
-request to get some very important information from Wikipedia's servers::
+Quando si invocano ``requests.get()`` e metodi di richiesta simili accadono
+due cose importanti. Primo, state costruendo un oggetto ``Request`` che verrà
+inviato ad un server per ottenere un qualche genere di risorsa. Secondo, un
+oggetto ``Response`` è generato quando ``requests`` riceve una risposta dal
+server. L'oggetto Response contiene tutte le informazioni ritornate dal server
+e contiene anche l'oggetto ``Request`` creato in origine.
+Questa è una semplice richiesta che ottiene informazioni molti importanti
+dai server di Wikipedia::
 
     >>> r = requests.get('http://en.wikipedia.org/wiki/Monty_Python')
 
-If we want to access the headers the server sent back to us, we do this::
+Se volessimo accedere agli header che il server ci ha inviato, useremmo::
 
     >>> r.headers
     {'content-length': '56170', 'x-content-type-options': 'nosniff', 'x-cache':
@@ -78,8 +81,8 @@ If we want to access the headers the server sent back to us, we do this::
     'text/html; charset=UTF-8', 'x-cache-lookup': 'HIT from cp1006.eqiad.wmnet:3128,
     MISS from cp1010.eqiad.wmnet:80'}
 
-However, if we want to get the headers we sent the server, we simply access the
-request, and then the request's headers::
+Mentre se volessimo accedere agli header che abbiamo inviato noi al server
+dovremmo accedere prima alla request e quindi agli header della richiesta::
 
     >>> r.request.headers
     {'Accept-Encoding': 'identity, deflate, compress, gzip',
@@ -87,14 +90,16 @@ request, and then the request's headers::
 
 .. _prepared-requests:
 
-Prepared Requests
------------------
+Richieste preparate
+-------------------
 
-Whenever you receive a :class:`Response <requests.Response>` object
-from an API call or a Session call, the ``request`` attribute is actually the
-``PreparedRequest`` that was used. In some cases you may wish to do some extra
-work to the body or headers (or anything else really) before sending a
-request. The simple recipe for this is the following::
+Ogni volta che ricevete un oggetto :class:`Response <requests.Response>` dalla
+chamata all'API o a Session, l'attributo ``request`` contiene la 
+``PreparedRequest`` che è stata utilizzata.
+
+In alcuni casi potreste dover manipolare il corpo o gli headers (e a dire il 
+vero qualsiasi altra cosa) di una richiesta prima di inviarla.
+Un modo semplice per farlo è il seguente::
 
     from requests import Request, Session
 
@@ -118,19 +123,20 @@ request. The simple recipe for this is the following::
 
     print(resp.status_code)
 
-Since you are not doing anything special with the ``Request`` object, you
-prepare it immediately and modify the ``PreparedRequest`` object. You then
-send that with the other parameters you would have sent to ``requests.*`` or
-``Session.*``.
+Visto che non dovete fare nulla di speciale con l'oggetto ``Request``, lo
+preparate da subito e modificate l'oggetto ``PreparedRequest``. A questo punto
+inviate questo oggetto insieme gli altri parametri che avreste passato ai
+metodi ``requests.*`` o ``Session.*``.
 
-However, the above code will lose some of the advantages of having a Requests
-:class:`Session <requests.Session>` object. In particular,
-:class:`Session <requests.Session>`-level state such as cookies will
-not get applied to your request. To get a
-:class:`PreparedRequest <requests.PreparedRequest>` with that state
-applied, replace the call to :meth:`Request.prepare()
-<requests.Request.prepare>` with a call to
-:meth:`Session.prepare_request() <requests.Session.prepare_request>`, like this::
+Tuttavia, il codice qui sopra perde i vantaggi di avere un oggetto
+:class:`Session <requests.Session>` in Requests. Nello specifico, lo stato a
+livello di :class:`Session <requests.Session>`, come ad esempio i cookie, non
+viene riportato sulla vostra richiesta. Per ottenere una
+:class:`PreparedRequest <requests.PreparedRequest>` contenente quello stato, 
+sostituite la chiamata a :meth:`Request.prepare()
+<requests.Request.prepare>` con la chiamata a
+:meth:`Session.prepare_request() <requests.Session.prepare_request>`, in questo
+modo::
 
     from requests import Request, Session
 
@@ -157,8 +163,8 @@ applied, replace the call to :meth:`Request.prepare()
 
 .. _verification:
 
-SSL Cert Verification
----------------------
+Verifica dei certificati SSL
+----------------------------
 
 Requests can verify SSL certificates for HTTPS requests, just like a web browser.
 To check a host's SSL certificate, you can use the ``verify`` argument::
