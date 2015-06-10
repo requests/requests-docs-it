@@ -34,7 +34,7 @@ di richiesta. Basta passare i dati alle property di un oggetto Session::
     s.auth = ('user', 'pass')
     s.headers.update({'x-test': 'true'})
 
-    # both 'x-test' and 'x-test2' are sent
+    # sia 'x-test' che 'x-test2' sono settati
     s.get('http://httpbin.org/headers', headers={'x-test2': 'true'})
 
 
@@ -110,8 +110,8 @@ Un modo semplice per farlo è il seguente::
     )
     prepped = req.prepare()
 
-    # do something with prepped.body
-    # do something with prepped.headers
+    # fate qualcosa con prepped.body
+    # fate qualcosa con prepped.headers
 
     resp = s.send(prepped,
         stream=stream,
@@ -148,8 +148,8 @@ modo::
 
     prepped = s.prepare_request(req)
 
-    # do something with prepped.body
-    # do something with prepped.headers
+    # fate qualcosa con prepped.body
+    # fate qualcosa con prepped.headers
 
     resp = s.send(prepped,
         stream=stream,
@@ -166,77 +166,87 @@ modo::
 Verifica dei certificati SSL
 ----------------------------
 
-Requests can verify SSL certificates for HTTPS requests, just like a web browser.
-To check a host's SSL certificate, you can use the ``verify`` argument::
+Requests può verificare i certificati SSL per le richieste HTTPS, esattamente
+come i browser. Per verificare il certificato SSL di un host potete usare 
+l'argomento ``verify``::
 
     >>> requests.get('https://kennethreitz.com', verify=True)
     requests.exceptions.SSLError: hostname 'kennethreitz.com' doesn't match either of '*.herokuapp.com', 'herokuapp.com'
 
-I don't have SSL setup on this domain, so it fails. Excellent. GitHub does though::
+Non ho impostato SSL su quel dominio, per cui la richiesta fallisce. Ottimo.
+Github tuttavia ha SSL::
 
     >>> requests.get('https://github.com', verify=True)
     <Response [200]>
 
-You can pass ``verify`` the path to a CA_BUNDLE file with certificates of trusted CAs. This list of trusted CAs can also be specified through the ``REQUESTS_CA_BUNDLE`` environment variable.
+Potete specificare per ``verify`` il path ad un file CA_BUNDLE contenente
+certificati di una Certification Authority di fiducia. La lista di bundle delle
+CA di fiducia può essere anche secificata attraverso la variabile di ambiente 
+``REQUESTS_CA_BUNDLE``.
 
-Requests can also ignore verifying the SSL certificate if you set ``verify`` to False.
+Requests può anche ignorare la verifica dei certificati SSL se impostata 
+``verify`` a False.
 
 ::
 
     >>> requests.get('https://kennethreitz.com', verify=False)
     <Response [200]>
 
-By default, ``verify`` is set to True. Option ``verify`` only applies to host certs.
+Di default, ``verify`` è True. L'opzione ``verify`` si applica solo a certi host.
 
-You can also specify a local cert to use as client side certificate, as a single
-file (containing the private key and the certificate) or as a tuple of both
-file's path::
+Potete anche specificare un certificato locale da usare come verifica client
+side, sia sotto forma di file locale (contenente la chiave privata e il 
+certificato) che di tupla contenente i path ad entrambi i file::
 
     >>> requests.get('https://kennethreitz.com', cert=('/path/server.crt', '/path/key'))
     <Response [200]>
 
-If you specify a wrong path or an invalid cert::
+Se specificate un path errato o un certificato invalido::
 
     >>> requests.get('https://kennethreitz.com', cert='/wrong_path/server.pem')
     SSLError: [Errno 336265225] _ssl.c:347: error:140B0009:SSL routines:SSL_CTX_use_PrivateKey_file:PEM lib
 
 .. _body-content-workflow:
 
-Body Content Workflow
----------------------
+Workflow di lettura del corpo delle risposte
+--------------------------------------------
 
-By default, when you make a request, the body of the response is downloaded
-immediately. You can override this behaviour and defer downloading the response
-body until you access the :class:`Response.content <requests.Response.content>`
-attribute with the ``stream`` parameter::
+Di default, quando lanciate una richiesta il corpo della risposta è scaricato
+immediatamente. Potete modificare questo comportamento e deferire il download
+del corpo della risposta fino a quando non leggete il valore dell'attributo 
+:class:`Response.content <requests.Response.content>` utilizzando il parametro
+ ``stream``::
 
     tarball_url = 'https://github.com/kennethreitz/requests/tarball/master'
     r = requests.get(tarball_url, stream=True)
 
-At this point only the response headers have been downloaded and the connection
-remains open, hence allowing us to make content retrieval conditional::
+A questo punto solo gli header sono stati scaricati per la risposta e la
+connessione rimane aperta, dunque lasciando il recupero del contenuto alla nostra
+volontà::
 
     if int(r.headers['content-length']) < TOO_LONG:
       content = r.content
       ...
 
-You can further control the workflow by use of the :class:`Response.iter_content <requests.Response.iter_content>`
-and :class:`Response.iter_lines <requests.Response.iter_lines>` methods.
-Alternatively, you can read the undecoded body from the underlying
-urllib3 :class:`urllib3.HTTPResponse <urllib3.response.HTTPResponse>` at
-:class:`Response.raw <requests.Response.raw>`.
+Potete ancora di più controllare il workflow usando i metodi :class:`Response.iter_content <requests.Response.iter_content>`
+e :class:`Response.iter_lines <requests.Response.iter_lines>`.
+In alternativa, potete leggere il corpo della risposta dalla sottostante urllib3
+:class:`urllib3.HTTPResponse <urllib3.response.HTTPResponse>` disponibile 
+invocando :class:`Response.raw <requests.Response.raw>`.
 
-If you set ``stream`` to ``True`` when making a request, Requests cannot
-release the connection back to the pool unless you consume all the data or call
-:class:`Response.close <requests.Response.close>`. This can lead to
-inefficiency with connections. If you find yourself partially reading request
-bodies (or not reading them at all) while using ``stream=True``, you should
-consider using ``contextlib.closing`` (`documented here`_), like this::
+Se impostate ``stream`` a ``True`` quando inviate una richiesta, Requests non
+può liberare la connessione in modo che ritorni nel pool fino a che non fruite
+dei dati o non chiamate :class:`Response.close <requests.Response.close>`.
+Questo comportamento può portare ad un uso inefficiente delle connessioni. Se
+vi capita sovente di leggere solo parzialmente il corpo delle richieste (o di
+non leggerlo per nulla) quando ``stream=True``, dovreste prendere in
+considerazione l'uso di ``contextlib.closing`` (`documentato qui`_), in questo
+modo::
 
     from contextlib import closing
 
     with closing(requests.get('http://httpbin.org/get', stream=True)) as r:
-        # Do things with the response here.
+        # Usate la risposta
 
 .. _`documented here`: http://docs.python.org/2/library/contextlib.html#contextlib.closing
 
