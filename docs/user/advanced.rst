@@ -299,15 +299,17 @@ richiesta::
 
 .. _multipart:
 
-POST Multiple Multipart-Encoded Files
--------------------------------------
+POST-are più file Multipart-Encoded
+-----------------------------------
 
-You can send multiple files in one request. For example, suppose you want to
-upload image files to an HTML form with a multiple file field 'images':
+Potete inviare più file in una singola richiesta. Ad esempio, immaginate di
+voler uploadare dei file immagine da un form HTML con un campo file multiplo
+di nome 'images':
 
     <input type="file" name="images" multiple="true" required="true"/>
 
-To do that, just set files to a list of tuples of (form_field_name, file_info):
+Per fare lo stesso con Requests vi basta inserire i file in una lista di tuple
+nella forma (nome_campo_del_form, tupla_con_info_sul_file):
 
     >>> url = 'http://httpbin.org/post'
     >>> multiple_files = [('images', ('foo.png', open('foo.png', 'rb'), 'image/png')),
@@ -323,39 +325,37 @@ To do that, just set files to a list of tuples of (form_field_name, file_info):
 
 .. _event-hooks:
 
-Event Hooks
------------
+Hook per gli eventi
+-------------------
 
-Requests has a hook system that you can use to manipulate portions of
-the request process, or signal event handling.
+Requests ha un sistema di hook che potete usare per manipolare le fasi del
+processo di richiesta o gestire eventi di segnalazione.
 
-Available hooks:
+Hook disponibili:
 
 ``response``:
-    The response generated from a Request.
+    La risposta generata a partire da una richiesta.
 
-
-You can assign a hook function on a per-request basis by passing a
-``{hook_name: callback_function}`` dictionary to the ``hooks`` request
-parameter::
+Potete impostare una funzione callback ad ogni singola richiesta, passando un
+dizionario ``{hook_name: callback_function}`` al parametro ``hooks`` della
+richiesta::
 
     hooks=dict(response=print_url)
 
-That ``callback_function`` will receive a chunk of data as its first
-argument.
+La funzione ``callback_function`` riceverà come primo argomento la richiesta.
 
 ::
 
     def print_url(r, *args, **kwargs):
         print(r.url)
 
-If an error occurs while executing your callback, a warning is given.
+Se accade un errore durante l'esecuzione della vostra callback, viene sollevato
+un warning.
+Se la callback ritorna un valore, il contratto implicito è usare questo valore
+per rimpiazzare i dati che sono stati passati come argomento. Se la callback
+non ritorna nulla, nessuna azione è intrapresa.
 
-If the callback function returns a value, it is assumed that it is to
-replace the data that was passed in. If the function doesn't return
-anything, nothing else is effected.
-
-Let's print some request method arguments at runtime::
+Printiamo a runtime alcuni metodi di richiesta::
 
     >>> requests.get('http://httpbin.org', hooks=dict(response=print_url))
     http://httpbin.org
