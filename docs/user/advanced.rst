@@ -363,50 +363,51 @@ Printiamo a runtime alcuni metodi di richiesta::
 
 .. _custom-auth:
 
-Custom Authentication
+Autenticazione custom
 ---------------------
 
-Requests allows you to use specify your own authentication mechanism.
+Requests vi permette di specificare un meccanismo di autenticazione custom.
 
-Any callable which is passed as the ``auth`` argument to a request method will
-have the opportunity to modify the request before it is dispatched.
+Ogni callable che passerete all'argomento ``auth`` di un metodo di richiesta 
+avrà la possibilità di modificare la richiesta prima che questa venga inviata.
 
-Authentication implementations are subclasses of ``requests.auth.AuthBase``,
-and are easy to define. Requests provides two common authentication scheme
-implementations in ``requests.auth``: ``HTTPBasicAuth`` and ``HTTPDigestAuth``.
+Le implementazioni del meccanismo di autenticazione devono essere sottoclassi di 
+``requests.auth.AuthBase``, e sono semplici da realizzare. Requests mette a 
+disposizione in ``requests.auth`` due schemi di autenticazione di uso comune:
+``HTTPBasicAuth`` e ``HTTPDigestAuth``.
 
-Let's pretend that we have a web service that will only respond if the
-``X-Pizza`` header is set to a password value. Unlikely, but just go with it.
+Mettiamoci nell'ipotetico caso di avere un web service che risponde solamente
+se l'header ``X-Pizza`` contiene una username. Abbastanza improbabile, ma 
+andiamo avanti.
 
 ::
 
     from requests.auth import AuthBase
 
     class PizzaAuth(AuthBase):
-        """Attaches HTTP Pizza Authentication to the given Request object."""
+        """Aggiunge l'Autenticazione HTTP Pizza a questa istanza di Request."""
         def __init__(self, username):
             # setup any auth-related data here
             self.username = username
 
         def __call__(self, r):
-            # modify and return the request
+            # modifico e ritorno la richiesta
             r.headers['X-Pizza'] = self.username
             return r
 
-Then, we can make a request using our Pizza Auth::
+A questo punto possiamo fare richieste usando la nostra classe Pizza Auth::
 
     >>> requests.get('http://pizzabin.org/admin', auth=PizzaAuth('kenneth'))
     <Response [200]>
 
 .. _streaming-requests:
 
-Streaming Requests
-------------------
+Richieste in streaming
+----------------------
 
-With :class:`requests.Response.iter_lines()` you can easily
-iterate over streaming APIs such as the `Twitter Streaming
-API <https://dev.twitter.com/streaming/overview>`_. Simply
-set ``stream`` to ``True`` and iterate over the response with
+Con :class:`requests.Response.iter_lines()` potete iterare in maniera semplice
+su API in streaming come l'`API Streaming di Twitter <https://dev.twitter.com/streaming/overview>`_.
+Basta impostare ``stream`` a ``True`` e iterare sulla risposta con
 :class:`~requests.Response.iter_lines()`::
 
     import json
@@ -416,30 +417,30 @@ set ``stream`` to ``True`` and iterate over the response with
 
     for line in r.iter_lines():
 
-        # filter out keep-alive new lines
+        # printa le nuove righe in streaming
         if line:
             print(json.loads(line))
 
-.. warning::
+.. caveat::
 
-    :class:`~requests.Response.iter_lines()` is not reentrant safe.
-    Calling this method multiple times causes some of the received data
-    being lost. In case you need to call it from multiple places, use
-    the resulting iterator object instead::
+    :class:`~requests.Response.iter_lines()` non è un metodo rientrante.
+    Invocarlo più volte provoca la perdita di parte dei dati ricevuti. Nel caso 
+    in cui serva invocarlo da più punti del vostro codice, usate piuttosto
+    l'iteratore che risulta dalla sua invocazione::
 
         lines = r.iter_lines()
-        # Save the first line for later or just skip it
+        # Memorizza la prima riga per dopo o skippala
         first_line = next(lines)
         for line in lines:
             print(line)
 
 .. _proxies:
 
-Proxies
--------
+Proxy
+----- 
 
-If you need to use a proxy, you can configure individual requests with the
-``proxies`` argument to any request method::
+Se dovete utilizzare un proxy, potete configurare ogni singolo metodo di 
+richiesta con l'argomento ``proxies``::
 
     import requests
 
@@ -450,8 +451,8 @@ If you need to use a proxy, you can configure individual requests with the
 
     requests.get("http://example.org", proxies=proxies)
 
-You can also configure proxies by setting the environment variables
-``HTTP_PROXY`` and ``HTTPS_PROXY``.
+Potete anche configurare i proxy attraverso le variabili di ambiente
+``HTTP_PROXY`` e ``HTTPS_PROXY``.
 
 ::
 
@@ -461,71 +462,72 @@ You can also configure proxies by setting the environment variables
     >>> import requests
     >>> requests.get("http://example.org")
 
-To use HTTP Basic Auth with your proxy, use the `http://user:password@host/` syntax::
+Per usare la HTTP Basic Authentication con il vostro proxy, servitevi della
+sintassi `http://user:password@host/`::
 
     proxies = {
         "http": "http://user:pass@10.10.1.10:3128/",
     }
 
-Note that proxy URLs must include the scheme.
+Notate che gli URL dei proxy devono includere lo schema.
 
 .. _compliance:
 
-Compliance
+Conformità
 ----------
 
-Requests is intended to be compliant with all relevant specifications and
-RFCs where that compliance will not cause difficulties for users. This
-attention to the specification can lead to some behaviour that may seem
-unusual to those not familiar with the relevant specification.
+Requests è pensato per essere conforme con tutte le specifiche e le RFC rilevanti
+laddove tale conformità non causi difficoltà d'utilizzo per gli utenti. Questa
+attenzione alla specifica può portare ad un comportamento che potrebbe sembrare
+inusuale a coloro che non sono familiari con le specifiche stesse.
 
-Encodings
-^^^^^^^^^
+Encoding
+^^^^^^^^
 
-When you receive a response, Requests makes a guess at the encoding to
-use for decoding the response when you access the :attr:`Response.text
-<requests.Response.text>` attribute. Requests will first check for an
-encoding in the HTTP header, and if none is present, will use `chardet
-<http://pypi.python.org/pypi/chardet>`_ to attempt to guess the encoding.
+Quando ricevete una risposta, Requests cerca di capire l'encoding da usare per 
+decodificarla quando accedete l'attributo :attr:`Response.text
+<requests.Response.text>`. Requests dapprima cercherà un encoding specifico negli
+header HTTP, e se non ne trova, allora si servirà `chardet
+<http://pypi.python.org/pypi/chardet>`_ per cercare di indovindare l'encoding.
 
-The only time Requests will not do this is if no explicit charset
-is present in the HTTP headers **and** the ``Content-Type``
-header contains ``text``. In this situation, `RFC 2616
-<http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.7.1>`_ specifies
-that the default charset must be ``ISO-8859-1``. Requests follows the
-specification in this case. If you require a different encoding, you can
-manually set the :attr:`Response.encoding <requests.Response.encoding>`
-property, or use the raw :attr:`Response.content <requests.Response.content>`.
+L'unica situazione in cui Requests non seguirà questa procedura è quando non 
+è specificato un charset esplicito negli header HTTP **e** l'header
+``Content-Type`` contiene ``text``. In tale situazione, la `RFC 2616
+<http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.7.1>`_ specifica
+che il charset di default deve essere ``ISO-8859-1``. Requests si conforma alla
+specifica in questo caso. Se avete bisogno di un encoding diverso, potete
+settare manualmente la property :attr:`Response.encoding <requests.Response.encoding>`
+o usare l'oggetto :attr:`Response.content <requests.Response.content>` raw.
 
 .. _http-verbs:
 
-HTTP Verbs
+Verbi HTTP
 ----------
 
-Requests provides access to almost the full range of HTTP verbs: GET, OPTIONS,
-HEAD, POST, PUT, PATCH and DELETE. The following provides detailed examples of
-using these various verbs in Requests, using the GitHub API.
+Requests dà accesso a quasi tutto il range di verbi HTTP: GET, OPTIONS,
+HEAD, POST, PUT, PATCH e DELETE. Di seguito vengono illustrati esempi dettagliati
+di come usare questi verbi in Requests, usando l'API di GitHub.
 
-We will begin with the verb most commonly used: GET. HTTP GET is an idempotent
-method that returns a resource from a given URL. As a result, it is the verb
-you ought to use when attempting to retrieve data from a web location. An
-example usage would be attempting to get information about a specific commit
-from GitHub. Suppose we wanted commit ``a050faf`` on Requests. We would get it
-like so::
+Cominceremo con il verbo di più comune utilizzo: GET. HTTP GET è un metodo
+idempotente che ritorna una risorsa da un URL specifico. Dunque è il verbo che
+dovete usare quando cercate di ottenere dati da un indirizzo web. Un esempio
+d'uso potrebbe essere recuperare informazioni su una specifica commit da
+GitHub. Immaginate di volere la commit ``a050faf`` con Requests. La potremmo
+recuperare così::
 
     >>> import requests
     >>> r = requests.get('https://api.github.com/repos/kennethreitz/requests/git/commits/a050faf084662f3a352dd1a941f2c7c9f886d4ad')
 
-We should confirm that GitHub responded correctly. If it has, we want to work
-out what type of content it is. Do this like so::
+Dovremmo controllare se GitHub ha risposto correttamente. Se sì, wogliamo
+capire quale tipo di contenuto ha ritornato. Facciamo così::
 
     >>> if r.status_code == requests.codes.ok:
     ...     print(r.headers['content-type'])
     ...
     application/json; charset=utf-8
 
-So, GitHub returns JSON. That's great, we can use the :meth:`r.json
-<requests.Response.json>` method to parse it into Python objects.
+Dunque GitHub ritorna JSON. Grandioso, possiamo usare il metodo :meth:`r.json
+<requests.Response.json>` per convertirlo in un oggetto Python.
 
 ::
 
@@ -537,10 +539,10 @@ So, GitHub returns JSON. That's great, we can use the :meth:`r.json
     >>> print(commit_data[u'message'])
     makin' history
 
-So far, so simple. Well, let's investigate the GitHub API a little bit. Now,
-we could look at the documentation, but we might have a little more fun if we
-use Requests instead. We can take advantage of the Requests OPTIONS verb to
-see what kinds of HTTP methods are supported on the url we just used.
+Finora tutto semplice. Ora investighiamo l'API di GitHub un po' più nel dettaglio.
+Potremmo guardare la documentazione, ma sarebbe più divertente usare Requests.
+Possiamo servirci del verbo OPTIONS per vedere quali metodi HTTP sono consentiti
+sull'URL che abbiamo appena usato.
 
 ::
 
