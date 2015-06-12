@@ -427,91 +427,92 @@ issues.
 1.1.0 (2013-01-10)
 ++++++++++++++++++
 
-- CHUNKED REQUESTS
-- Support for iterable response bodies
-- Assume servers persist redirect params
-- Allow explicit content types to be specified for file data
-- Make merge_kwargs case-insensitive when looking up keys
+- RICHIESTE CHUNKED
+- Supporto per corpo delle risposte iterabili
+- Assunzione che i server memorizzino i parametri di redirect
+- Ora è possibile specificare dei content type espliciti per i file
+- Durante il lookup delle chiavi, merge_kwargs è case-insensitive
 
 1.0.3 (2012-12-18)
 ++++++++++++++++++
 
-- Fix file upload encoding bug
-- Fix cookie behavior
+- Fix baco sull'encoding durante upload di file
+- Fix sul comportamento dei cookie
 
 1.0.2 (2012-12-17)
 ++++++++++++++++++
 
-- Proxy fix for HTTPAdapter.
+- Fix sul proxy per HTTPAdapter.
 
 1.0.1 (2012-12-17)
 ++++++++++++++++++
 
-- Cert verification exception bug.
-- Proxy fix for HTTPAdapter.
+- Fix baco di verifica dei certificati.
+- Fix sul proxy per HTTPAdapter.
 
 1.0.0 (2012-12-17)
 ++++++++++++++++++
 
-- Massive Refactor and Simplification
-- Switch to Apache 2.0 license
-- Swappable Connection Adapters
-- Mountable Connection Adapters
-- Mutable ProcessedRequest chain
+- Un micchio di refactoring e semplificazione
+- Adozione della licenza Apache 2.0
+- Connection Adapters sostituibili
+- Connection Adapters montabili sulle sessioni
+- Catena delle ProcessedRequest è mutabile
 - /s/prefetch/stream
-- Removal of all configuration
-- Standard library logging
-- Make Response.json() callable, not property.
-- Usage of new charade project, which provides python 2 and 3 simultaneous chardet.
-- Removal of all hooks except 'response'
-- Removal of all authentication helpers (OAuth, Kerberos)
+- Rimozione di tutta la configurazione
+- Logging attraverso la Standard library
+- Ora Response.json() è una callable, non una property
+- Utilizzo del nuovo progetto charade project, che fornisce la chardet simultanea
+  per python 2 e 3
+- Rimozione di tutti gli hook ad eccezione di'response'
+- Rimozione di tutti gli helper di autenticazione (OAuth, Kerberos)
 
-This is not a backwards compatible change.
+Questa release non è retrocompatibile.
 
 0.14.2 (2012-10-27)
 +++++++++++++++++++
 
-- Improved mime-compatible JSON handling
-- Proxy fixes
-- Path hack fixes
-- Case-Insensistive Content-Encoding headers
-- Support for CJK parameters in form posts
+- Migliorata la gestione del JSON mime-compatibile
+- Fix sui Proxy
+- Fix sull'hacking dei path
+- Headers Content-Encoding case-insensitive
+- Supporto per i parametri CJK nel POST-ing dei form
 
 
 0.14.1 (2012-10-01)
 +++++++++++++++++++
 
-- Python 3.3 Compatibility
-- Simply default accept-encoding
-- Bugfixes
+- Compatibilità con Python 3.3
+- Semplice valore di default per accept-encoding
+- Fix di bachi
 
 
 0.14.0 (2012-09-02)
 ++++++++++++++++++++
 
-- No more iter_content errors if already downloaded.
+- iter_content non dà più errori se il contenuto è stato già scaricato.
 
 0.13.9 (2012-08-25)
 +++++++++++++++++++
 
-- Fix for OAuth + POSTs
-- Remove exception eating from dispatch_hook
-- General bugfixes
+- Fix su OAuth + POSTs
+- Rimosso occultamento delle eccezioni da dispatch_hook
+- Fix di bachi
 
 0.13.8 (2012-08-21)
 +++++++++++++++++++
 
-- Incredible Link header support :)
+- Supporto pazzesco agli header Link :)
 
 0.13.7 (2012-08-19)
 +++++++++++++++++++
 
-- Support for (key, value) lists everywhere.
-- Digest Authentication improvements.
-- Ensure proxy exclusions work properly.
-- Clearer UnicodeError exceptions.
-- Automatic casting of URLs to strings (fURL and such)
-- Bugfixes.
+- Supporto per liste in formato (key, value) dovunque.
+- Miglioramenti sull'autenticazione Digest.
+- Ora l'esclusione dei proxy funziona correttamente.
+- Eccezioni UnicodeError più chiare.
+- Casting automatico degli URL a stringhe
+- Fix di bachi.
 
 0.13.6 (2012-08-06)
 +++++++++++++++++++
