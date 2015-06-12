@@ -694,55 +694,55 @@ This is not a backwards compatible change.
 0.9.2 (2012-01-18)
 ++++++++++++++++++
 
-* Asynchronous async.send method.
-* Support for proper chunk streams with boundaries.
-* session argument for Session classes.
-* Print entire hook tracebacks, not just exception instance.
-* Fix response.iter_lines from pending next line.
-* Fix but in HTTP-digest auth w/ URI having query strings.
-* Fix in Event Hooks section.
-* Urllib3 update.
+* Metodo async.send è ora asincrono.
+* Supporto per la corretta delimitazione degli stream di chunks.
+* Argomento session per le classi Session.
+* Stampa delle intere traceback, non solo dell'istanza dell'eccezione
+* Fix response.iter_lines quando è in attesa delle prossima linea.
+* Fix baco sull'autenticazione HTTP-digest con URI con query string.
+* Fix nella sezione Hook degli Eventi.
+* Aggiornamento di Urllib3.
 
 
 0.9.1 (2012-01-06)
 ++++++++++++++++++
 
-* danger_mode for automatic Response.raise_for_status()
-* Response.iter_lines refactor
+* danger_mode quando Response.raise_for_status() è automatico
+* Refactoring di Response.iter_lines
 
 0.9.0 (2011-12-28)
 ++++++++++++++++++
 
-* verify ssl is default.
+* La verifica SSL è fatta di default.
 
 
 0.8.9 (2011-12-28)
 ++++++++++++++++++
 
-* Packaging fix.
+* Fix sul packaging.
 
 
 0.8.8 (2011-12-28)
 ++++++++++++++++++
 
-* SSL CERT VERIFICATION!
-* Release of Cerifi: Mozilla's cert list.
-* New 'verify' argument for SSL requests.
-* Urllib3 update.
+* VERIFICA DEI CERTIFICATI SSL!
+* Release di Certifi: la lista di certificati di Mozilla.
+* Nuovo argoento 'verify' per le richieste SSL.
+* Aggiornamento di Urllib3.
 
 0.8.7 (2011-12-24)
 ++++++++++++++++++
 
-* iter_lines last-line truncation fix
-* Force safe_mode for async requests
-* Handle safe_mode exceptions more consistently
-* Fix iteration on null responses in safe_mode
+* Fix sul troncamento dell'ultima riga con iter_lines
+* Viene forzato safe_mode per le richieste asincrone
+* Gestione più consistente delle eccezioni in safe_mode
+* Fix sull'iterazione delle risposte nulle in safe_mode
 
 0.8.6 (2011-12-18)
 ++++++++++++++++++
 
-* Socket timeout fixes.
-* Proxy Authorization support.
+* Fix sui timeout a livello socket.
+* Supporto all'autorizzazione per i Proxy.
 
 0.8.5 (2011-12-14)
 ++++++++++++++++++
@@ -752,280 +752,283 @@ This is not a backwards compatible change.
 0.8.4 (2011-12-11)
 ++++++++++++++++++
 
-* Prefetch bugfix.
-* Added license to installed version.
+* Fix baco sul Prefetch.
+* Aggiunta licenza per la versione installata.
 
 0.8.3 (2011-11-27)
 ++++++++++++++++++
 
-* Converted auth system to use simpler callable objects.
-* New session parameter to API methods.
-* Display full URL while logging.
+* Semplificazione del sistema di autenticazione per l'uso di oggetti callable.
+* Nuovo parametro session per i metodi dell'API
+* Visualizzazine dell'URl intero nei log.
 
 0.8.2 (2011-11-19)
 ++++++++++++++++++
 
-* New Unicode decoding system, based on over-ridable `Response.encoding`.
-* Proper URL slash-quote handling.
-* Cookies with ``[``, ``]``, and ``_`` allowed.
+* Nuovo sistema di decoding Unicode, basato su `Response.encoding`, che è
+  overridable
+* Gestione corretta del quoting degli slash negli URL.
+* I cookie contenenti ``[``, ``]``, e ``_`` sono ora consentiti.
 
 0.8.1 (2011-11-15)
 ++++++++++++++++++
 
-* URL Request path fix
-* Proxy fix.
-* Timeouts fix.
+* UFix sul path dell'URL nelle richieste
+* Fix sui Proxy.
+* Fix sui Timeouts.
 
 0.8.0 (2011-11-13)
 ++++++++++++++++++
 
-* Keep-alive support!
-* Complete removal of Urllib2
-* Complete removal of Poster
-* Complete removal of CookieJars
-* New ConnectionError raising
-* Safe_mode for error catching
-* prefetch parameter for request methods
-* OPTION method
-* Async pool size throttling
-* File uploads send real names
-* Vendored in urllib3
+* Supporto al Keep-alive!
+* Rimozione completa di Urllib2
+* Rimozione completa di Poster
+* Rimozione completa di CookieJars
+* Nuovo modo di sollevare ConnectionError 
+* Safe_mode per il catching degli errori
+* Prefetch dei parametri per i metodi di richiesta
+* Supporto a OPTION
+* Tuning asincrono delle dimensioni del pool
+* Gli upload dei file inviano nomi reali
+* Inserita dipendenza a urllib3
 
 0.7.6 (2011-11-07)
 ++++++++++++++++++
 
-* Digest authentication bugfix (attach query data to path)
+* Fix baco su autenticazione Digest (concatenamento dei dati di query al path)
 
 0.7.5 (2011-11-04)
 ++++++++++++++++++
 
-* Response.content = None if there was an invalid response.
-* Redirection auth handling.
+* Response.content = None se c'è stata una risposta invalida.
+* Gestione della redirezione in sede di autenticazione.
 
 0.7.4 (2011-10-26)
 ++++++++++++++++++
 
-* Session Hooks fix.
+* Fix sugli hook delle sessioni.
 
 0.7.3 (2011-10-23)
 ++++++++++++++++++
 
-* Digest Auth fix.
+* Fix sull'autenticazione Digest.
 
 
 0.7.2 (2011-10-23)
 ++++++++++++++++++
 
-* PATCH Fix.
+* Fix su PATCH.
 
 
 0.7.1 (2011-10-23)
 ++++++++++++++++++
 
-* Move away from urllib2 authentication handling.
-* Fully Remove AuthManager, AuthObject, &c.
-* New tuple-based auth system with handler callbacks.
+* L'handling delle autenticazionidi urllib2 non è più usato.
+* Rimozione completa di AuthManager, AuthObject, etc.
+* Nuovo sistema di autenticazione basato su tuple e esecuzione di callback.
 
 
 0.7.0 (2011-10-22)
 ++++++++++++++++++
 
-* Sessions are now the primary interface.
-* Deprecated InvalidMethodException.
-* PATCH fix.
-* New config system (no more global settings).
+* Le sessioni sono ora l'interfaccia primaria.
+* InvalidMethodException è ora deprecata.
+* Fix su PATCH.
+* Nuovo sistema di configurazione (non si usano più setting globali)
 
 
 0.6.6 (2011-10-19)
 ++++++++++++++++++
 
-* Session parameter bugfix (params merging).
+* Fix baco sui parametri di sessione (merging dei parametri).
 
 
 0.6.5 (2011-10-18)
 ++++++++++++++++++
 
-* Offline (fast) test suite.
-* Session dictionary argument merging.
+* Suite di test offline (veloce).
+* Merging degli argomenti dei dizionari di sessione.
 
 
 0.6.4 (2011-10-13)
 ++++++++++++++++++
 
-* Automatic decoding of unicode, based on HTTP Headers.
-* New ``decode_unicode`` setting.
-* Removal of ``r.read/close`` methods.
-* New ``r.faw`` interface for advanced response usage.*
-* Automatic expansion of parameterized headers.
+* Decoding automatico di Unicode, sulla base degli header HTTP.
+* Nuovo setting ``decode_unicode``.
+* Rimozione dei metodi ``r.read/close``.
+* Nuova interfaccia ``r.faw`` per un uso avanzato delle risposte.
+* Espansione automatica degli header parametrizzati.
 
 
 0.6.3 (2011-10-13)
 ++++++++++++++++++
 
-* Beautiful ``requests.async`` module, for making async requests w/ gevent.
+* modulo ``requests.async``, per inviare richieste asincrone con gevent.
 
 
 0.6.2 (2011-10-09)
 ++++++++++++++++++
 
-* GET/HEAD obeys allow_redirects=False.
+* GET/HEAD onorano allow_redirects=False.
 
 
 0.6.1 (2011-08-20)
 ++++++++++++++++++
 
-* Enhanced status codes experience ``\o/``
-* Set a maximum number of redirects (``settings.max_redirects``)
-* Full Unicode URL support
-* Support for protocol-less redirects.
-* Allow for arbitrary request types.
-* Bugfixes
+* Migliorata l'esperienza d'uso degli status code ``\o/``
+* Specifica del numero massimo di redirezioni (``settings.max_redirects``)
+* Supporto completo agli URL Unicode
+* Supporto alle redirezioni protocol-less.
+* E' possibile inviare tipologie arbitrarie di richiesta.
+* Fix di bachi
 
 
 0.6.0 (2011-08-17)
 ++++++++++++++++++
 
-* New callback hook system
-* New persistent sessions object and context manager
-* Transparent Dict-cookie handling
-* Status code reference object
-* Removed Response.cached
-* Added Response.request
-* All args are kwargs
-* Relative redirect support
-* HTTPError handling improvements
-* Improved https testing
-* Bugfixes
+* Nuovo sistema per l'hooking delle callback
+* Nuovi oggetti sessioni permanenti e nuovo context manager
+* Gestione trasparente Dict-cookie
+* Oggetto per il riferimento agli status code
+* Rimosso Response.cached
+* Aggiunto Response.request
+* Tutti gli argomenti sono kwargs
+* Supporto alle redirezioni relative
+* Miglioramenti alla gestione degli HTTPError
+* Migliorato il testing di HTTPS
+* Fix di bachi
 
 
 0.5.1 (2011-07-23)
 ++++++++++++++++++
 
-* International Domain Name Support!
-* Access headers without fetching entire body (``read()``)
-* Use lists as dicts for parameters
-* Add Forced Basic Authentication
-* Forced Basic is default authentication type
-* ``python-requests.org`` default User-Agent header
-* CaseInsensitiveDict lower-case caching
-* Response.history bugfix
+* Supporto ai Nomi a Dominio Internazionali!
+* Accesso agli headers senza dover recuperare l'intero corpo (``read()``)
+* Uso di liste come dicts per i parametri
+* Aggiunta autenticazione Basic Forzata
+* L'autenticazione Basic Forzata è ora quella di default
+* ``python-requests.org`` è lo User-Agent header di default
+* caching lower-case di CaseInsensitiveDict
+* Fix baco su Response.history
 
 
 0.5.0 (2011-06-21)
 ++++++++++++++++++
 
-* PATCH Support
-* Support for Proxies
-* HTTPBin Test Suite
-* Redirect Fixes
-* settings.verbose stream writing
-* Querystrings for all methods
-* URLErrors (Connection Refused, Timeout, Invalid URLs) are treated as explicitly raised
+* Supporto a PATCH
+* Support ai Proxy
+* Suite di test con HTTPBin
+* Fix sulle redirezioni
+* Stream in scrittura con settings.verbose
+* Querystrings per tutti i metodi
+* Gli URLErrors (Connection Refused, Timeout, Invalid URLs) sono trattati come
+  se fossero esplicitamente sollevati dalla libreria
   ``r.requests.get('hwe://blah'); r.raise_for_status()``
 
 
 0.4.1 (2011-05-22)
 ++++++++++++++++++
 
-* Improved Redirection Handling
-* New 'allow_redirects' param for following non-GET/HEAD Redirects
-* Settings module refactoring
+* Migliorata la gestione delle redirezioni
+* Nuovo parametro 'allow_redirects' per seguire le redirezioni non-GET/HEAD
+* Refactoring del modulo dei settings
 
 
 0.4.0 (2011-05-15)
 ++++++++++++++++++
 
-* Response.history: list of redirected responses
-* Case-Insensitive Header Dictionaries!
-* Unicode URLs
+* Response.history: lista di risposte in seguito a redirezioni
+* I dizionari degli header ora sono case-insensitive!
+* URL Unicode
 
 
 0.3.4 (2011-05-14)
 ++++++++++++++++++
 
-* Urllib2 HTTPAuthentication Recursion fix (Basic/Digest)
-* Internal Refactor
-* Bytes data upload Bugfix
+* Fix baco di ricorsione nella HTTPAuthentication di Urllib2 (Basic/Digest)
+* Refactoring interno
+* Fix baco di upload di bytes
 
 
 
 0.3.3 (2011-05-12)
 ++++++++++++++++++
 
-* Request timeouts
-* Unicode url-encoded data
-* Settings context manager and module
+* Timeout sulle richieste
+* Dati url-encoded con Unicode
+* Gestore e modulo per la configurazione del contesto
 
 
 0.3.2 (2011-04-15)
 ++++++++++++++++++
 
-* Automatic Decompression of GZip Encoded Content
-* AutoAuth Support for Tupled HTTP Auth
+* Decompressione automatica del contenuto GZip
+* Supporto per AutoAuth Support per l'autenticazione HTTP tramite tupla
 
 
 0.3.1 (2011-04-01)
 ++++++++++++++++++
 
-* Cookie Changes
+* Modifiche ai cookie
 * Response.read()
-* Poster fix
+* Fix su Poster
 
 
 0.3.0 (2011-02-25)
 ++++++++++++++++++
 
-* Automatic Authentication API Change
-* Smarter Query URL Parameterization
-* Allow file uploads and POST data together
-* New Authentication Manager System
-    - Simpler Basic HTTP System
-    - Supports all build-in urllib2 Auths
-    - Allows for custom Auth Handlers
+* Cambiamento automatico dell'API di Autenticazione
+* Parametrizzazione più intelligente delle URL query
+* E' possibile uploadare file e POST-are dati contemporaneamente
+* Nuovo sistema di gestione dell'autenticazione
+    - Sistema Basic HTTP più semplice
+    - Supporta tutti i meccanismi builtin di autenticazione in urllib2
+    - Possibilità di usare handler di autenticazione custom
 
 
 0.2.4 (2011-02-19)
 ++++++++++++++++++
 
-* Python 2.5 Support
-* PyPy-c v1.4 Support
-* Auto-Authentication tests
-* Improved Request object constructor
+* Supporto per Python 2.5
+* Supporto per PyPy-c v1.4
+* Test per Auto-Autenticazione
+* Migliorato il costruttore degli oggetti di tipo Request
 
 0.2.3 (2011-02-15)
 ++++++++++++++++++
 
-* New HTTPHandling Methods
-    - Response.__nonzero__ (false if bad HTTP Status)
-    - Response.ok (True if expected HTTP Status)
-    - Response.error (Logged HTTPError if bad HTTP Status)
-    - Response.raise_for_status() (Raises stored HTTPError)
+* Nuovi metodi per HTTPHandling
+    - Response.__nonzero__ (false se ho HTTP Status di errore)
+    - Response.ok (True se ho HTTP Status OK)
+    - Response.error (Logga un HTTPError se ho HTTP Status di errore)
+    - Response.raise_for_status() (Solleva un HTTPError archiviato)
 
 
 0.2.2 (2011-02-14)
 ++++++++++++++++++
 
-* Still handles request in the event of an HTTPError. (Issue #2)
-* Eventlet and Gevent Monkeypatch support.
-* Cookie Support (Issue #1)
+* Le richieste vengono comunque gestite in caso di un HTTPError. (Issue #2)
+* Supporto al monkeypatching con Eventlet e Gevent.
+* Supporto ai Cookie (Issue #1)
 
 
 0.2.1 (2011-02-14)
 ++++++++++++++++++
 
-* Added file attribute to POST and PUT requests for multipart-encode file uploads.
-* Added Request.url attribute for context and redirects
+* Aggiunto l'attributo file alle richieste POST e PUT per upload di file
+  multipart-encoded.
+* Aggiunto l'attributo Request.url per il contesto e le redirect
 
 
 0.2.0 (2011-02-14)
 ++++++++++++++++++
 
-* Birth!
+* Nascita!
 
 
 0.0.1 (2011-02-13)
 ++++++++++++++++++
 
-* Frustration
-* Conception
+* Frustrazione
+* Idea iniziale
 
