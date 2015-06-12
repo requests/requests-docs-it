@@ -603,26 +603,29 @@ This is not a backwards compatible change.
 0.11.1 (2012-03-30)
 +++++++++++++++++++
 
-* POST redirects now break RFC to do what browsers do: Follow up with a GET.
-* New ``strict_mode`` configuration to disable new redirect behavior.
+* Le redirect su POST ora non seguono la RFC e fanno come i browser: proseguono
+  con una GET.
+* Nuova configurazione ``strict_mode`` per disabilitare il nuovo comportamento
+  di redirezione.
 
 
 0.11.0 (2012-03-14)
 +++++++++++++++++++
 
-* Private SSL Certificate support
-* Remove select.poll from Gevent monkeypatching
-* Remove redundant generator for chunked transfer encoding
-* Fix: Response.ok raises Timeout Exception in safe_mode
+* Supporto ai certificati privati su SSL
+* Rimosso select.poll dal monkeypatching di Gevent
+* Rimosso un generatore ridondante nell'encoding dei trasferimenti chunked
+* Fix: Response.ok sollevava Timeout Exception in safe_mode
 
 0.10.8 (2012-03-09)
 +++++++++++++++++++
 
-* Generate chunked ValueError fix
-* Proxy configuration by environment variables
-* Simplification of iter_lines.
-* New `trust_env` configuration for disabling system/environment hints.
-* Suppress cookie errors.
+* Fix sulla generazione di ValueError chunked
+* Configurazione dei Proxy tramite variabili d'ambiente
+* Semplificazione di iter_lines.
+* Nuova configurazione `trust_env` per disabilitare i suggerimenti di
+  sistema/ambiente.
+* Soppressione degli errori sui cookie.
 
 0.10.7 (2012-03-07)
 +++++++++++++++++++
@@ -632,64 +635,68 @@ This is not a backwards compatible change.
 0.10.6 (2012-02-25)
 +++++++++++++++++++
 
-* Allow '=' in cookies.
+* '=' è consentito nei cookies.
 
 0.10.5 (2012-02-25)
 +++++++++++++++++++
 
-* Response body with 0 content-length fix.
-* New async.imap.
-* Don't fail on netrc.
+* Fix baco su corpo delle risposte con 0 content-length.
+* Nuovo async.imap.
+* Fix crash su utilizzo di netrc.
 
 
 0.10.4 (2012-02-20)
 +++++++++++++++++++
 
-* Honor netrc.
+* Viene utilizzato netrc.
 
 0.10.3 (2012-02-20)
 +++++++++++++++++++
 
-* HEAD requests don't follow redirects anymore.
-* raise_for_status() doesn't raise for 3xx anymore.
-* Make Session objects picklable.
-* ValueError for invalid schema URLs.
+* Le richieste HEAD non seguono più le redirect.
+* raise_for_status() non solleva più gli errori 3xx.
+* Gli oggetti Session sono serializzabili con Pickle.
+* ValueError per gli URL con schema invalido.
 
 0.10.2 (2012-01-15)
 +++++++++++++++++++
 
-* Vastly improved URL quoting.
-* Additional allowed cookie key values.
-* Attempted fix for "Too many open files" Error
-* Replace unicode errors on first pass, no need for second pass.
-* Append '/' to bare-domain urls before query insertion.
-* Exceptions now inherit from RuntimeError.
-* Binary uploads + auth fix.
-* Bugfixes.
+* Profondo miglioramento al quoting degli URL.
+* Consentiti più valori per le chiavi dei cookie.
+* Tentativo di fix per l'errore "Too many open files"
+* Sostituzione degli errori Unicode alla prima passata, secondo passata non più
+  necessario.
+* Concatenamento di '/' agli URL con solo dominio prima dell'inserimento della
+  query.
+* Ora le Eccezioni ereditano da RuntimeError.
+* Fix su upload binari uploads e autenticazione.
+* Fix di bachi.
 
 
 0.10.1 (2012-01-23)
 +++++++++++++++++++
 
-* PYTHON 3 SUPPORT!
-* Dropped 2.5 Support. (*Backwards Incompatible*)
+* SUPPORTO A PYTHON 3!
+* Abbandonato supporto a Python 2.5. (*Non retrocompatibile*)
 
 0.10.0 (2012-01-21)
 +++++++++++++++++++
 
-* ``Response.content`` is now bytes-only. (*Backwards Incompatible*)
-* New ``Response.text`` is unicode-only.
-* If no ``Response.encoding`` is specified and ``chardet`` is available, ``Response.text`` will guess an encoding.
-* Default to ISO-8859-1 (Western) encoding for "text" subtypes.
-* Removal of `decode_unicode`. (*Backwards Incompatible*)
-* New multiple-hooks system.
-* New ``Response.register_hook`` for registering hooks within the pipeline.
-* ``Response.url`` is now Unicode.
+* ``Response.content`` ritorna ora solo bytes. (*Non retrocompatibile*)
+* ``Response.text`` ora ritorna solo Unicode.
+* Se non è specificato un ``Response.encoding`` e ``chardet`` è disponibile,
+  ``Response.text`` tenta di indovinare l'encoding.
+* Default sull'encoding ISO-8859-1 (Western) per i sottotipi di "text".
+* Rimozione di `decode_unicode`. (*Non retrocompatibile*)
+* Nuovo sistema ad hoook multipli.
+* Nuovo metodo ``Response.register_hook`` per registrare hook all'interno della
+  pipeline.
+* ``Response.url`` ora ritorna Unicode.
 
 0.9.3 (2012-01-18)
 ++++++++++++++++++
 
-* SSL verify=False bugfix (apparent on windows machines).
+* Fix baco su verify=False di SSL (apparente sulle macchine Windows).
 
 0.9.2 (2012-01-18)
 ++++++++++++++++++
