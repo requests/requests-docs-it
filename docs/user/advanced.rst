@@ -550,11 +550,10 @@ sull'URL che abbiamo appena usato.
     >>> verbs.status_code
     500
 
-Uh, what? That's unhelpful! Turns out GitHub, like many API providers, don't
-actually implement the OPTIONS method. This is an annoying oversight, but it's
-OK, we can just use the boring documentation. If GitHub had correctly
-implemented OPTIONS, however, they should return the allowed methods in the
-headers, e.g.
+Cosa? Questo non ci serve! Sembra che GitHub, come molti provider di API, non
+implementi il metodo OPTIONS. E' una cosa noiosa, ma OK, possiamo sempre
+annoiarci a leggere la documentazione. Se GitHub avesse implementato OPTIONS,
+avrebbe ritornato negli header i metodi consentiti. As esempio
 
 ::
 
@@ -562,13 +561,14 @@ headers, e.g.
     >>> print(verbs.headers['allow'])
     GET,HEAD,POST,OPTIONS
 
-Turning to the documentation, we see that the only other method allowed for
-commits is POST, which creates a new commit. As we're using the Requests repo,
-we should probably avoid making ham-handed POSTS to it. Instead, let's play
-with the Issues feature of GitHub.
+Se leggiamo la documentazione, notiamo che l'unico altro metodo consentito
+sulle commit è POST, che crea una nuova commit. Dato che stiamo usando il repo
+di Requests, dovremmo evitare di creare a mano delle nuovo commit. Usiamo invece
+le Issue di GitHub.
 
-This documentation was added in response to Issue #482. Given that this issue
-already exists, we will use it as an example. Let's start by getting it.
+Il documento che state leggendo è stato aggiunto in risposta alla Issue #482.
+Dal momento che tale issue esiste già, la useremo come esempio. Cominciamo con
+il leggerla.
 
 ::
 
@@ -581,7 +581,7 @@ already exists, we will use it as an example. Let's start by getting it.
     >>> print(issue[u'comments'])
     3
 
-Cool, we have three comments. Let's take a look at the last of them.
+Grande, abbiamo tre commenti. Diamo un'occhiata all'ultimo.
 
 ::
 
@@ -594,17 +594,17 @@ Cool, we have three comments. Let's take a look at the last of them.
     >>> print(comments[2][u'body'])
     Probably in the "advanced" section
 
-Well, that seems like a silly place. Let's post a comment telling the poster
-that he's silly. Who is the poster, anyway?
+Bè, non sembra la migliore delle sezioni! Postiamo un nuovo commento per dire
+all'autore del commento che è un cretino. Ma... chi è l'autore?
 
 ::
 
     >>> print(comments[2][u'user'][u'login'])
     kennethreitz
 
-OK, so let's tell this Kenneth guy that we think this example should go in the
-quickstart guide instead. According to the GitHub API doc, the way to do this
-is to POST to the thread. Let's do it.
+OK, diciamo a questo tizio di nome Kenneth che crediamo che l'esempio debba andare
+nella sezione quickstart. La documentazione dell'API di GitHub, il modo giusto
+è POST-are su un thread. Facciamolo
 
 ::
 
@@ -614,9 +614,9 @@ is to POST to the thread. Let's do it.
     >>> r.status_code
     404
 
-Huh, that's weird. We probably need to authenticate. That'll be a pain, right?
-Wrong. Requests makes it easy to use many forms of authentication, including
-the very common Basic Auth.
+Mmmm, strano. Probabilmente dobbiamo autenticarci. Sarà un'impresa, vero? No,
+sbagliato. Requests rende facile usare varie forme di autenticazione, inclusa
+la comunissima HTTP Basic Authentication.
 
 ::
 
@@ -629,10 +629,10 @@ the very common Basic Auth.
     >>> print(content[u'body'])
     Sounds great! I'll get right on it.
 
-Brilliant. Oh, wait, no! I meant to add that it would take me a while, because
-I had to go feed my cat. If only I could edit this comment! Happily, GitHub
-allows us to use another HTTP verb, PATCH, to edit this comment. Let's do
-that.
+Fico! No, aspettate un attimo! Volevamo anche aggiungere che ci metteremo un po'
+perchè dobbiamo dare da mangiare al nostro gatto. Se solo potessimo modificare
+quel commento! Con piacere, GitHub ci permette di usare un altro verbo HTTP,
+PATCH, per modificare quel commento. Facciamolo.
 
 ::
 
@@ -644,10 +644,10 @@ that.
     >>> r.status_code
     200
 
-Excellent. Now, just to torture this Kenneth guy, I've decided to let him
-sweat and not tell him that I'm working on this. That means I want to delete
-this comment. GitHub lets us delete comments using the incredibly aptly named
-DELETE method. Let's get rid of it.
+Eccellente. Ora, per continuare a torturare questo tizio di nome Kenneth, 
+decidiamo di lasciarlo all'oscuro del fatto che stiamo lavorando sulla issue. 
+Questo significa che vogliamo cancellare il commento usando il metodo DELETE,
+dal nome incredibilmente azzeccato. Buttiamo via il commento.
 
 ::
 
@@ -657,10 +657,10 @@ DELETE method. Let's get rid of it.
     >>> r.headers['status']
     '204 No Content'
 
-Excellent. All gone. The last thing I want to know is how much of my ratelimit
-I've used. Let's find out. GitHub sends that information in the headers, so
-rather than download the whole page I'll send a HEAD request to get the
-headers.
+Perfetto. E' sparito. L'ultima cosa che vorremmo sapere è quanto siamo vicini al
+numero limite di chiamate all'API. Vediamolo. GitHub invia questa informazione
+negli headers, dunque al posto di scaricare un'intera pagina manderemo una
+richiesta di tipo HEAD su di essa per recuperare solo gli headers.
 
 ::
 
@@ -671,26 +671,26 @@ headers.
     'x-ratelimit-limit': '5000'
     ...
 
-Excellent. Time to write a Python program that abuses the GitHub API in all
-kinds of exciting ways, 4995 more times.
+Eccellente. E' il momento di scrivere un programma Python che abusi dell'API
+di GitHub in un sacco di modi divertenti, 4995 altre volte.
 
 .. _link-headers:
 
-Link Headers
-------------
+Header Link
+-----------
 
-Many HTTP APIs feature Link headers. They make APIs more self describing and
-discoverable.
+Molte API web usano header di tipo Link. Questi rendono le API più esplicite
+da comprendere ed esplorabili.
 
-GitHub uses these for `pagination <http://developer.github.com/v3/#pagination>`_
-in their API, for example::
+L'API di GitHub li usa per la `paginazione <http://developer.github.com/v3/#pagination>`_
+dei dati, ad esempio::
 
     >>> url = 'https://api.github.com/users/kennethreitz/repos?page=1&per_page=10'
     >>> r = requests.head(url=url)
     >>> r.headers['link']
     '<https://api.github.com/users/kennethreitz/repos?page=2&per_page=10>; rel="next", <https://api.github.com/users/kennethreitz/repos?page=6&per_page=10>; rel="last"'
 
-Requests will automatically parse these link headers and make them easily consumable::
+Requests leggerà automaticamente gli header Link e li renderà facilmente usabili::
 
     >>> r.links["next"]
     {'url': 'https://api.github.com/users/kennethreitz/repos?page=2&per_page=10', 'rel': 'next'}
@@ -700,53 +700,53 @@ Requests will automatically parse these link headers and make them easily consum
 
 .. _transport-adapters:
 
-Transport Adapters
-------------------
+Adapter di Trasporto
+--------------------
 
-As of v1.0.0, Requests has moved to a modular internal design. Part of the
-reason this was done was to implement Transport Adapters, originally
-`described here`_. Transport Adapters provide a mechanism to define interaction
-methods for an HTTP service. In particular, they allow you to apply per-service
-configuration.
+Dalla versione v1.0.0, Requests ha adottato un design interno modulare. Uno dei
+motivi alla base di questo è l'implementazione di Adapter di Trasporto, in origine
+`descritti qui`_. Gli Adapter di Trasporto forniscono un meccanismo per definire
+i metodi di interazione con un servizio HTTP. Nello specifico, permettono di
+utilizzare una configurazione specifica per ogni servizio.
 
-Requests ships with a single Transport Adapter, the :class:`HTTPAdapter
-<requests.adapters.HTTPAdapter>`. This adapter provides the default Requests
-interaction with HTTP and HTTPS using the powerful `urllib3`_ library. Whenever
-a Requests :class:`Session <requests.Session>` is initialized, one of these is
-attached to the :class:`Session <requests.Session>` object for HTTP, and one
-for HTTPS.
+Requests contiene un singolo Adapter di Trasporto, :class:`HTTPAdapter
+<requests.adapters.HTTPAdapter>`. Questo adapter implementa l'interazione di
+default di Requests con HTTP e HTTPS servendosi della poderosa libreria
+`urllib3`_ library. Ogni volta che una :class:`Session <requests.Session>`
+è inizializzata, un adapter è allegato all'oggetto :class:`Session <requests.Session>`
+per HTTP e un secondo adapter per HTTPS.
 
-Requests enables users to create and use their own Transport Adapters that
-provide specific functionality. Once created, a Transport Adapter can be
-mounted to a Session object, along with an indication of which web services
-it should apply to.
+Requests consente agli utenti di creare e usare i propri Adapter di Trasporto per
+esporre funzionalità custom. Una volta creato, un Adapter di Trasporto può essere
+montato su un oggetto Session insieme all'indicazione di quali servizi web si
+dovrebbe applicare.
 
 ::
 
     >>> s = requests.Session()
     >>> s.mount('http://www.github.com', MyAdapter())
 
-The mount call registers a specific instance of a Transport Adapter to a
-prefix. Once mounted, any HTTP request made using that session whose URL starts
-with the given prefix will use the given Transport Adapter.
+Questa chiamata registra un'istanza specifica di un Adapter di Trasporto ad un
+prefisso. Una volta montato, ogni richiesta HTTP fatta usando la sessione il
+cui URL inizia con il prefisso specificato si servirà dell'Adapter specificato.
 
-Many of the details of implementing a Transport Adapter are beyond the scope of
-this documentation, but take a look at the next example for a simple SSL use-
-case. For more than that, you might look at subclassing
-``requests.adapters.BaseAdapter``.
+Molti dei dettagli implementativi di un Adapter di Trasporto sono oltre lo
+scopo di questa documentazione, ma date un'occhiata al prossimo esempio per
+un semplice caso d'uso con SSL. Se volete andare ancora oltre, dovreste creare
+una sottoclasse di ``requests.adapters.BaseAdapter``.
 
-Example: Specific SSL Version
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Esempio: usare una versione specifica di SSL
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The Requests team has made a specific choice to use whatever SSL version is
-default in the underlying library (`urllib3`_). Normally this is fine, but from
-time to time, you might find yourself needing to connect to a service-endpoint
-that uses a version that isn't compatible with the default.
+Il team di Requests ha fatto la scelta specifica di usare qualsiasi versione di
+SSL si trovi di default nella sottostante libreria (`urllib3`_). Ci potrebbero
+essere volte in cui dovrete connettervi ad un servizio web che usa una versione
+di SSL non compatibile con la vostra di default.
 
-You can use Transport Adapters for this by taking most of the existing
-implementation of HTTPAdapter, and adding a parameter *ssl_version* that gets
-passed-through to `urllib3`. We'll make a TA that instructs the library to use
-SSLv3:
+In questo caso potete usare gli Adapter di Trasporto riutilizzando la maggior
+parte dell'implementazione di un HTTPAdapter e aggiungendo un parametro
+*ssl_version* che viene passato ad `urllib3`. Creiamo un Adapter che dice alla
+libreria di usare SSLv3:
 
 ::
 
@@ -770,56 +770,57 @@ SSLv3:
 
 .. _blocking-or-nonblocking:
 
-Blocking Or Non-Blocking?
--------------------------
+Bloccante o Non-Bloccante?
+--------------------------
 
-With the default Transport Adapter in place, Requests does not provide any kind
-of non-blocking IO. The :attr:`Response.content <requests.Response.content>`
-property will block until the entire response has been downloaded. If
-you require more granularity, the streaming features of the library (see
-:ref:`streaming-requests`) allow you to retrieve smaller quantities of the
-response at a time. However, these calls will still block.
+Quando usa l'Adapter di Trasporto di default, Requests non provvede alcun tipo di
+IO non-bloccante. La property :attr:`Response.content <requests.Response.content>`
+si bloccherà fincho a che l'intera risposta non è stata scaricata. Se vi serve
+pià granularità, le potenzialità di streaming della libreria (si veda
+:ref:`streaming-requests`) vi consentiranno di recuperare piccoli pezzi della
+risposta uno dopo l'altro. Tuttavia, queste chiamate sono sempre bloccanti.
 
-If you are concerned about the use of blocking IO, there are lots of projects
-out there that combine Requests with one of Python's asynchronicity frameworks.
-Two excellent examples are `grequests`_ and `requests-futures`_.
+Se intendete usare un paradigma di IO non-bloccante, ci sono molti progetti che
+combinano Requests con uno dei framework asincroni per Python.
+Due esempi d'eccellenza sono `grequests`_ e `requests-futures`_.
 
 .. _`grequests`: https://github.com/kennethreitz/grequests
 .. _`requests-futures`: https://github.com/ross/requests-futures
 
 .. _timeouts:
 
-Timeouts
---------
+Timeout
+-------
 
-Most requests to external servers should have a timeout attached, in case the
-server is not responding in a timely manner. Without a timeout, your code may
-hang for minutes or more.
+La maggior parte delle richieste a server esterni dovrebbero contenere un timeout
+nel caso in cui il server non risponda con le tempistiche che ci si attende.
+Senza un timeout il vostro codice potrebbe rimanere in attesa per minuti o anche
+più.
 
-The **connect** timeout is the number of seconds Requests will wait for your
-client to establish a connection to a remote machine (corresponding to the
-`connect()`_) call on the socket. It's a good practice to set connect timeouts
-to slightly larger than a multiple of 3, which is the default `TCP packet
-retransmission window <http://www.hjp.at/doc/rfc/rfc2988.txt>`_.
+Il timeout di **connessione** è il numero di secondi che Requests attenderà
+che il vostro client stabilisca una connessione alla macchina remota (corrisponde
+alla chiamata `connect()`_) sul socket. E' buona pratica settare i timeout di
+connessione poco oltre un multiplo di 3, che è la `finestra di default di TCP
+per la ritrasmissione dei pacchetti <http://www.hjp.at/doc/rfc/rfc2988.txt>`_.
 
-Once your client has connected to the server and sent the HTTP request, the
-**read** timeout is the number of seconds the client will wait for the server
-to send a response. (Specifically, it's the number of seconds that the client
-will wait *between* bytes sent from the server. In 99.9% of cases, this is the
-time before the server sends the first byte).
+Quando il client è connesso al server e ha inviato la richiesta HTTP, il timeout
+**di lettura** è il numero di secondi che il client attenderà che il server
+invii una rispostsa (nello specifico, è il numero di secondi che il client 
+attende *tra* ogni byte inviato dal server. Nel 99.9% dei casi, questo è il tempo
+che passa prima che il server invii il primo byte).
 
-If you specify a single value for the timeout, like this::
+Se specificate un valore singolo per il timeout, ad esempio così::
 
     r = requests.get('https://github.com', timeout=5)
 
-The timeout value will be applied to both the ``connect`` and the ``read``
-timeouts. Specify a tuple if you would like to set the values separately::
+Il valore di timeout sarà usato per entrambi i timeout di ``connect`` e ``read``.
+Specificate una tupla se volete impostare i valori separatamente::
 
     r = requests.get('https://github.com', timeout=(3.05, 27))
 
-If the remote server is very slow, you can tell Requests to wait forever for
-a response, by passing None as a timeout value and then retrieving a cup of
-coffee.
+Se il server remoto è molto lento, potete istruire Requests di attendere
+indefinitamente per la risposta, passando None come valore di timeout e 
+munendovi di una tazza di caffè.
 
 .. code-block:: python
 
@@ -829,20 +830,22 @@ coffee.
 
 .. _ca-certificates:
 
-CA Certificates
----------------
+Certificati delle CA
+--------------------
 
-By default Requests bundles a set of root CAs that it trusts, sourced from the
-`Mozilla trust store`_. However, these are only updated once for each Requests
-version. This means that if you pin a Requests version your certificates can
-become extremely out of date.
+Di default Requests contiene una raccolta di certificati root delle Certification
+Authority che considera fidate, provenienti dal `Mozilla trust store`_. Tuttavia
+questi certificati sono aggiornati solo ad ogni nuova versione di Requests. Ciò
+significa che se utilizzate per molto tempo una specifica versione di Requests,
+i certificati possono divenire molto obsoleti.
 
-From Requests version 2.4.0 onwards, Requests will attempt to use certificates
-from `certifi`_ if it is present on the system. This allows for users to update
-their trusted certificates without having to change the code that runs on their
-system.
+Dalla versione 2.4.0 in poi, Requests cerca di utilizzare i certificati da
+`certifi`_ se questo è presente sul sistema. Ciò consente agli utenti di
+aggiornare i loro certificati di fiducia senza dover modificare il codice che
+gira sui loro sistemi.
 
-For the sake of security we recommend upgrading certifi frequently!
+A beneficio della sirucrezza, vi raccomandiamo di aggiornare certifi
+frequentemente!
 
 .. _certifi: http://certifi.io/
 .. _Mozilla trust store: https://hg.mozilla.org/mozilla-central/raw-file/tip/security/nss/lib/ckfw/builtins/certdata.txt
