@@ -1,8 +1,9 @@
-If you are planning to submit a pull request to requests with any changes in 
-this library do not go any further. These are independent libraries which we 
-vendor into requests. Any changes necessary to these libraries must be made in 
-them and submitted as separate pull requests to those libraries.
+Se state pensando di inviare a Requests una pull request contenente modifiche
+a queste librerie, fermatevi. Queste sono librerie indipendenti che sono usate
+a scatola chiusa da Requests. Qualsiasi modifica vogliate sottoporre a queste
+librerie dovrete inviarle come pull request separate ai progetti di tali
+librerie.
 
-urllib3 pull requests go here: https://github.com/shazow/urllib3
+Le pull request per urllib3 vanno inviate qui: https://github.com/shazow/urllib3
 
-chardet pull requests go here: https://github.com/chardet/chardet
+Le pull request per chardet vanno inviate qui: https://github.com/chardet/chardet
