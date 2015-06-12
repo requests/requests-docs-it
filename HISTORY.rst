@@ -327,102 +327,107 @@ This is the first release that follows our new release process. For more, see
 2.0.0 (2013-09-24)
 ++++++++++++++++++
 
-**API Changes:**
+**Cambiamenti all'API:**
 
-- Keys in the Headers dictionary are now native strings on all Python versions,
-  i.e. bytestrings on Python 2, unicode on Python 3.
-- Proxy URLs now *must* have an explicit scheme. A ``MissingSchema`` exception
-  will be raised if they don't.
-- Timeouts now apply to read time if ``Stream=False``.
-- ``RequestException`` is now a subclass of ``IOError``, not ``RuntimeError``.
-- Added new method to ``PreparedRequest`` objects: ``PreparedRequest.copy()``.
-- Added new method to ``Session`` objects: ``Session.update_request()``. This
-  method updates a ``Request`` object with the data (e.g. cookies) stored on
-  the ``Session``.
-- Added new method to ``Session`` objects: ``Session.prepare_request()``. This
-  method updates and prepares a ``Request`` object, and returns the
-  corresponding ``PreparedRequest`` object.
-- Added new method to ``HTTPAdapter`` objects: ``HTTPAdapter.proxy_headers()``.
-  This should not be called directly, but improves the subclass interface.
-- ``httplib.IncompleteRead`` exceptions caused by incorrect chunked encoding
-  will now raise a Requests ``ChunkedEncodingError`` instead.
-- Invalid percent-escape sequences now cause a Requests ``InvalidURL``
-  exception to be raised.
-- HTTP 208 no longer uses reason phrase ``"im_used"``. Correctly uses
-  ``"already_reported"``.
-- HTTP 226 reason added (``"im_used"``).
+- Le chiavi nel dizionario Headers sono stringhe native in tutte le versioni di
+  Python, es: bytestrings su Python 2, Unicode su Python 3.
+- Gli URL dei Proxy ora *devono* avere uno schema esplicito. In caso contrario,
+  un'eccezione ``MissingSchema`` è solelvata.
+- I timeout ora si applicano al tempo di lettura dei dati se ``Stream=False``.
+- ``RequestException`` è ora sottoclasse di ``IOError``, non ``RuntimeError``.
+- Aggiunto nuovo metodo agli oggetti ``PreparedRequest``: ``PreparedRequest.copy()``.
+- Aggiunto nuovo metodo agli oggetti ``Session``: ``Session.update_request()``.
+  Questo metodo aggiorna un oggetto ``Request`` con i dati (es: cookie) salvati
+  sulla ``Session``.
+- Aggiunto nuovo metodo agli oggetti ``Session``:
+  ``Session.prepare_request()``. Questo metodo aggiorna e prepara un oggetto
+  ``Request`` e ritorna il corrispondente oggetto ``PreparedRequest``.
+- Aggiunto nuovo metodo agli oggetti ``HTTPAdapter``:
+  ``HTTPAdapter.proxy_headers()``. Non dovrebbe essere invocato direttamente, ma
+  migliora l'interfaccia delle sottoclassi.
+- Le eccezioni ``httplib.IncompleteRead`` causate da un encoding dei chunk ora
+  sollevano un'eccezione ``ChunkedEncodingError`` di Requests.
+- Sequenze di percent-escape invalide causano ora un'eccezione ``InvalidURL``
+  di Requests.
+- HTTP 208 non usa più il messaggio di spiegazione ``"im_used"``. Usa invece
+  correttamente ``"already_reported"``.
+- Aggiunto messaggio di spiegazione ad HTTP 226 (``"im_used"``).
 
-**Bugfixes:**
+**Fix di bachi:**
 
-- Vastly improved proxy support, including the CONNECT verb. Special thanks to
-  the many contributors who worked towards this improvement.
-- Cookies are now properly managed when 401 authentication responses are
-  received.
-- Chunked encoding fixes.
-- Support for mixed case schemes.
-- Better handling of streaming downloads.
-- Retrieve environment proxies from more locations.
-- Minor cookies fixes.
-- Improved redirect behaviour.
-- Improved streaming behaviour, particularly for compressed data.
-- Miscellaneous small Python 3 text encoding bugs.
-- ``.netrc`` no longer overrides explicit auth.
-- Cookies set by hooks are now correctly persisted on Sessions.
-- Fix problem with cookies that specify port numbers in their host field.
-- ``BytesIO`` can be used to perform streaming uploads.
-- More generous parsing of the ``no_proxy`` environment variable.
-- Non-string objects can be passed in data values alongside files.
+- Migliorato sensibilmente il supporto ai proxy, incluso il verbo CONNECT. Un
+  ringraziamento speciale ai tanti collaboratori che hanno lavorato su questa
+  miglioria.
+- I cookies ora sono gestiti bene quando si ricevono risposte 401.
+- Fix all'encoding chunked.
+- Supporto per schemi URL mixed-case.
+- Migliorata la gestione dei download in streaming.
+- Vengono recuperati i proxy ambientali da più locazioni.
+- Fix di minore entità sui cookie.
+- Migliorato il comportamento di redirezione.
+- Migliorato il comportamento dello streaming, in particolare con dati compressi
+- Fix su vari piccoli bachi sul text encoding su Python 3.
+- ``.netrc`` non sovrascrive più le forme di autenticazione esplicite.
+- I cookie impostati dagli hook vengono ora correttamente salvati nelle sessioni
+- Fix di un baco sui cookie per cui si specificava il numero di porta nel loro
+  campo host
+- ``BytesIO`` può essere usato per fare upload in streaming
+- Parsing più generoso della variabile di ambiente ``no_proxy``.
+- E' possibile passare oggetti diversi da stringhe come dati insieme ai file.
 
 1.2.3 (2013-05-25)
 ++++++++++++++++++
 
-- Simple packaging fix
+- Semplice fix sul packaging
 
 
 1.2.2 (2013-05-23)
 ++++++++++++++++++
 
-- Simple packaging fix
+- Semplice fix sul packaging
 
 
 1.2.1 (2013-05-20)
 ++++++++++++++++++
 
-- 301 and 302 redirects now change the verb to GET for all verbs, not just
-  POST, improving browser compatibility.
-- Python 3.3.2 compatibility
-- Always percent-encode location headers
-- Fix connection adapter matching to be most-specific first
-- new argument to the default connection adapter for passing a block argument
-- prevent a KeyError when there's no link headers
+- Le redirezioni 301 e 302 cambiano tutti i verbi - non solo POST - in GET,
+  migliorando la compatibilità con i browser
+- Compatibilità con Python 3.3.2
+- Gli header Location sono sempre percent-encoded
+- Fix: i primi connection adapter ad essere matchati sono i più specifici
+- nuovo argomento per il connection adapter di default per passare un argomento
+  block
+- quando non ci sono header Link non viene sollevato un KeyError
 
 1.2.0 (2013-03-31)
 ++++++++++++++++++
 
-- Fixed cookies on sessions and on requests
-- Significantly change how hooks are dispatched - hooks now receive all the
-  arguments specified by the user when making a request so hooks can make a
-  secondary request with the same parameters. This is especially necessary for
-  authentication handler authors
-- certifi support was removed
-- Fixed bug where using OAuth 1 with body ``signature_type`` sent no data
-- Major proxy work thanks to @Lukasa including parsing of proxy authentication
-  from the proxy url
-- Fix DigestAuth handling too many 401s
-- Update vendored urllib3 to include SSL bug fixes
-- Allow keyword arguments to be passed to ``json.loads()`` via the
-  ``Response.json()`` method
-- Don't send ``Content-Length`` header by default on ``GET`` or ``HEAD``
-  requests
-- Add ``elapsed`` attribute to ``Response`` objects to time how long a request
-  took.
-- Fix ``RequestsCookieJar``
-- Sessions and Adapters are now picklable, i.e., can be used with the
-  multiprocessing library
-- Update charade to version 1.0.3
+- Fix sui cookie durante le sessioni e sulle richieste
+- Pesantemente modificato il modo in cui gli hoook sono invocati - ora gli hook
+  ricevono tutti gli argomenti specificati dall'utente quando lancia una richiesta
+  così gli hook possono lanciare una richiesta secondaria con gli stessi
+  parametri. Questo è particolarmente necessario per gli autori di handler di
+  autenticazione.
+- Il supporto a certifi è stato rimosso
+- Fix al baco per cui non venivano inviati dati usando OAuth1 con il corpo
+  ``signature_type``
+- Grosso lavoro sui proxy grazie a @Lukasa incluso il parsing dei dati di 
+  autenticazione a partire dall'URL del proxy
+- Fix baco sulla gestione di troppo 401 con autenticazione DigestAuth
+- Aggiornata la urllib3 per includere fix di bachi SSL
+- Ora i keyword arguments possono essere passati a ``json.loads()`` attraverso
+  il metodo ``Response.json()``
+- Di default non viene inviato l'header ``Content-Length`` sulle richieste
+  ``GET`` o ``HEAD``
+- Aggiunto l'attributo ``elapsed`` agli oggetti ``Response`` per misurare quanto
+  tempo ha impiegato una richiesta ad essere evasa
+- Fix a ``RequestsCookieJar``
+- Sessioni e Adapter ora sono serializzabili con Pickle, es: possono essere
+  usati con la libreria multiprocessing
+- Aggiornato charade alla versione 1.0.3
 
-The change in how hooks are dispatched will likely cause a great deal of
-issues.
+La modifica nel modo in cui gli hoook sono invocati molto probabilmente causerà
+un gran numero di issues.
 
 1.1.0 (2013-01-10)
 ++++++++++++++++++
