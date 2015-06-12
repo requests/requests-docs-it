@@ -1,53 +1,52 @@
 .. _authentication:
 
-Authentication
+Autenticazione
 ==============
 
-This document discusses using various kinds of authentication with Requests.
+Questo documento discute l'uso dei diversi tipi di autenticazione con Requests.
 
-Many web services require authentication, and there are many different types.
-Below, we outline various forms of authentication available in Requests, from
-the simple to the complex.
+Molti servizi web richiedono autenticazione e ce ne sono varie tipologie.
+Illustreremo le varie forme di autenticazione disponibili in Requests, dalla
+più semplice alla più complessa.
 
 
-Basic Authentication
+Autenticazione Basic
 --------------------
 
-Many web services that require authentication accept HTTP Basic Auth. This is
-the simplest kind, and Requests supports it straight out of the box.
+Molto servizi web che richiedono autenticazione accettano l'HTTP Basic Auth.
+E' la più semplice tipologia di autenticazione e Requests la supporta di default.
 
-Making requests with HTTP Basic Auth is very simple::
+Lanciare richieste con HHTTP Basic Auth è molto semplice::
 
     >>> from requests.auth import HTTPBasicAuth
     >>> requests.get('https://api.github.com/user', auth=HTTPBasicAuth('user', 'pass'))
     <Response [200]>
 
-In fact, HTTP Basic Auth is so common that Requests provides a handy shorthand
-for using it::
+L'uso di HTTP Basic Auth è così comune che Request fornisce una scorciatoia
+molto comoda per usarla::
 
     >>> requests.get('https://api.github.com/user', auth=('user', 'pass'))
     <Response [200]>
 
-Providing the credentials in a tuple like this is exactly the same as the
-``HTTPBasicAuth`` example above.
+Fornire le credenziali in una tupla in questo modo funziona esattamente come
+l'esempio sopra con ``HTTPBasicAuth``.
 
 
-netrc Authentication
-~~~~~~~~~~~~~~~~~~~~
+Autenticazione con netrc
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-If no authentication method is given with the ``auth`` argument, Requests will
-attempt to get the authentication credentials for the URL's hostname from the
-user's netrc file.
+Se nessun metodo di autenticazione è specificato per il parametro ``auth``,
+Requests tenta di recuperare le credenziali di autenticazione per l'hostname
+dell'URL dal file netrc dell'utente.
 
-If credentials for the hostname are found, the request is sent with HTTP Basic
-Auth.
+Se vengono trovate delle credenziali per l'hostname, la richiesta è inviata
+con HTTP Basic Auth.
 
 
-Digest Authentication
----------------------
-
-Another very popular form of HTTP Authentication is Digest Authentication,
-and Requests supports this out of the box as well::
+Autenticazione con Digest
+-------------------------
+Un'altra tipologia molto popolare di autenticazione HTTP è quella con Digest,
+e Requests supporta anche questa di default::
 
     >>> from requests.auth import HTTPDigestAuth
     >>> url = 'http://httpbin.org/digest-auth/auth/user/pass'
@@ -55,11 +54,11 @@ and Requests supports this out of the box as well::
     <Response [200]>
 
 
-OAuth 1 Authentication
-----------------------
-
-A common form of authentication for several web APIs is OAuth. The ``requests-oauthlib``
-library allows Requests users to easily make OAuth authenticated requests::
+Autenticazione con OAuth 1
+--------------------------
+Un'altra forma comune di autenticazione per dicerse API web è OAuth. La libreria
+``requests-oauthlib`` consente agli utenti di Requests di fare richieste con
+OAuth::
 
     >>> import requests
     >>> from requests_oauthlib import OAuth1
@@ -71,58 +70,61 @@ library allows Requests users to easily make OAuth authenticated requests::
     >>> requests.get(url, auth=auth)
     <Response [200]>
 
-For more information on how to OAuth flow works, please see the official `OAuth`_ website.
-For examples and documentation on requests-oauthlib, please see the `requests_oauthlib`_
-repository on GitHub
+Per maggiori informazioni sul workflow di autenticazione OAuth, fate riferimento
+al sito werb officiale di `OAuth`_. Per esempi e documentazione su
+requests-oauthlib, consultate il repository GitHub `requests_oauthlib`_
 
 
-Other Authentication
---------------------
+Altre forme di Autenticazione
+-----------------------------
 
-Requests is designed to allow other forms of authentication to be easily and
-quickly plugged in. Members of the open-source community frequently write
-authentication handlers for more complicated or less commonly-used forms of
-authentication. Some of the best have been brought together under the
-`Requests organization`_, including:
+Requests è strutturato per essere agganciabile in maniera semplice con altri
+metodi di autenticazione.
+
+La community open-source scrive di frequente nuovi handler di autenticazione
+per forme di autenticazione più complesse o usate meno comunemente.
+Alcuni dei migliori sono stati riuniti su GitHub sotto
+l'`organizzazione Requests`_, tra cui:
 
 - Kerberos_
 - NTLM_
 
-If you want to use any of these forms of authentication, go straight to their
-GitHub page and follow the instructions.
+Se volete usare queste forme di autenticazione, visitate la loro pagina
+GitHub e seguite le istruzioni relative.
 
 
-New Forms of Authentication
----------------------------
+Nuove forme di autenticazione
+-----------------------------
 
-If you can't find a good implementation of the form of authentication you
-want, you can implement it yourself. Requests makes it easy to add your own
-forms of authentication.
+Se non riuscite a trovare un'implementazione di una forma di autenticazione che
+vi soddisfi, potete crearla voi stessi. Requests rende facile l'aggiunta di
+una forma di autenticazione custom.
 
-To do so, subclass :class:`AuthBase <requests.auth.AuthBase>` and implement the
-``__call__()`` method::
+Per farlo, create una sottoclasse di :class:`AuthBase <requests.auth.AuthBase>` 
+e implementate il metodo ``__call__()``::
 
     >>> import requests
     >>> class MyAuth(requests.auth.AuthBase):
     ...     def __call__(self, r):
-    ...         # Implement my authentication
+    ...         # Implementate la vostra autenticazione
     ...         return r
     ...
     >>> url = 'http://httpbin.org/get'
     >>> requests.get(url, auth=MyAuth())
     <Response [200]>
 
-When an authentication handler is attached to a request,
-it is called during request setup. The ``__call__`` method must therefore do
-whatever is required to make the authentication work. Some forms of
-authentication will additionally add hooks to provide further functionality.
+Quando un handler di autenticazione è incluso in una richiesta, viene invocato
+durante il setup della richiesta. Il metodo ``__call__`` deve quindi fare tutto 
+ciò che è possibile per fare funzionare l'autenticazione. Alcune forme di
+autenticazione aggiungeranno hook addizionali per mettere a disposizione
+ulteriori funzionalità.
 
-Further examples can be found under the `Requests organization`_ and in the
-``auth.py`` file.
+Potete trovare altri esempi su GitHub sotto l'`organizzazione Requests`_  e nel
+file ``auth.py``.
 
 .. _OAuth: http://oauth.net/
 .. _requests_oauthlib: https://github.com/requests/requests-oauthlib
 .. _Kerberos: https://github.com/requests/requests-kerberos
 .. _NTLM: https://github.com/requests/requests-ntlm
-.. _Requests organization: https://github.com/requests
+.. _organizzazione Requests: https://github.com/requests
 
