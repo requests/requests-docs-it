@@ -516,89 +516,93 @@ This is not a backwards compatible change.
 0.13.6 (2012-08-06)
 +++++++++++++++++++
 
-- Long awaited fix for hanging connections!
+- Fix atteso da lungo tempo sulle connessioni in stallo!
 
 0.13.5 (2012-07-27)
 +++++++++++++++++++
 
-- Packaging fix
+- Fix sul packaging
 
 0.13.4 (2012-07-27)
 +++++++++++++++++++
 
-- GSSAPI/Kerberos authentication!
-- App Engine 2.7 Fixes!
-- Fix leaking connections (from urllib3 update)
-- OAuthlib path hack fix
-- OAuthlib URL parameters fix.
+- Autenticazione GSSAPI/Kerberos!
+- Fix all'App Engine 2.7!
+- Fix baco sui leak delle connessioni (segue dall'update di urllib3)
+- Fix dell'hacking sui path in OAuthlib
+- Fix dei parametri degli URL in OAuthlib.
 
 0.13.3 (2012-07-12)
 +++++++++++++++++++
 
-- Use simplejson if available.
-- Do not hide SSLErrors behind Timeouts.
-- Fixed param handling with urls containing fragments.
-- Significantly improved information in User Agent.
-- client certificates are ignored when verify=False
+- Uso di simplejson se disponibile.
+- Non nascondere gli SSLErrors dietro ai Timeouts.
+- Gestione dei parametri fissi con URL che contengono fragments.
+- Migliorato sensibilmente il contenuto di User Agent.
+- I certificati dei client sono ignorati quando verify=False
 
 0.13.2 (2012-06-28)
 +++++++++++++++++++
 
-- Zero dependencies (once again)!
-- New: Response.reason
-- Sign querystring parameters in OAuth 1.0
-- Client certificates no longer ignored when verify=False
-- Add openSUSE certificate support
+- Nessuna dipendenza (di nuovo)!
+- Nuovo: Response.reason
+- Firma dei parametri di query in OAuth 1.0
+- I certificati dei client non vengono più ignorati quando verify=False
+- Aggiunto supporto ai certificati openSUSE
 
 0.13.1 (2012-06-07)
 +++++++++++++++++++
 
-- Allow passing a file or file-like object as data.
-- Allow hooks to return responses that indicate errors.
-- Fix Response.text and Response.json for body-less responses.
+- E' possibile passare un file o un oggetto file-like come dati.
+- Gli hook possono ritornare risposte che indicano errori.
+- Fix su Response.text e Response.json per risposte senza corpo.
 
 0.13.0 (2012-05-29)
 +++++++++++++++++++
 
-- Removal of Requests.async in favor of `grequests <https://github.com/kennethreitz/grequests>`_
-- Allow disabling of cookie persistiance.
-- New implementation of safe_mode
-- cookies.get now supports default argument
-- Session cookies not saved when Session.request is called with return_response=False
-- Env: no_proxy support.
-- RequestsCookieJar improvements.
-- Various bug fixes.
+- Rimozione di Requests.async in favore di `grequests <https://github.com/kennethreitz/grequests>`_
+- E' ora possibile disabilitare la persistenza dei cookie.
+- Nuova immplementazione di safe_mode
+- cookies.get ora supporta argomenti di default
+- I cookie di sessione non sono salvati quando Session.request è invocata con 
+  return_response=False
+- Variabili di ambiente: supporto a no_proxy.
+- Miglioramenti a RequestsCookieJar.
+- Fix a vari bachi.
 
 0.12.1 (2012-05-08)
 +++++++++++++++++++
 
-- New ``Response.json`` property.
-- Ability to add string file uploads.
-- Fix out-of-range issue with iter_lines.
-- Fix iter_content default size.
-- Fix POST redirects containing files.
+- Nuova propery ``Response.json``.
+- Possibilità di aggiungere upload di file sotto forma di stringhe.
+- Fix baco out-of-range su iter_lines.
+- Fix sulla dimensione di default di iter_content.
+- Fix baco su redirezioni POST che contengono file.
 
 0.12.0 (2012-05-02)
 +++++++++++++++++++
 
-- EXPERIMENTAL OAUTH SUPPORT!
-- Proper CookieJar-backed cookies interface with awesome dict-like interface.
-- Speed fix for non-iterated content chunks.
-- Move ``pre_request`` to a more usable place.
-- New ``pre_send`` hook.
-- Lazily encode data, params, files.
-- Load system Certificate Bundle if ``certify`` isn't available.
-- Cleanups, fixes.
+- SUPPORTO SPERIMANTALE A OAUTH!
+- Migliorata interfaccia (dict-like) con i cookie CookieJar.
+- Fix baco su lentezza dei chunk di contenuto che non vengono iterati.
+- Spostato ``pre_request`` in una locazione più usabile.
+- Nuovo hook ``pre_send``.
+- Encoding lazy di dati, parametri, files.
+- Caricamento del bundle di certificati di sistema se ``certify`` non è
+  disponibile.
+- Pulizia del codice, fix.
 
 0.11.2 (2012-04-22)
 +++++++++++++++++++
 
-- Attempt to use the OS's certificate bundle if ``certifi`` isn't available.
-- Infinite digest auth redirect fix.
-- Multi-part file upload improvements.
-- Fix decoding of invalid %encodings in URLs.
-- If there is no content in a response don't throw an error the second time that content is attempted to be read.
-- Upload data on redirects.
+- Tentativo di utilizzo del bundle di certificati del sistema operativo se
+  ``certifi`` non è disponibile.
+- Fix baco su redirezione infinita su autenticazione Digest.
+- Miglioramenti nell'upload di file Multi-part.
+- Fix baco su decoding degli %encodings invalidi sugli URL.
+- Se non c'è contenuto in una risposta non viene sollevato un errore la seconda
+  volta che si prova a leggere il contenuto.
+- Upload di dati nelle redirezioni.
 
 0.11.1 (2012-03-30)
 +++++++++++++++++++
