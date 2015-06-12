@@ -1,7 +1,8 @@
-Requests includes some vendorized python libraries to ease installation.
+Requests include alcune librerie Python vendorizzate per semplificarne
+l'installazione.
 
-Urllib3 License
-===============
+Licenza di Urllib3
+==================
 
 This is the MIT license: http://www.opensource.org/licenses/mit-license.php
 
@@ -27,8 +28,8 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-Chardet License
-===============
+Licenza di Chardet
+==================
 
 This library is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -46,8 +47,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
 02110-1301  USA
 
 
-CA Bundle License
-=================
+Licenza dei CA Bundle
+=====================
 
 This Source Code Form is subject to the terms of the Mozilla Public
 License, v. 2.0. If a copy of the MPL was not distributed with this
