@@ -1,126 +1,128 @@
 .. :changelog:
 
-Release History
----------------
+Storico delle release
+---------------------
 
 2.7.0 (2015-05-03)
 ++++++++++++++++++
 
-This is the first release that follows our new release process. For more, see
-`our documentation
+Questa è la prima release che segue il nuovo processo di release.
+Per maggiori dettagli si veda la `nostra documentazione
 <http://docs.python-requests.org/en/latest/community/release-process/>`_.
 
-**Bugfixes**
+**Fix di bachi**
 
-- Updated urllib3 to 1.10.4, resolving several bugs involving chunked transfer
-  encoding and response framing.
+- Aggiornata urllib3 a 1.10.4, risolvendo vari bachi sull'encoding nei
+  trasferimenti chunked e sul framing delle risposte.
 
 2.6.2 (2015-04-23)
 ++++++++++++++++++
 
-**Bugfixes**
+**Fix di bachi**
 
-- Fix regression where compressed data that was sent as chunked data was not
-  properly decompressed. (#2561)
+- Fix di una regressione dove dati compressi inviati in maniera chunked
+  non erano decompressi correttamente. (#2561)
 
 2.6.1 (2015-04-22)
 ++++++++++++++++++
 
-**Bugfixes**
+**Fix di bachi**
 
-- Remove VendorAlias import machinery introduced in v2.5.2.
+- Rimossa il meccanismo di VendorAlias sugli import introdotto in v2.5.2.
 
-- Simplify the PreparedRequest.prepare API: We no longer require the user to
-  pass an empty list to the hooks keyword argument. (c.f. #2552)
+- Semplificata l'API di PreparedRequest.prepare: non si richiede più che
+  l'utente passi una lista vuota al keyword argument hooks (c.f. #2552)
 
-- Resolve redirects now receives and forwards all of the original arguments to
-  the adapter. (#2503)
+- Risolve redirects ora riceve e inoltra tutti gli argomenti originali
+  all'adapter. (#2503)
 
-- Handle UnicodeDecodeErrors when trying to deal with a unicode URL that
-  cannot be encoded in ASCII. (#2540)
+- Gestione degli UnicodeDecodeErrors quando si cerca di trattare un URL
+  Unicode che non puà essere ASCII-endoded. (#2540)
 
-- Populate the parsed path of the URI field when performing Digest
-  Authentication. (#2426)
+- Durante l'autenticazione Digest viene popolato il path del campo URI (#2426)
 
-- Copy a PreparedRequest's CookieJar more reliably when it is not an instance
-  of RequestsCookieJar. (#2527)
+- Si può copiare in maniera più affidabile il CookieJar di una PreparedRequest
+  quando questo non è un'istanza di RequestsCookieJar. (#2527)
 
 2.6.0 (2015-03-14)
 ++++++++++++++++++
 
-**Bugfixes**
+**Fix di bachi**
 
-- CVE-2015-2296: Fix handling of cookies on redirect. Previously a cookie
-  without a host value set would use the hostname for the redirected URL
-  exposing requests users to session fixation attacks and potentially cookie
-  stealing. This was disclosed privately by Matthew Daley of
-  `BugFuzz <https://bugfuzz.com>`_. This affects all versions of requests from
-  v2.1.0 to v2.5.3 (inclusive on both ends).
+- CVE-2015-2296: Fix della gestione dei cookie sulle redirezioni. In precedenza,
+  un cookie senza il valore host avrebbe usato l'hostname dell'URL di redirezione
+  esponendo così gli utenti di Requests ad attacchi di fixing delle sessioni e
+  al potenziale furto dei cookie. Questo è stato comunicato privatamente da
+  Matthew Daley di `BugFuzz <https://bugfuzz.com>`_. Questo baco riguarda tutte
+  le versioni di Requests dalla v2.1.0 alla v2.5.3 (estremi inclusi).
 
-- Fix error when requests is an ``install_requires`` dependency and ``python
-  setup.py test`` is run. (#2462)
+- Fix dell'errore che accade quando Requests è una dipendenza ``install_requires``
+  e si esegue ``python setup.py test``. (#2462)
 
-- Fix error when urllib3 is unbundled and requests continues to use the
-  vendored import location.
+- Fix dell'errore che si ha quando urllib3 non è inclusa nella distribuzione e
+  Requests continua ad utilizzare la locazione della versione bundled.
 
-- Include fixes to ``urllib3``'s header handling.
+- Fix alla gestione degli header da parte di ``urllib3``.
 
-- Requests' handling of unvendored dependencies is now more restrictive.
+- Ora il modo con cui Requests gestisce le dipendenze non incluse è più restrittivo
 
-**Features and Improvements**
+**Feature e Miglioramenti**
 
-- Support bytearrays when passed as parameters in the ``files`` argument.
+- Supporto al passaggio di bytearrays come parametri nell'argomento``files``.
   (#2468)
 
-- Avoid data duplication when creating a request with ``str``, ``bytes``, or
-  ``bytearray`` input to the ``files`` argument.
+- Evitata duplicazione dei dati quando si crea una richiesta con valori di tipo 
+  ``str``, ``bytes``o ``bytearray`` per l'argomento ``files``.
 
 2.5.3 (2015-02-24)
 ++++++++++++++++++
 
-**Bugfixes**
+**Fix di bachi**
 
-- Revert changes to our vendored certificate bundle. For more context see
-  (#2455, #2456, and http://bugs.python.org/issue23476)
+- Rollback della modifica al bundle dei certificati. Per più informazioni
+  si vedano (#2455, #2456, and http://bugs.python.org/issue23476)
 
 2.5.2 (2015-02-23)
 ++++++++++++++++++
 
-**Features and Improvements**
+**Feature e Miglioramenti**
 
-- Add sha256 fingerprint support. (`shazow/urllib3#540`_)
+- Aggiunto il sopporto alle checksum sha256. (`shazow/urllib3#540`_)
 
-- Improve the performance of headers. (`shazow/urllib3#544`_)
+- Migliorata la performance degli header. (`shazow/urllib3#544`_)
 
-**Bugfixes**
+**Fix di bachi**
 
-- Copy pip's import machinery. When downstream redistributors remove
-  requests.packages.urllib3 the import machinery will continue to let those
-  same symbols work. Example usage in requests' documentation and 3rd-party
-  libraries relying on the vendored copies of urllib3 will work without having
-  to fallback to the system urllib3.
+- Copiato il meccanismo degli import di pip. Quando i redistributori downstream
+  rimuovono requests.packages.urllib3 il meccanismo di import farà sì che
+  gli stessi simboli continuino a funzionare. Gli esempi d'uso della 
+  documentazione di Requests e librerie di terze parti che si basano su copie
+  redistribuite di urllib3 continueranno a funzionare senza dover passare alla
+  urllib3 di sistema.
 
-- Attempt to quote parts of the URL on redirect if unquoting and then quoting
-  fails. (#2356)
+- Tentativo di fare quoting delle parti di un URL sulle redirezioni, se
+  l'unquoting e in seguito il quoting falliscono. (#2356)
 
-- Fix filename type check for multipart form-data uploads. (#2411)
+- Fix del check sul tipo di nome del file sugli upload di dati multipart
+  form. (#2411)
 
-- Properly handle the case where a server issuing digest authentication
-  challenges provides both auth and auth-int qop-values. (#2408)
+- Viene correttamente gestito il caso in cui un server che invia challenges
+  per autenticazione Digest fornisce sia valori-qop auth che auth-int.
+  (#2408)
 
-- Fix a socket leak. (`shazow/urllib3#549`_)
+- Fix del leak di un socket. (`shazow/urllib3#549`_)
 
-- Fix multiple ``Set-Cookie`` headers properly. (`shazow/urllib3#534`_)
+- Fix di svariati header ``Set-Cookie``. (`shazow/urllib3#534`_)
 
-- Disable the built-in hostname verification. (`shazow/urllib3#526`_)
+- Disabilitata la verifica built-in dell'hostname. (`shazow/urllib3#526`_)
 
-- Fix the behaviour of decoding an exhausted stream. (`shazow/urllib3#535`_)
+- Fix del decoding di uno stream dati vuoto. (`shazow/urllib3#535`_)
 
-**Security**
+**Sicurezza**
 
-- Pulled in an updated ``cacert.pem``.
+- Pullato un ``cacert.pem`` aggiornato.
 
-- Drop RC4 from the default cipher list. (`shazow/urllib3#551`_)
+- Rimossa RC4 dalla lista degli algoritmi di cifratura di default. (`shazow/urllib3#551`_)
 
 .. _shazow/urllib3#551: https://github.com/shazow/urllib3/pull/551
 .. _shazow/urllib3#549: https://github.com/shazow/urllib3/pull/549
@@ -133,15 +135,16 @@ This is the first release that follows our new release process. For more, see
 2.5.1 (2014-12-23)
 ++++++++++++++++++
 
-**Behavioural Changes**
+**Modifiche al comportamento**
 
-- Only catch HTTPErrors in raise_for_status (#2382)
+- In raise_for_status vengono catturati solo gli HTTPErrors (#2382)
 
-**Bugfixes**
+**Fix di bachi**
 
-- Handle LocationParseError from urllib3 (#2344)
-- Handle file-like object filenames that are not strings (#2379)
-- Unbreak HTTPDigestAuth handler. Allow new nonces to be negotiated (#2389)
+- Gestione di LocationParseError di urllib3 (#2344)
+- Gestione dei nomi dei file-like object che non sono stringhe (#2379)
+- Nell'handler di HTTPDigestAuth handler viene consentito di negoziare
+  nuovi nonce (#2389)
 
 2.5.0 (2014-12-01)
 ++++++++++++++++++
