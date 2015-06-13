@@ -146,183 +146,208 @@ This is the first release that follows our new release process. For more, see
 2.5.0 (2014-12-01)
 ++++++++++++++++++
 
-**Improvements**
+**Miglioramenti**
 
-- Allow usage of urllib3's Retry object with HTTPAdapters (#2216)
-- The ``iter_lines`` method on a response now accepts a delimiter with which
-  to split the content (#2295)
+- Consentito l'uso dell'oggetto Retry di urllib3 negli HTTPAdapters (#2216)
+- Il metodo ``iter_lines`` su una risposta ora accetta un delimitatore con il quale
+  splittare il contenuto (#2295)
 
-**Behavioural Changes**
+**Modifiche al comportamento**
 
-- Add deprecation warnings to functions in requests.utils that will be removed
-  in 3.0 (#2309)
-- Sessions used by the functional API are always closed (#2326)
-- Restrict requests to HTTP/1.1 and HTTP/1.0 (stop accepting HTTP/0.9) (#2323)
+- Aggiunto warning di deprecazione alle funzioni di requests.utils che saranno
+  rimosse in in 3.0 (#2309)
+- Le Sessioni usate dall'API funzionale vengono sempre chiuse (#2326)
+- Le richieste sono state ristrette ai soli HTTP/1.1 e HTTP/1.0
+  (non più HTTP/0.9) (#2323)
 
-**Bugfixes**
+**Fix di bachi**
 
-- Only parse the URL once (#2353)
-- Allow Content-Length header to always be overridden (#2332)
-- Properly handle files in HTTPDigestAuth (#2333)
-- Cap redirect_cache size to prevent memory abuse (#2299)
-- Fix HTTPDigestAuth handling of redirects after authenticating successfully
-  (#2253)
-- Fix crash with custom method parameter to Session.request (#2317)
-- Fix how Link headers are parsed using the regular expression library (#2271)
+- Gli URL vengono parsati una volta sola (#2353)
+- L'header Content-Length può essere sempre sovrascritto (#2332)
+- Gestione corretta dei file handle nell'autenticazione HTTP Digest (#2333)
+- Limitazione della dimensione di redirect_cache per prevenire abusi di memoria (#2299)
+- Fix della gestione delle redirezioni dopo autenticazione corretta con
+  HTTP Digest (#2253)
+- Fix del crash quando si danno parametri custom Session.request (#2317)
+- Fix su come gli header Link sono parsati usando la libreria per le espressioni
+  regolari (#2271)
 
-**Documentation**
+**Documentazione**
 
-- Add more references for interlinking (#2348)
-- Update CSS for theme (#2290)
-- Update width of buttons and sidebar (#2289)
-- Replace references of Gittip with Gratipay (#2282)
-- Add link to changelog in sidebar (#2273)
+- Aggiunte più riferimenti per l'interlinking (#2348)
+- Aggiornato il CSS del tema (#2290)
+- Aggiornata la larghezza dei pulsanti e della sidebar (#2289)
+- Sostituiti i riferimenti a Gittip con quelli a Gratipay (#2282)
+- Aggiunto nella sidebar un link al changelog (#2273)
 
 2.4.3 (2014-10-06)
 ++++++++++++++++++
 
-**Bugfixes**
+**Fix di bachi**
 
-- Unicode URL improvements for Python 2.
-- Re-order JSON param for backwards compat.
-- Automatically defrag authentication schemes from host/pass URIs. (`#2249 <https://github.com/kennethreitz/requests/issues/2249>`_)
+- Miglioramenti agli URL Unicode per Python2.
+- Re-ordinamento del parametro JSON per retrocompatibilità.
+- Deframmentazione automatica degli schemi di autenticazione dagli URI con host/password.
+  (`#2249 <https://github.com/kennethreitz/requests/issues/2249>`_)
 
 
 2.4.2 (2014-10-05)
 ++++++++++++++++++
 
-**Improvements**
+**Miglioramenti**
 
-- FINALLY! Add json parameter for uploads! (`#2258 <https://github.com/kennethreitz/requests/pull/2258>`_)
-- Support for bytestring URLs on Python 3.x (`#2238 <https://github.com/kennethreitz/requests/pull/2238>`_)
+- FINALMENTE! Aggiunto il parametro json parameter per gli upload!
+  (`#2258 <https://github.com/kennethreitz/requests/pull/2258>`_)
+- Supporto per i bytestring URL su Python 3.x
+  (`#2238 <https://github.com/kennethreitz/requests/pull/2238>`_)
 
-**Bugfixes**
+**Fix di bachi**
 
-- Avoid getting stuck in a loop (`#2244 <https://github.com/kennethreitz/requests/pull/2244>`_)
-- Multiple calls to iter* fail with unhelpful error. (`#2240 <https://github.com/kennethreitz/requests/issues/2240>`_, `#2241 <https://github.com/kennethreitz/requests/issues/2241>`_)
+- Rimossa situazione di loop infinito
+  (`#2244 <https://github.com/kennethreitz/requests/pull/2244>`_)
+- Varie chiamate a iter* fallivano con un errore non autodescrittivo.
+  (`#2240 <https://github.com/kennethreitz/requests/issues/2240>`_,
+  `#2241 <https://github.com/kennethreitz/requests/issues/2241>`_)
 
-**Documentation**
+**Documentazione**
 
-- Correct redirection introduction (`#2245 <https://github.com/kennethreitz/requests/pull/2245/>`_)
-- Added example of how to send multiple files in one request. (`#2227 <https://github.com/kennethreitz/requests/pull/2227/>`_)
-- Clarify how to pass a custom set of CAs (`#2248 <https://github.com/kennethreitz/requests/pull/2248/>`_)
+- Corretta l'introduzione alla redirezione
+  (`#2245 <https://github.com/kennethreitz/requests/pull/2245/>`_)
+- Aggiunto esempio di come inviare più file in una sola richiesta
+  (`#2227 <https://github.com/kennethreitz/requests/pull/2227/>`_)
+- Spiegato meglio come passare un set di certificati custom
+  (`#2248 <https://github.com/kennethreitz/requests/pull/2248/>`_)
 
 
 
 2.4.1 (2014-09-09)
 ++++++++++++++++++
 
-- Now has a "security" package extras set, ``$ pip install requests[security]``
-- Requests will now use Certifi if it is available.
-- Capture and re-raise urllib3 ProtocolError
-- Bugfix for responses that attempt to redirect to themselves forever (wtf?).
+- Ora c'è un set di extras di nome "security", ``$ pip install requests[security]``
+- Requests ora usa Certifi se è disponibile.
+- Viene catturato e ri-sollevato l'errore ProtocolError di urllib3
+- Fix al baco per cui alcune cercano di redirigere a se stesse all'infinito (ma che c...)
 
 
 2.4.0 (2014-08-29)
 ++++++++++++++++++
 
-**Behavioral Changes**
+**Modifiche al comportamento**
 
-- ``Connection: keep-alive`` header is now sent automatically.
+- L'header ``Connection: keep-alive`` ora è inviato in maniera automatica.
 
-**Improvements**
+**Miglioramenti**
 
-- Support for connect timeouts! Timeout now accepts a tuple (connect, read) which is used to set individual connect and read timeouts.
-- Allow copying of PreparedRequests without headers/cookies.
-- Updated bundled urllib3 version.
-- Refactored settings loading from environment -- new `Session.merge_environment_settings`.
-- Handle socket errors in iter_content.
+- Supporto per il timeout delle connessioni! Timeout ora accetta una tupla di forma
+  (connect, read) usata per settare i timeout individuali di connessione e lettura.
+- E' consentito compiare una PreparedRequests senza headers/cookies.
+- Aggiornata la dipendenza a urllib3.
+- Refactoring nel caricamneto dei setting dall'ambiente:
+  introdotto `Session.merge_environment_settings`.
+- Gestione degli errori dei socket dentro iter_content.
 
 
 2.3.0 (2014-05-16)
 ++++++++++++++++++
 
-**API Changes**
+**Modifiche all'API**
 
-- New ``Response`` property ``is_redirect``, which is true when the
-  library could have processed this response as a redirection (whether
-  or not it actually did).
-- The ``timeout`` parameter now affects requests with both ``stream=True`` and
-  ``stream=False`` equally.
-- The change in v2.0.0 to mandate explicit proxy schemes has been reverted.
-  Proxy schemes now default to ``http://``.
-- The ``CaseInsensitiveDict`` used for HTTP headers now behaves like a normal
-  dictionary when references as string or viewed in the interpreter.
+- Nuova property ``is_redirect`` per ``Response``: è true quando la libreria
+  avrebbe potuto
+  processare la risposta come una redirezione (che lo abbia fatto o meno).
+- Il parametro ``timeout`` ora impatta le richieste sia con ``stream=True`` che
+  ``stream=False`` senza distinzione.
+- Rollback della modifica fatta in v2.0.0 che richiedeva esplicitazione di URL
+  scheme per i proxy. Questi ora defaultano a ``http://``.
+- Il ``CaseInsensitiveDict`` usato per gli header HTTP ora si comporta come un
+  normale dizionario quando si riferisce a stringhe o viene visto tramite
+  l'interprete.
 
-**Bugfixes**
+**Fix di bachi**
 
-- No longer expose Authorization or Proxy-Authorization headers on redirect.
-  Fix CVE-2014-1829 and CVE-2014-1830 respectively.
-- Authorization is re-evaluated each redirect.
-- On redirect, pass url as native strings.
-- Fall-back to autodetected encoding for JSON when Unicode detection fails.
-- Headers set to ``None`` on the ``Session`` are now correctly not sent.
-- Correctly honor ``decode_unicode`` even if it wasn't used earlier in the same
-  response.
-- Stop advertising ``compress`` as a supported Content-Encoding.
-- The ``Response.history`` parameter is now always a list.
-- Many, many ``urllib3`` bugfixes.
+- Gli header Authorization e Proxy-Authorization non sono più esposti in caso
+  di redirezioni. Fix CVE-2014-1829 e CVE-2014-1830 rispettivamente.
+- L'autorizzazione è ri-effettuata ad ogni redirezione.
+- Sulle redirezioni, gli URL sono passati come stringhe native.
+- Fall-back sull'encoding auto-rilevato per il JSON quando la rilevazione
+  Unicode fallisce.
+- Gli headers di valore ``None`` nelle ``Session`` non vengono inviati.
+- Viene onorata in modo corretto ``decode_unicode`` anche se non era usata
+  in precedenza nella stessa risposta
+- Il Content-Encoding ``compress`` non è più supportato.
+- Il parametro ``Response.history`` ora è sempre una lista.
+- Tanti, tanti fix a bachi di ``urllib3``.
 
 2.2.1 (2014-01-23)
 ++++++++++++++++++
 
-**Bugfixes**
+**Fix di bachi**
 
-- Fixes incorrect parsing of proxy credentials that contain a literal or encoded '#' character.
-- Assorted urllib3 fixes.
+- Fix del parsing scorretto delle credenziali proxy che contengono un carattere '#'
+  letterale o encoded.
+- Vari fix a urllib3.
 
 2.2.0 (2014-01-09)
 ++++++++++++++++++
 
-**API Changes**
+**Modifiche all'API**
 
-- New exception: ``ContentDecodingError``. Raised instead of ``urllib3``
-  ``DecodeError`` exceptions.
+- Nuova eccezione: ``ContentDecodingError``. Sollevato al posto dell'eccezione
+  ``DecodeError`` di ``urllib3``.
 
-**Bugfixes**
+**Fix di bachi**
 
-- Avoid many many exceptions from the buggy implementation of ``proxy_bypass`` on OS X in Python 2.6.
-- Avoid crashing when attempting to get authentication credentials from ~/.netrc when running as a user without a home directory.
-- Use the correct pool size for pools of connections to proxies.
-- Fix iteration of ``CookieJar`` objects.
-- Ensure that cookies are persisted over redirect.
-- Switch back to using chardet, since it has merged with charade.
+- Evitato il sollevamento di un sacco di eccezioni sulla debole implementazione di
+  ``proxy_bypass`` su OS X per Python 2.6.
+- Evitato il crashing mentre si cerca di ottenere credenziali di autenticazione da
+  ~/.netrc se si impersona un utente senza una home directory.
+- Uso della dimensione corretta per i pool di connessioni ai proxy.
+- Fix sull'iterazione degli oggetti ``CookieJar``.
+- Ora i cookie sono salvati durante i redirect.
+- Ritorniamo ad usare chardet, dal momento che si è fuso con charade.
 
 2.1.0 (2013-12-05)
 ++++++++++++++++++
 
-- Updated CA Bundle, of course.
-- Cookies set on individual Requests through a ``Session`` (e.g. via ``Session.get()``) are no longer persisted to the ``Session``.
-- Clean up connections when we hit problems during chunked upload, rather than leaking them.
-- Return connections to the pool when a chunked upload is successful, rather than leaking it.
-- Match the HTTPbis recommendation for HTTP 301 redirects.
-- Prevent hanging when using streaming uploads and Digest Auth when a 401 is received.
-- Values of headers set by Requests are now always the native string type.
-- Fix previously broken SNI support.
-- Fix accessing HTTP proxies using proxy authentication.
-- Unencode HTTP Basic usernames and passwords extracted from URLs.
-- Support for IP address ranges for no_proxy environment variable
-- Parse headers correctly when users override the default ``Host:`` header.
-- Avoid munging the URL in case of case-sensitive servers.
-- Looser URL handling for non-HTTP/HTTPS urls.
-- Accept unicode methods in Python 2.6 and 2.7.
-- More resilient cookie handling.
-- Make ``Response`` objects pickleable.
-- Actually added MD5-sess to Digest Auth instead of pretending to like last time.
-- Updated internal urllib3.
-- Fixed @Lukasa's lack of taste.
+- Ovviamente, aggiornato il bundle dei certificati.
+- I cookie impostati su singole richieste attraverso una ``Session`` (es: con
+  ``Session.get()``) non sono più salvati sulla ``Session``.
+- Non c'è più leak della connessioni quando si verificano problemi sugli upload
+  chunked.
+- Le connessioni vengono ritornate nel pool quando un upload chunked va a buon fine.
+- Implementate le recommendation HTTPbis per le redirezioni HTTP 301.
+- Rimossa l'attesa indefinita sugli upload in streaming con autenticazione Digest e
+  un 401 è ricevuto.
+- I valori degli header impostati da Requests sono ora tipi stringa nativi.
+- Fix: il supporto SNI era rotto.
+- Fix: accesso ai proxy HTTP usando l'autenticazione ai proxy
+- Decodifica degli username e password HTTP Basic estratti dagli URL.
+- Supporto ai range di indirizzi IP nella variabile d'ambiente no_proxy.
+- Corretto il parsing degli header quando gli utenti sovrascrivono l'header ``Host:``
+  di default.
+- Nessun URL-munging in caso di server case-sensitive.
+- Gestione degli URL più rilassata per gli URL non-HTTP/HTTPS.
+- I metodi Unicode sono accettati in Python 2.6 e 2.7.
+- Gestione cookie più robusta agli errori.
+- Gli oggetti ``Response`` sono serializzabili con Pickle.
+- Ora sono stati davvero (diversamente dalla volta scorsa) aggiunte le sessioni MD5
+  all'autenticazione Digest.
+- Aggiornata la dipendenza a urllib3.
+- Fix: la mancanza di senso estetico di @Lukasa.
 
 2.0.1 (2013-10-24)
 ++++++++++++++++++
 
-- Updated included CA Bundle with new mistrusts and automated process for the future
-- Added MD5-sess to Digest Auth
-- Accept per-file headers in multipart file POST messages.
-- Fixed: Don't send the full URL on CONNECT messages.
-- Fixed: Correctly lowercase a redirect scheme.
-- Fixed: Cookies not persisted when set via functional API.
-- Fixed: Translate urllib3 ProxyError into a requests ProxyError derived from ConnectionError.
-- Updated internal urllib3 and chardet.
+- Aggiornato il bundle dei certificati con nuovi provider parzialmente fidati e un
+  processo automatico
+- Aggiunte sessioni MD5 all'autenticazione Digest
+- Vengono accettati headers per per ogni singolo file nelle POST di file multipli
+- Fix: non veniva inviato l'URL intero sulle CONNECT
+- Fix: lo URL schema nei redirect viene messo correttamente in lowercase
+- Fix: i cookie impostati attraverso l'API funzionale non erano salvati
+- Fix: tradotto l'errore di ProxyError urllib3 in un errore ProxyError di
+  Requests derivato da ConnectionError.
+- Aggiornate le dipendenze a urllib3 e chardet.
 
 2.0.0 (2013-09-24)
 ++++++++++++++++++
@@ -480,7 +505,7 @@ Questa release non è retrocompatibile.
 - Migliorata la gestione del JSON mime-compatibile
 - Fix sui Proxy
 - Fix sull'hacking dei path
-- Headers Content-Encoding case-insensitive
+- Headers Content-Encoding sono ora case-insensitive
 - Supporto per i parametri CJK nel POST-ing dei form
 
 
