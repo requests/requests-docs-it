@@ -26,7 +26,7 @@ Tutti ritornano un'istanza dell'oggetto :class:`Response <Response>`.
 .. autofunction:: delete
 
 
-Classi di livello inferiore
+Classi di livello più basso
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. autoclass:: requests.Request
@@ -155,15 +155,15 @@ Cambiamenti nell'API
 
 * Sono stati rimossi tutti gli hook delle richieste tranne 'response'.
 
-* Le funzioni di supporto all'autenticazione sono state spostate in moduli separati. Si vedano
-  requests-oauthlib_ e requests-kerberos_.
+* Le funzioni di supporto all'autenticazione sono state spostate in moduli
+  separati. Si vedano requests-oauthlib_ e requests-kerberos_.
 
 .. _requests-oauthlib: https://github.com/requests/requests-oauthlib
 .. _requests-kerberos: https://github.com/requests/requests-kerberos
 
 * Il nome del parametro per le richieste streaming è cambiato da ``prefetch`` a
-  ``stream`` e la logica è stata invertita. In più, ``stream`` viene ora richiesto per la
-  lettura delle risposte raw.
+  ``stream`` e la logica è stata invertita. In più, ``stream`` viene ora
+  richiesto per la lettura delle risposte raw.
 
   ::
 
@@ -172,9 +172,10 @@ Cambiamenti nell'API
       for chunk in r.iter_content(8192):
           ...
 
-* Il parametro ``config`` della funzione requests è stato rimosso. Alcune delle opzioni vengono ora
-  configurate su una ``Session`` (es: keep-alive e numero massimo di redirect). L'opzione di verbosità
-  dovrebbe essere gestita tramite configurazione del logging.
+* Il parametro ``config`` della funzione requests è stato rimosso. Alcune delle
+  opzioni vengono ora configurate su una ``Session`` (es: keep-alive e numero
+  massimo di redirezioni). L'opzione di verbosità dovrebbe essere gestita tramite
+  configurazione del logging.
 
   ::
 
@@ -238,8 +239,8 @@ Modifiche nell'API
   Infine, le eccezioni di tipo ``httplib.IncompleteRead`` causate da un encoding scorretto
   sui chunks sollevano ora un'istanza di ``ChunkedEncodingError`` di Requests.
 
-* L'API per i proxy è stata modificata lievemente. Lo schema dell'URL di un proxy viene ora
-  richiesto.
+* L'API per i proxy è stata modificata lievemente. Viene ora richiesto di
+  specificare lo schema per l'URL dei proxy.
 
   ::
 
@@ -255,8 +256,9 @@ Modifiche nell'API
 Modifiche al comportamento
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* Le chiavi nel dizionario ``headers`` sono ora stringhe native in tutte le versioni di Python
-  es. bytestrings in Python 2 e unicode in Python 3. Se le chiavi non sono stringhe native
-  (unicode in Python2 oppure bytestrings in Python 3), queste vengono convertite in stringhe
-  native utilizzando UTF-8 come encoding.
+* Le chiavi nel dizionario ``headers`` sono ora stringhe native in tutte le
+  versioni di Python es. bytestrings in Python 2 e unicode in Python 3. Se le
+  chiavi non sono stringhe native (unicode in Python2 oppure bytestrings in
+  Python 3), queste vengono convertite in stringhe native utilizzando UTF-8 come
+  encoding.
 
