@@ -8,13 +8,14 @@ Requests: HTTP per gli Esseri Umani
 
 Release v\ |version|. (:ref:`Installazione <install>`)
 
-Requests è una libreria HTTP con licenza :ref:`Apache2 Licensed <apache2>`, scritta in
-Python per gli esseri umani.
+Requests è una libreria HTTP con licenza :ref:`Apache2 <apache2>`, scritta in
+Python per gli Esseri Umani.
 
 Il modulo urllib2 della libreria standard Python mette a disposizione
-quasi tutte le principali funzionalità ma la sua interfaccia è molto frastagliata.
-Quel modulo è stato creato per tempi diversi - e un web diverso. Serve molto lavoro
-(addirittura anche l'overriding di metodi) per realizzare il più semplice dei task.
+quasi tutte le principali funzionalità HTTP ma la sua interfaccia è molto
+frastagliata. Quel modulo è stato creato per tempi diversi - e un web diverso.
+Serve molto lavoro (addirittura anche l'overriding di metodi) per realizzare il
+più semplice dei task.
 
 Le cose non dovrebbero funzionare così. Non in Python.
 
@@ -34,11 +35,11 @@ Le cose non dovrebbero funzionare così. Non in Python.
 
 Guarda `un codice che fa le stesse cose, ma senza Requests <https://gist.github.com/973705>`_.
 
-Requests si fa carico di tutto il lavoro per implementare HTTP/1.1 su Python - rendendo
-immediata l'integrazione delle tue applicazioni con i web services.
-Non c'è bisogno di aggiungere manualmente query string agli URL, o di fare form-encoding
-dei dati di POST. Il Keep-alive e il pooling delle connessioni HTTP sono 100% automatici,
-tutto ciò grazie a `urllib3 <https://github.com/shazow/urllib3>`_,
+Requests si fa carico di tutto il lavoro per implementare HTTP/1.1 su Python -
+rendendo immediata l'integrazione delle tue applicazioni con i web services.
+Non c'è bisogno di aggiungere manualmente query string agli URL, o di fare
+form-encoding dei dati di POST. Il Keep-alive e il pooling delle connessioni HTTP
+sono 100% automatici, tutto ciò grazie a `urllib3 <https://github.com/shazow/urllib3>`_,
 che è contenuta dentro Requests.
 
 
@@ -47,15 +48,16 @@ Testimonial
 
 Il Governo di Sua Maestà, Amazon, Google, Twilio, Runscope, Mozilla, Heroku,
 PayPal, NPR, Obama for America, Transifex, Native Instruments, il Washington
-Post, Twitter, SoundCloud, Kippt, Readability, Sony e Istituzioni Federali degli Stati Uniti che preferiscono
-rimanere anonime usano Requests al loro interno. E' stato scaricato da PyPI pià di 40.000.000 di volte.
+Post, Twitter, SoundCloud, Kippt, Readability, Sony e Istituzioni Federali degli
+Stati Uniti che preferiscono rimanere anonime usano Requests al loro interno.
+E' stato scaricato da PyPI più di 40.000.000 di volte.
 
 **Armin Ronacher**
     Requests è l'esempio perfetto di quanto un'API possa essere bella con il giusto livello di astrazione.
 
 **Matt DeBoard**
-    In un modo o nell'altro, mi farò tatuare sul corpo il modulo Python requests di @kennethreitz. Tutto il
-    modulo.
+    In un modo o nell'altro, mi farò tatuare addosso il modulo Python requests di @kennethreitz.
+    Il modulo intero.
 
 **Daniel Greenfeld**
     Ho rimpiazzato una libreria di 1200 righe di codice spaghetti con sole 10 righe grazie alla libreria
@@ -68,11 +70,11 @@ rimanere anonime usano Requests al loro interno. E' stato scaricato da PyPI pià
 Features
 --------
 
-Requests è prontq per il web moderno.
+Requests è pronto per il web moderno.
 
 - Domini e URL internazionali
 - Keep-Alive e Pooling delle connessioni
-- Sessioni persistenti attraverso i Cookie
+- Sessioni persistenti attraverso i cookie
 - Verifica SSL come la fanno i browser
 - Autenticazione Basic/Digest
 - Cookie chiave/valore
@@ -88,7 +90,7 @@ Requests è prontq per il web moderno.
 Documentazione per l'utente
 ---------------------------
 
-Questa parte della documentazione, che è per lo più in forma di posa, inizia
+Questa parte della documentazione, che è per lo più in forma di prosa, inizia
 contestualizzando Requests e prosegue dando istruzioni passo-passo per utilizzare
 Requests al meglio.
 
@@ -105,7 +107,7 @@ Requests al meglio.
 Documentazione per la community
 -------------------------------
 
-Questa parte della documentazione, che è per lo più in forma di posa, spiega
+Questa parte della documentazione, che è per lo più in forma di prosa, spiega
 i dettagli dell'ecosistema e della community attorno a Requests.
 
 .. toctree::
