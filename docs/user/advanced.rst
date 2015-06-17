@@ -94,7 +94,7 @@ Richieste preparate
 -------------------
 
 Ogni volta che ricevete un oggetto :class:`Response <requests.Response>` dalla
-chamata all'API o a Session, l'attributo ``request`` contiene la 
+chiamata all'API o a Session, l'attributo ``request`` contiene la 
 ``PreparedRequest`` che è stata utilizzata.
 
 In alcuni casi potreste dover manipolare il corpo o gli headers (e a dire il 
@@ -248,7 +248,7 @@ modo::
     with closing(requests.get('http://httpbin.org/get', stream=True)) as r:
         # Usate la risposta
 
-.. _`documented here`: http://docs.python.org/2/library/contextlib.html#contextlib.closing
+.. _`documentato qui`: http://docs.python.org/2/library/contextlib.html#contextlib.closing
 
 .. _keep-alive:
 
@@ -421,7 +421,7 @@ Basta impostare ``stream`` a ``True`` e iterare sulla risposta con
         if line:
             print(json.loads(line))
 
-.. caveat::
+..caveat::
 
     :class:`~requests.Response.iter_lines()` non è un metodo rientrante.
     Invocarlo più volte provoca la perdita di parte dei dati ricevuti. Nel caso 
@@ -463,7 +463,7 @@ Potete anche configurare i proxy attraverso le variabili di ambiente
     >>> requests.get("http://example.org")
 
 Per usare la HTTP Basic Authentication con il vostro proxy, servitevi della
-sintassi `http://user:password@host/`::
+sintassi `http://user:password@host/` ::
 
     proxies = {
         "http": "http://user:pass@10.10.1.10:3128/",
@@ -844,7 +844,7 @@ Dalla versione 2.4.0 in poi, Requests cerca di utilizzare i certificati da
 aggiornare i loro certificati di fiducia senza dover modificare il codice che
 gira sui loro sistemi.
 
-A beneficio della sirucrezza, vi raccomandiamo di aggiornare certifi
+A beneficio della sicurezza, vi raccomandiamo di aggiornare certifi
 frequentemente!
 
 .. _certifi: http://certifi.io/
