@@ -20,7 +20,7 @@ oppure, con `easy_install <http://pypi.python.org/pypi/setuptools>`_::
 
     $ easy_install requests
 
-Ma `non dovreste proprio farlo <https://stackoverflow.com/questions/3220404/why-use-pip-over-easy-install>`_.
+Ma `non dovreste usare il primo dei due <https://stackoverflow.com/questions/3220404/why-use-pip-over-easy-install>`_.
 
 
 Ottenere il codice
@@ -33,17 +33,17 @@ Potete in alternativa clonare il repository pubblico::
 
     $ git clone git://github.com/kennethreitz/requests.git
 
-Scaricare la `tarball <https://github.com/kennethreitz/requests/tarball/master>`_::
+oppure scaricare la `tarball <https://github.com/kennethreitz/requests/tarball/master>`_::
 
     $ curl -OL https://github.com/kennethreitz/requests/tarball/master
 
-Oppure, scaricare la 
+oppure, scaricare la 
 `zipball <https://github.com/kennethreitz/requests/zipball/master>`_::
 
     $ curl -OL https://github.com/kennethreitz/requests/zipball/master
 
 
-Una volta ottenuta una copia dei sorgenti, potete includerlo nel vostro package 
+Una volta ottenuta una copia dei sorgenti potete includerli nel vostro package 
 Python, o installarli facilmente nei vostri site-packages::
 
     $ python setup.py install

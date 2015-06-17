@@ -14,7 +14,7 @@ questo documento e a farvi un'idea di come si fa a contribuire al progetto. Per
 ogni domanda, sentitevi liberi di contattare `Ian Cordasco`_ o `Cory Benfield`_,
 i maintainer principali.
 
-Questa guida è dicisa in sezioni sulla tipologia di contributo che state
+Questa guida è divisa in sezioni sulla tipologia di contributo che state
 considerando di fare, con una sezione che tratta le linee guida generali per
 tutti i collaboratori.
 
@@ -22,8 +22,8 @@ tutti i collaboratori.
 .. _Cory Benfield: https://lukasa.co.uk/about
 
 
-Per ogni genere di contributo
------------------------------
+Per tutti i tipi di contributi
+------------------------------
 
 Siate cordiali
 ~~~~~~~~~~~~~~
@@ -31,7 +31,7 @@ Siate cordiali
 **Siate cordiali o state lontani.**
 
 Requests ha una regola importante che governa tutte le tipologie di contributo,
-inclusi i bug report o la richiesta di feature nuove. Questa regola d'oro è
+inclusi i bug report o le richieste di nuove feature. Questa regola d'oro è
 `siate cordiali o state lontani`_. **Tutti i contributi sono bene accetti**,
 fintanto che tutte le persone coinvolte vengono trattate con rispetto.
 
@@ -42,9 +42,9 @@ fintanto che tutte le persone coinvolte vengono trattate con rispetto.
 Cercate un feedback rapido
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Se contribuite, non tenete per voi il vostro lavoro fino a che non è perfetto e 
-completo. Date una mano a tutti se cercate di avere feedback sul vostro lavoro
-il prima possible. Inviare una versione draft e incompleta del vostro lavoro per
+Se contribuite, non mantenete privato il vostro lavoro fino a che non è perfetto e 
+completo. Se cercate di avere feedback sul vostro lavoro il prima possible, date
+una mano a tutti. Inviare una versione draft e incompleta del vostro lavoro per
 ottenere feedback non pregiudicherà in alcun modo le vostre chance di ottenere
 che esso venga accettato, anzi può evitarvi di fare un mucchio di lavoro su
 un contributo che in realtà potrebbe non essere adatto al progetto.
@@ -82,7 +82,7 @@ Se contribuite al codice, servitevi di questa checklist:
    passano *inclusi quelli che avete aggiunto in precedenza*.
 6. Inviate una Pull Request su GitHub sulla ``master`` branch del repository
    principale. Le Pull Requests di GitHub sono il metodo che usiamo nel progetto
-   per inviare i contributi al codice.
+   per inviare i contributi di codice.
 
 Le prossime sottosezioni entrano più in dettaglio su alcuni dei punti sopra
 illustrati.
@@ -101,7 +101,7 @@ oppure ritirare il vostro contributo.
 Nuovi collaboratori
 ~~~~~~~~~~~~~~~~~~~
 
-Se non avi siete mai accostati all'Open Source o siete relativamente nuovi,
+Se non vi siete mai accostati all'Open Source o siete relativamente nuovi,
 benvenuti! Requests vuol essere un'introduzione gentile al mondo dell'Open
 Source. Se siete indecisi su come contribuire al meglio, perfavore prendete in
 considerazione di mandare una e-mail ad uno dei maintainer (riportati sopra) e
@@ -112,14 +112,14 @@ Leggete anche la sezione :ref:`early-feedback`.
 Contributi alla documentazione
 ------------------------------
 
-Le migliorie alla documentazione sono sempre le benvenute! I file della
+Le migliorie alla documentazione sono sempre benvenute! I file della
 documentazione risiedono nella cartella ``docs/`` della codebase. Sono scritti
 in `reStructuredText`_, e utilizziamo `Sphinx`_ per generare l'intero corpo della
 documentazione.
 
-Quando contribuite alla documentazione, siete pregati di seguire lo stile dei
-file di documentazione. Ciò significa un limitie di 79 colonne nei file di testo
-e uno stile di prosa semi-formale.
+Quando contribuite alla documentazione, siete pregati di seguirne lo stile. Ciò
+significa un limite di 79 colonne nei file di testo e uno stile di prosa
+semi-formale.
 
 .. _reStructuredText: http://docutils.sourceforge.net/rst.html
 .. _Sphinx: http://sphinx-doc.org/index.html

@@ -63,7 +63,7 @@ keyword argument ``params``. A titolo di esempio, se volete passare
     >>> payload = {'key1': 'value1', 'key2': 'value2'}
     >>> r = requests.get("http://httpbin.org/get", params=payload)
 
-Potete printare l'URL per verificare che è stato correttamente encoded::
+Potete printare l'URL per verificare che sia stato correttamente encoded::
 
     >>> print(r.url)
     http://httpbin.org/get?key2=value2&key1=value1
@@ -106,13 +106,13 @@ Se modificate l'encoding, Requests userà il nuovo valore di ``r.encoding``
 ogni volta che chiamate ``r.text``. Questo potrebbe esservi utile quando dovete
 utilizzare una logica custom per determinare quale encoding avrà il contenuto.
 Ad esempio, HTTP e XML hanno la possibilità di specificare il proprio encoding
-nel body del documento. In situazioni come questa, like this, dovreste usare
+nel body del documento. In situazioni come questa, dovreste usare
 ``r.content``
 per ottenere l'encoding del documento e in seguito settare ``r.encoding``.
 Questo permetterà
 di usare ``r.text`` con l'encoding corretto.
 
-Requests supporta anche encoding custom nel caso ne abbiate bisogno.
+Requests supporta anche l'impiego di encoding custom nel caso ne abbiate bisogno.
 Se avete creato il vostro encoding e l'avete registrato nel modulo ``codecs``,
 potete molto semplicemente usare il valore di ``r.encoding`` e Requests gestirà
 direttamente il decoding della risposta per voi.
@@ -157,7 +157,7 @@ Contenuto raw delle Risposte
 ----------------------------
 
 Nel remoto caso in cui vi servisse il socket raw della risposta del server,
-potete accedere ``r.raw``. Se lo fate, ricordatevi di impostare ``stream=True``
+potete accedere a ``r.raw``. Se lo fate, ricordatevi di impostare ``stream=True``
 nell'effettuare la richiesta.. Quindi potete fare::
 
     >>> r = requests.get('https://api.github.com/events', stream=True)
@@ -230,8 +230,8 @@ lanciata::
       ...
     }
 
-In altri casi potreste voler inviare dati non form-encoded. Se passata una 
-``string`` al posto di un ``dict``, i dati saranno POST-ati direttamente.
+In altri casi potreste voler inviare dati non form-encoded. Se passate una 
+``string`` al posto di un ``dict``, i dati saranno POSTati direttamente.
 
 Ad esempio, l'API di GitHub API v3 accetta dati con encoding JSON per le
 richieste POST/PATCH::
@@ -292,11 +292,11 @@ Se volete,  potete inviare stringhe al posto di file veri e propri::
       ...
     }
 
-Nel caso in cui dobbiate POST-are un file molto grande con una richiesta 
-``multipart/form-data``, potreste voler inviare la richiesta in streaming.
-Di default, ``requests`` non lo supporta, ma esiste un package a parte che lo
-fa - ``requests-toolbelt``. Per maggiori dettagli su come usare questa feature,
-leggete la `documentazione di toolbelt <https://toolbelt.readthedocs.org>`_ .
+Nel caso in cui dobbiate POSTare un file molto grande con una richiesta 
+``multipart/form-data``, dovreste inviare la richiesta in streaming.
+Di default, ``requests`` non lo supporta ma esiste un package a parte per questo
+- ``requests-toolbelt``. Per maggiori dettagli su come usarlo, leggete la
+`documentazione di toolbelt <https://toolbelt.readthedocs.org>`_ .
 
 Per inviare file multipli in una sola richiesta fate riferimento alla sezione
 :ref:`avanzate <advanced>`.
@@ -357,7 +357,7 @@ Python::
         'content-type': 'application/json'
     }
 
-Questo dizionario è tuttavia speciale: è fatto apposta per gli HTTP header.
+Questo dizionario è tuttavia speciale: è fatto apposta per gli header HTTP.
 Secondo la `RFC 7230 <http://tools.ietf.org/html/rfc7230#section-3.2>`_, i nomi
 degli header HTTP sono case-insensitive.
 
@@ -374,15 +374,15 @@ header più di una volta con valori differenti, ma requests li combina in modo
 che possano essere rappresentati nel dizionario con un singolo schema di
 mappatura, così come dice la `RFC 7230 <http://tools.ietf.org/html/rfc7230#section-3.2>`_:
 
-    > Un ricevente PUO' combinare più campi header aventi lo stesso nome in una 
-    > singola coppia "nome-campo: valore-campo" senza cambiare la semantica del
-    > messaggio, assegnando come valore del campo combinato l'unione di tutti
-    > i valori successivi separati da virgola.
+> Un ricevente PUO' combinare più campi header aventi lo stesso nome in una 
+> singola coppia "nome-campo: valore-campo" senza cambiare la semantica del
+> messaggio, assegnando come valore del campo combinato l'unione di tutti
+> i valori successivi separati da virgola.
 
 Cookie
 ------
 
-Se una risposta contiene dei cookie, potete facilmente ottenerli::
+Se una risposta contiene dei cookie, potete ottenerli facilmente::
 
     >>> url = 'http://example.com/some/cookie/setting/url'
     >>> r = requests.get(url)
@@ -390,7 +390,7 @@ Se una risposta contiene dei cookie, potete facilmente ottenerli::
     >>> r.cookies['example_cookie_name']
     'example_cookie_value'
 
-Per inviare i vostri cookie al server, usate il parametro ``cookies``::
+Per inviare i vostri cookie al server usate il parametro ``cookies``::
 
     >>> url = 'http://httpbin.org/cookies'
     >>> cookies = dict(cookies_are='working')
@@ -407,13 +407,13 @@ Di default Requests effettua la redirezione dell'host per tutti i verbi HTTP
 ad eccezione di HEAD.
 
 
-Possiamo usare la propery ``history`` dell'oggetto Risposta per tracciare le
+Possiamo usare la property ``history`` dell'oggetto Risposta per tracciare le
 redirezioni.
 
 La lista :meth:`Response.history <requests.Response.history>` contiene gli
 oggetti di tipo :class:`Response <requests.Response>` che sono stati creati per
 completare le richieste. La lista è ordinata a partire dalla risposta meno 
-recente a quella più recente.
+recente fino a quella più recente.
 
 Per esempio, GitHub redirige tutte le richieste HTTP su HTTPS::
 
@@ -425,7 +425,7 @@ Per esempio, GitHub redirige tutte le richieste HTTP su HTTPS::
     >>> r.history
     [<Response [301]>]
 
-Se state usando GET, OPTIONS, POST, PUT, PATCH o DELETE, potete disabilitare la
+Se state usando GET, OPTIONS, POST, PUT, PATCH o DELETE potete disabilitare la
 redirezione attraverso il parametro``allow_redirects``::
 
     >>> r = requests.get('http://github.com', allow_redirects=False)
@@ -434,7 +434,7 @@ redirezione attraverso il parametro``allow_redirects``::
     >>> r.history
     []
 
-Se state usando HEAD, potete allo stesso modo abilitare la redirezione::
+Se state usando HEAD potete nello stesso modo abilitare la redirezione::
 
     >>> r = requests.head('http://github.com', allow_redirects=True)
     >>> r.url
@@ -455,7 +455,7 @@ certo numero di secondi attraverso il parametro ``timeout``::
     requests.exceptions.Timeout: HTTPConnectionPool(host='github.com', port=80): Request timed out. (timeout=0.001)
 
 
-.. caveat:: Note
+.. caveat:: Nota
 
     ``timeout`` non è un limite di tempo per la ricezione dell'intera risposta;
     un'eccezione è sollevata se il server non ha inviato una risposta entro 
@@ -473,7 +473,7 @@ rigettata, etc), Requests solleverà un'eccezione di tipo
 Nel raro caso di una risposta HTTP invalida, Requests solleverà un'eccezione
 di tipo :class:`~requests.exceptions.HTTPError`.
 
-Se una richiesta va in timeout, un'eccezione di tipo
+Se una richiesta va in timeout, viene sollevata un'eccezione di tipo
 :class:`~requests.exceptions.Timeout`.
 
 Se una richiesta eccede il numero massimo configurato di redirezioni, è sollevata
