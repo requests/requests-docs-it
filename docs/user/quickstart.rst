@@ -243,8 +243,8 @@ richieste POST/PATCH::
     >>> r = requests.post(url, data=json.dumps(payload))
 
 
-POST-are un file Multipart-Encoded
-----------------------------------
+POSTare un file Multipart-Encoded
+---------------------------------
 
 Requests rende semplice l'invio di file Multipart-encoded::
 
@@ -302,7 +302,7 @@ Per inviare file multipli in una sola richiesta fate riferimento alla sezione
 :ref:`avanzate <advanced>`.
 
 
-Status code della risposta
+Status code delle risposte
 --------------------------
 
 Possiamo controllare lo status code delle risposte::
