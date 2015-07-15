@@ -243,7 +243,7 @@ richieste POST/PATCH::
     >>> r = requests.post(url, data=json.dumps(payload))
 
 
-POSTare un file Multipart-Encoded
+Postare un file Multipart-Encoded
 ---------------------------------
 
 Requests rende semplice l'invio di file Multipart-encoded::
@@ -292,7 +292,7 @@ Se volete,  potete inviare stringhe al posto di file veri e propri::
       ...
     }
 
-Nel caso in cui dobbiate POSTare un file molto grande con una richiesta 
+Nel caso in cui dobbiate Postare un file molto grande con una richiesta 
 ``multipart/form-data``, dovreste inviare la richiesta in streaming.
 Di default, ``requests`` non lo supporta ma esiste un package a parte per questo
 - ``requests-toolbelt``. Per maggiori dettagli su come usarlo, leggete la
