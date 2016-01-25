@@ -63,7 +63,7 @@ keyword argument ``params``. A titolo di esempio, se volete passare
     >>> payload = {'key1': 'value1', 'key2': 'value2'}
     >>> r = requests.get("http://httpbin.org/get", params=payload)
 
-Potete printare l'URL per verificare che sia stato correttamente encoded::
+Potete stampare l'URL per verificare che sia stato correttamente codificato::
 
     >>> print(r.url)
     http://httpbin.org/get?key2=value2&key1=value1
