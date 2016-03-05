@@ -82,6 +82,6 @@ Come contribuire
 #. Scrivete un test che dimostra che il baco è stato risolto o che la nuova feature si comporta come ci si attende.
 #. Inviate una pull request e rompete l'anima ai maintainer finchè non viene incorporata e resa pubblica :) Ricordatevi di aggiungere il vostro nome alla lista degli AUTHORS_.
 
-.. _`the repository`: http://github.com/kennethreitz/requests
+.. _`il repository`: http://github.com/kennethreitz/requests
 .. _AUTHORS: https://github.com/kennethreitz/requests/blob/master/AUTHORS.rst
 .. _Contributor Friendly: https://github.com/kennethreitz/requests/issues?direction=desc&labels=Contributor+Friendly&page=1&sort=updated&state=open
