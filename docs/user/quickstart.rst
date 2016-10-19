@@ -133,8 +133,8 @@ richiesta,
 potete usare il seguente codice::
 
     >>> from PIL import Image
-    >>> from StringIO import StringIO
-    >>> i = Image.open(StringIO(r.content))
+    >>> from io import BytesIO
+    >>> i = Image.open(BytesIO(r.content))
 
 
 Contenuto JSON delle Risposte
